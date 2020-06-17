@@ -17,5 +17,7 @@
     "url": "https://github.com/GSG-G8/courses-search/issues"
   },
   "homepage": "https://github.com/GSG-G8/courses-search#readme",
-  "dependencies": {}
+  "dependencies": {
+    "cross-env": "^7.0.2"
+  }
 }
