@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cd server && cross-env NODE_ENV=test npm test"
+    "test": "cd server && cross-env NODE_ENV=test npm test",
+    "init": "cd client && npm i && cd ../server && npm i",
+    "install": "npm run init"
   },
   "repository": {
     "type": "git",

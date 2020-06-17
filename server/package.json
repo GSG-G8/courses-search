@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "init": "cd client && npm i && cd ../server && npm i",
-    "install": "npm run init"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
