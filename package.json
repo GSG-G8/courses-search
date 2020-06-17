@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "cd server && cross-env NODE_ENV=test npm test"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,5 @@
     "url": "https://github.com/GSG-G8/courses-search/issues"
   },
   "homepage": "https://github.com/GSG-G8/courses-search#readme",
-  "dependencies": {
-    "babel-jest": "^24.9.0",
-    "jest": "^24.9.0"
-  }
+  "dependencies": {}
 }
