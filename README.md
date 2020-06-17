@@ -15,7 +15,7 @@ An online courses’ search engine which make it easy to navigate among all educ
 - Omar Dahouh
 - Mohammed Alghazali
 - Lina Jamal
-- Rawan Abudhrouj
+- Rawan Abudahrouj
 
 ### Summary:
 
@@ -51,6 +51,7 @@ Now the app is in your device and it's working.
 ### Data-Base Schema:
 
 This is the schema of our database
+![image](https://user-images.githubusercontent.com/41539949/84891240-3e071c80-b0a4-11ea-9b21-140fb6050add.png)
 
 ### Technologies:
 
