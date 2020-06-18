@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --runInBand",
+    "lint-fix": "eslint ./src --fix",
+    "dev": "nodemon ./src",
+    "start": "node ./src"
   },
   "keywords": [],
   "author": "",
@@ -18,10 +21,22 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^2.5.1",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "jest": "^26.0.1",
+    "babel-jest": "^24.9.0",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
+    "@hapi/boom": "^9.1.0",
+    "axios": "^0.19.2",
     "babel-jest": "^24.9.0",
-    "jest": "^24.9.0"
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "eslint-plugin-jest": "^23.13.2",
+    "express": "^4.17.1",
+    "pg": "^8.2.1",
+    "yup": "^0.29.1"
   }
 }
