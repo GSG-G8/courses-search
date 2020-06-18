@@ -8,6 +8,5 @@ const dbBuild = () => {
 
   return connection.query(dbFile);
 };
-// conn?
 
 module.exports = dbBuild;
