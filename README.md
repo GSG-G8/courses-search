@@ -10,14 +10,14 @@ An online courses’ search engine which make it easy to navigate among all educ
 
 - Alaa Taima
 
-### Team members:
+### Team Members:
 
 - Omar Dahouh
 - Mohammed Alghazali
 - Lina Jamal
 - Rawan Abudahrouj
 
-### Summary:
+### Problem:
 
 There's a huge demand for online courses especially during quarantine, so people get confused among the big number of online education platforms (edx, udemy, coursera, aliason, Edrak, mahara, udacity.....). They don't know what's the best course for them.
 
