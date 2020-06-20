@@ -1,0 +1,27 @@
+INSERT INTO category
+  (name)
+VALUES
+  ('web development'),
+  ('mobile apps'),
+  ('software engineering'),
+  ('databases'),
+  ('finance'),
+  ('management'),
+  ('communications'),
+  ('data and analytics'),
+  ('food and beverage'),
+  ('arts and crafts'),
+  ('music'),
+  ('photography'),
+  ('science'),
+  ('math'),
+  ('online education'),
+  ('engineering'),
+  ('public relations'),
+  ('digital marketing'),
+  ('social media marketing'),
+  ('marketing fundamentals'),
+  ('graphic design'),
+  ('architectural design'),
+  ('design tools'),
+  ('user experience');
