@@ -1,44 +1,48 @@
 BEGIN;
 
-DROP TABLE IF EXISTS course , category , comment , favorite, users CASCADE;
+	DROP TABLE IF EXISTS course , category , comment , favorite, users
+	CASCADE;
 
-CREATE TABLE users (
+CREATE TABLE users
+(
 	id SERIAL PRIMARY KEY ,
 	name VARCHAR(255) NOT NULL,
 	email VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE category (
+CREATE TABLE category
+(
 	id SERIAL PRIMARY KEY ,
-	name VARCHAR(255) NOT NULL,
-	original_id VARCHAR(255) NOT NULL
+	name VARCHAR(255) NOT NULL
 );
-CREATE TABLE course (
+
+CREATE TABLE course
+(
 	id SERIAL PRIMARY KEY,
-    category_id INTEGER NOT NULL REFERENCES category(id),
+	category_id INTEGER NOT NULL REFERENCES category(id),
 	title VARCHAR(255) NOT NULL,
 	image VARCHAR(255) NOT NULL DEFAULT 'https://uniweb.qwebbuilder.com.ng/images/onlinecourses.jpg' ,
 	author_name VARCHAR(255) NOT NULL DEFAULT 'no author',
-    url VARCHAR(255) NOT NULL ,
-    rate VARCHAR(255) NOT NULL DEFAULT 'no rate',
-    reviews VARCHAR(255) NOT NULL DEFAULT 'no reviews',
-    description VARCHAR(255) NOT NULL,
-    source VARCHAR(255) NOT NULL
-    
+	url VARCHAR(255) NOT NULL ,
+	rate VARCHAR(255) NOT NULL DEFAULT 'no rate',
+	reviews VARCHAR(255) NOT NULL DEFAULT 'no reviews',
+	description TEXT NOT NULL,
+	source VARCHAR(255) NOT NULL
 );
 
-
-CREATE TABLE comment (
+CREATE TABLE comment
+(
 	id SERIAL PRIMARY KEY ,
 	content VARCHAR(255) NOT NULL,
 	user_id INTEGER NOT NULL REFERENCES users(id),
 	course_id INTEGER NOT NULL REFERENCES course(id)
 );
-CREATE TABLE favorite (
+
+CREATE TABLE favorite
+(
 	user_id INTEGER NOT NULL REFERENCES users(id),
 	course_id INTEGER NOT NULL REFERENCES course(id),
-    PRIMARY KEY (user_id, course_id) 
+	PRIMARY KEY (user_id, course_id)
 );
-
 
 COMMIT;
