@@ -1,7 +1,8 @@
 const router = require('express').Router();
 
-const { clientError, serverError } = require('../controllers');
+const { clientError, serverError, getCourseById } = require('../controllers');
 
+router.get('/courses/:courseId', getCourseById);
 router.use(clientError);
 router.use(serverError);
 
