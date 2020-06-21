@@ -1,5 +1,5 @@
 const express = require('express');
-/* const { join } = require('path'); */
+const { join } = require('path');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 
@@ -15,14 +15,12 @@ const middlewares = [compression(), cookieParser(), express.json()];
 
 app.use(middlewares);
 
-app.set('port', process.env.PORT || 5000);
-
-/* app.use(express.static(join(__dirname, '..', 'client', 'build'))); */
+app.use(express.static(join(__dirname, '..', '..', 'client', 'build')));
 
 app.use('/api/v1', router);
 
-/* app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
-}); */
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, '..', '..', 'client', 'build', 'index.html'));
+});
 
 module.exports = app;
