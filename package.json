@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "install": "npm run project-setup",
-    "project-setup": "cd client && npm i && cd ../server && npm i",
+    "project-setup": "npm i && cd client && npm i && cd ../server && npm i",
     "start": "cross-env NODE_ENV=production node ./server/src",
     "lint-fix": "cd client && npm run lint-fix && cd ../server && npm run lint-fix",
     "server": "cd server && cross-env NODE_ENV=development npm run dev",
