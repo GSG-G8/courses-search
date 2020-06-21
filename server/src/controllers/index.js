@@ -1,3 +1,9 @@
 const { getCoursesByCatId } = require('./course');
 
-module.exports = { getCoursesByCatId };
+const { clientError, serverError } = require('./errorHandle');
+
+module.exports = {
+  clientError,
+  serverError,
+  getCoursesByCatId,
+};
