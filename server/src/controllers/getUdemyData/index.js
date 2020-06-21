@@ -1,5 +1,5 @@
 const axios = require('axios');
-const addUdemyCourse = require('../../database/queries');
+const { addUdemyCourse } = require('../../database/queries');
 
 const udemyData = async () => {
   try {
