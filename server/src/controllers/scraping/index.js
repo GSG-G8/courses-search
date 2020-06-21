@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const fs = require('fs');
+const addFutureCourse = require('../../database/queries');
 
 axios.get('https://www.futurelearn.com/courses').then((res) => {
   const $ = cheerio.load(res.data);
@@ -8,15 +8,15 @@ axios.get('https://www.futurelearn.com/courses').then((res) => {
 
   $('.m-card').each((i, el) => {
     const title = $(el).find('h4').text();
-    const img = $(el).find('.image-cover_3Epqi').attr('src');
-    const rate = $(el).find('.ReviewStars-text_mSEFD').text();
+    const image = $(el).find('.image-cover_3Epqi').attr('src');
     const description = $(el).find('p').text();
-    const link = $(el).find('a').attr('href');
+    const url = `futurelearn.com${$(el).find('a').attr('href')}`;
+    const source = 'Future Learn';
+    const courseRate = $(el).find('.ReviewStars-text_mSEFD').text();
+    const rate = courseRate.slice(0, 3);
+    const reviews = courseRate.slice(4);
 
-    courses[i] = { title, img, rate, description, link };
-
-    fs.writeFile('courses.json', JSON.stringify(courses, null, 4), (err) => {
-      if (err) throw err;
-    });
+    courses[i] = { title, image, rate, description, url, source, reviews };
+    addFutureCourse(courses[i]);
   });
 });
