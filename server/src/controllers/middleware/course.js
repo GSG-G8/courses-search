@@ -6,16 +6,14 @@ exports.getCoursesByCatId = async (req, res, next) => {
     if (categoryId > 0) {
       const { rows } = await getcourseByCatId(categoryId);
       if (rows.length !== 0) {
-        res.json({ statusCode: 200, data: rows });
+        res.json(rows);
       } else {
         res.status(404).json({
-          statusCode: 404,
           message: "Sorry There's no courses for this category..!",
         });
       }
     } else {
       res.status(400).json({
-        statusCode: 400,
         message: 'wrong category Id',
       });
     }

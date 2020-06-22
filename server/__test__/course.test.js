@@ -15,7 +15,7 @@ describe('get all courses', () => {
       .set('Accept', 'application/json')
       .expect(200)
       .then((response) => {
-        const { data } = response.body;
+        const data = response.body;
         expect(data[0].id).toBe(1);
         expect(data[0].title).toBe('computer');
         expect(data[0].image).toBe(
