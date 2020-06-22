@@ -16,7 +16,6 @@ module.exports = {
     },
     rules: { 
       "linebreak-style": 0,
-      "no-dupe-keys": 0,
       "arrow-body-style": ["error", "as-needed"],
       "prettier/prettier": [
         "error",
