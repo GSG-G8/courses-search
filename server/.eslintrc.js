@@ -17,6 +17,7 @@ module.exports = {
     rules: { 
       "linebreak-style": 0,
       "arrow-body-style": ["error", "as-needed"],
+      "no-unused-vars": "off",
       "prettier/prettier": [
         "error",
         {
@@ -31,6 +32,7 @@ module.exports = {
         },
       ],
     },
-    plugins: ["prettier", "jest"]
+    plugins: ["prettier", "jest"],
+    
   };
   
