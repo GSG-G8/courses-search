@@ -1,8 +1,10 @@
 const { getFavoriteCourse, getUserById } = require('../../database/queries');
+const { favoriteSchema } = require('../../utils');
 
 const getFavorite = async (req, res, next) => {
   try {
     const { userId } = req.params;
+    await favoriteSchema.validate({ userId });
     if (userId > 0) {
       const checkUser = await getUserById(userId);
       if (checkUser.rowCount) {
@@ -21,7 +23,13 @@ const getFavorite = async (req, res, next) => {
       }
     }
   } catch (err) {
-    next(err);
+    if (err.errors) {
+      res.status(404).json({
+        message: err.errors,
+      });
+    } else {
+      next(err);
+    }
   }
 };
 
