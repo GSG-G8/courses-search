@@ -1,5 +1,5 @@
 const axios = require('axios');
-const courseraInsert = require('../../database/queries/insertCourses');
+const { insertCourses } = require('../../database/queries');
 
 const categories = require('./categories.json');
 
@@ -8,15 +8,13 @@ const url = 'https://www.coursera.org/graphqlBatch?opname=catalogResultQuery';
 const query = `query catalogResultQuery(
   $facets: [String!]!,
   $start: String!,
-  $sortField: String,
   $limit: Int
 ) {
   CatalogResultsV2Resource {
     browseV2(
       facets: $facets,
       start: $start,
-      limit: $limit,
-      sortField: $sortField
+      limit: $limit
     ) {
       elements {
         courses {
@@ -44,7 +42,6 @@ async function getCourses() {
         `skillNameMultiTag:${category.skills}`,
         `subcategoryMultiTag:${category.domain}`,
       ],
-      sortField: '',
     },
     query,
   }));
@@ -67,13 +64,13 @@ async function getCourses() {
         rate: course.courseDerivativesV2.averageFiveStarRating || 0,
         reviews: course.courseDerivativesV2.ratingCount || 0,
         description: course.description,
-        source: 'coursera.org',
+        source: 'coursera',
       }));
 
       allCourses = allCourses.concat(courses);
     });
 
-    await courseraInsert(allCourses);
+    await insertCourses(allCourses);
     return allCourses;
   } catch (error) {
     return error;
@@ -82,5 +79,5 @@ async function getCourses() {
 
 module.exports = async (req, res) => {
   const courses = await getCourses();
-  res.json(courses);
+  res.json({ count: courses.length });
 };
