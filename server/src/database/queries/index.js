@@ -1,3 +1,3 @@
-const { getcourseByCatId } = require('./course');
+const { getcourseByCatId } = require('./catCourses');
 
 module.exports = { getcourseByCatId };

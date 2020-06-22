@@ -1,7 +1,10 @@
 const router = require('express').Router();
-const { getCoursesByCatId } = require('./course');
 
-const { clientError, serverError } = require('../controllers');
+const {
+  clientError,
+  serverError,
+  getCoursesByCatId,
+} = require('../controllers');
 
 router.get('/:categoryId/courses', getCoursesByCatId);
 
