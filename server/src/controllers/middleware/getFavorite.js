@@ -23,10 +23,8 @@ const getFavorite = async (req, res, next) => {
       }
     }
   } catch (err) {
-    if (err.errors) {
-      res.status(404).json({
-        message: err.errors,
-      });
+    if (err.name === 'ValidationError') {
+      res.status(400).json({ message: 'invalid inputs' });
     } else {
       next(err);
     }
