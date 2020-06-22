@@ -19,7 +19,7 @@ CREATE TABLE category
 CREATE TABLE course
 (
 	id SERIAL PRIMARY KEY,
-    category_id INTEGER NOT NULL REFERENCES category(id),
+	category_id INTEGER NOT NULL REFERENCES category(id),
 	title VARCHAR(255) NOT NULL,
 	image VARCHAR(255) NOT NULL DEFAULT 'https://uniweb.qwebbuilder.com.ng/images/onlinecourses.jpg' ,
 	author_name VARCHAR(255) NOT NULL DEFAULT 'no author',
