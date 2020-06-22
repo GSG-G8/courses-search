@@ -1,7 +1,6 @@
 const router = require('express').Router();
+const { getFavorite } = require('../controllers');
 
-router.get('/hello', (req, res) => {
-  res.send('Hello');
-});
+router.get('/favorite/:userId', getFavorite);
 
 module.exports = router;
