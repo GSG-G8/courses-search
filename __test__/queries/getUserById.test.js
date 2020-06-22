@@ -1,6 +1,6 @@
-const connection = require('../../src/database/config/connection');
-const dbBuild = require('../../src/database/config/build');
-const { getUserById } = require('../../src/database/queries');
+const connection = require('../../server/src/database/config/connection');
+const dbBuild = require('../../server/src/database/config/build');
+const { getUserById } = require('../../server/src/database/queries');
 
 describe('test for getUserById query', () => {
   beforeAll(() => dbBuild());

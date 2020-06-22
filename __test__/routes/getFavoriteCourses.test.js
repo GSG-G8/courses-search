@@ -1,9 +1,8 @@
 const request = require('supertest');
-const connection = require('../../src/database/config/connection');
-const dbBuild = require('../../src/database/config/build');
-require('dotenv').config();
+const connection = require('../../server/src/database/config/connection');
+const dbBuild = require('../../server/src/database/config/build');
 
-const app = require('../../src/app');
+const app = require('../../server/src/app');
 
 describe('get request to /favorite/:userId', () => {
   beforeAll(() => dbBuild());
