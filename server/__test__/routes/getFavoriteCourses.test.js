@@ -1,6 +1,7 @@
 const request = require('supertest');
 const connection = require('../../src/database/config/connection');
 const dbBuild = require('../../src/database/config/build');
+require('dotenv').config();
 
 const app = require('../../src/app');
 

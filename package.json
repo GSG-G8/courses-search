@@ -14,8 +14,7 @@
     "kill": "fuser -k 5000/tcp",
     "kill-run": "npm run kill && NODE_ENV=development npm run server",
     "heroku-postbuild": "NODE_ENV=production cd client && npm install && npm run build",
-    "start-both": "npm-run-all --parallel server client",
-    "build:db": "NODE_ENV=test node server/src/database/config/build"
+    "start-both": "npm-run-all --parallel server client"
   },
   "repository": {
     "type": "git",
