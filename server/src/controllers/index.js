@@ -1,4 +1,4 @@
-const { getCoursesByCatId } = require('./middleware/course');
+const { getCoursesByCatId } = require('./middleware/getCatcourses');
 
 const { clientError, serverError } = require('./errorHandle');
 

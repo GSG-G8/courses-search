@@ -9,21 +9,20 @@ describe('get all courses', () => {
   afterAll(() => connection.end());
 
   it('get all courses by category id "1"', async () => {
-    expect.assertions(5);
-    await request(app)
+    expect.assertions(1);
+    const { body } = await request(app)
       .get('/api/v1/1/courses')
       .set('Accept', 'application/json')
-      .expect(200)
-      .then((response) => {
-        const data = response.body;
-        expect(data[0].id).toBe(1);
-        expect(data[0].title).toBe('computer');
-        expect(data[0].image).toBe(
-          'https://uniweb.qwebbuilder.com.ng/images/onlinecourses.jpg'
-        );
-        expect(data[0].rate).toBe('3.4');
-        expect(data[0].source).toBe('udemy');
-      });
+      .expect(200);
+    expect(body).toStrictEqual([
+      {
+        id: 1,
+        title: 'computer',
+        image: 'https://uniweb.qwebbuilder.com.ng/images/onlinecourses.jpg',
+        rate: '3.4',
+        source: 'udemy',
+      },
+    ]);
   });
 
   it("should return all courses with category-id doesn't exist", async () => {
