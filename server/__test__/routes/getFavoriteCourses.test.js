@@ -36,7 +36,7 @@ describe('get request to /favorite/:userId', () => {
         title: 'Science',
         image: 'https://uniweb.qwebbuilder.com.ng/images/onlinecourses.jpg',
         author_name: 'Ralef',
-        url: 'www.course1.com',
+        url: 'www.course2.com',
         rate: '4.4',
         reviews: '60 reviews',
         description: 'Hi from Science course',
