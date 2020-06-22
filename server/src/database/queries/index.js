@@ -1,3 +1,5 @@
-const { getcourseById } = require('./course');
+const { getcourseById } = require('./courseDetails');
 
-module.exports = { getcourseById };
+const { getcourseByCatId } = require('./ catCourses');
+
+module.exports = { getcourseByCatId, getcourseById };
