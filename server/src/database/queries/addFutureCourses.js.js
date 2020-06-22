@@ -3,6 +3,7 @@ const connection = require('../config/connection');
 const addFutureCourse = ({
   title,
   image,
+  categoriesId,
   url,
   rate,
   reviews,
@@ -11,8 +12,17 @@ const addFutureCourse = ({
 }) => {
   const sql = {
     text:
-      'insert into course(title, image, url, rate, reviews, description, source) values($1, $2, $3, $4, $5, $6, $7)',
-    values: [title, image, url, rate, reviews, description, source],
+      'insert into course(category_id, title, image, url, rate, reviews, description, source) values($1, $2, $3, $4, $5, $6, $7, $8)',
+    values: [
+      categoriesId,
+      title,
+      image,
+      url,
+      rate,
+      reviews,
+      description,
+      source,
+    ],
   };
   return connection.query(sql);
 };

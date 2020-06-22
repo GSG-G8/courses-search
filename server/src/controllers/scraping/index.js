@@ -1,6 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const addFutureCourse = require('../../database/queries');
+const categoryId = require('./categoryId');
 
 axios.get('https://www.futurelearn.com/courses').then((res) => {
   const $ = cheerio.load(res.data);
@@ -15,8 +16,18 @@ axios.get('https://www.futurelearn.com/courses').then((res) => {
     const courseRate = $(el).find('.ReviewStars-text_mSEFD').text();
     const rate = courseRate.slice(0, 3);
     const reviews = courseRate.slice(4);
+    const categoriesId = categoryId[title];
 
-    courses[i] = { title, image, rate, description, url, source, reviews };
+    courses[i] = {
+      title,
+      image,
+      rate,
+      description,
+      url,
+      source,
+      reviews,
+      categoriesId,
+    };
     addFutureCourse(courses[i]);
   });
 });
