@@ -1,4 +1,4 @@
-require('dotenv').config();
+const env = require('env2')('../.env');
 const { Pool } = require('pg');
 
 let dbUrl = '';
@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'test') {
   dbUrl = process.env.DB_URL;
 }
 
-if (!dbUrl) throw new Error(`No Database FOUND ${dbUrl} + ${process.env}`);
+if (!dbUrl) throw new Error('No Database FOUND');
 
 const options = {
   connectionString: dbUrl,
