@@ -34,7 +34,7 @@ const udemyData = async () => {
     );
 
   const getUdemyData = async () =>
-    Promise.all(DatabaseCategoryIds.map((item) => makeUdemyRequest(item)));
+    Promise.all(DatabaseCategoryIds.map(makeUdemyRequest));
 
   const insertOneUdemyCourse = async (item) => {
     const {
@@ -54,7 +54,7 @@ const udemyData = async () => {
   };
 
   const insertAllUdemyCourse = async (arrayOfData) =>
-    Promise.all(arrayOfData.map((item) => insertOneUdemyCourse(item)));
+    Promise.all(arrayOfData.map(insertOneUdemyCourse));
 
   const udemyCourses = await getUdemyData();
   insertAllUdemyCourse(udemyCourses);
