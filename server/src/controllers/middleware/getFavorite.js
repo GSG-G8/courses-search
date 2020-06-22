@@ -1,5 +1,4 @@
-const { getFavoriteCourse } = require('../database/queries');
-const { getUserById } = require('../database/queries');
+const { getFavoriteCourse, getUserById } = require('../../database/queries');
 
 const getFavorite = async (req, res, next) => {
   try {

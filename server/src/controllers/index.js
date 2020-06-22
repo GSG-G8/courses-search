@@ -1,5 +1,5 @@
 const { clientError, serverError } = require('./errorHandle');
-const getFavorite = require('./getFavorite');
+const getFavorite = require('./middleware/getFavorite');
 
 module.exports = {
   clientError,
