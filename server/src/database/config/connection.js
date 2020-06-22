@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'test') {
   dbUrl = process.env.DB_URL;
 }
 
-if (!dbUrl) throw new Error('No Database FOUND');
+if (!dbUrl) throw new Error(`No Database FOUND ${dbUrl} + ${process.env}`);
 
 const options = {
   connectionString: dbUrl,
