@@ -19,10 +19,10 @@ const addUdemyCourse = (data) => {
       title,
       image,
       author,
-      url,
+      `https://www.udemy.com${url}`,
       rating,
       reviews,
-      description[0],
+      description.join(),
       source,
     ]
   );

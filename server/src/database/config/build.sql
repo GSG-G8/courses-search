@@ -7,7 +7,7 @@ CREATE TABLE users
 (
 	id SERIAL PRIMARY KEY ,
 	name VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL
+	email VARCHAR(255) NOT NULL UNIQUE
 );
 
 CREATE TABLE category
@@ -23,7 +23,7 @@ CREATE TABLE course
 	title VARCHAR(255) NOT NULL,
 	image VARCHAR(255) NOT NULL DEFAULT 'https://uniweb.qwebbuilder.com.ng/images/onlinecourses.jpg' ,
 	author_name VARCHAR(255) NOT NULL DEFAULT 'no author',
-	url VARCHAR(255) NOT NULL ,
+	url VARCHAR(255) NOT NULL UNIQUE,
 	rate VARCHAR(255) NOT NULL DEFAULT 'no rate',
 	reviews VARCHAR(255) NOT NULL DEFAULT 'no reviews',
 	description TEXT NOT NULL,
