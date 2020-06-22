@@ -9,7 +9,7 @@ const getFavorite = async (req, res, next) => {
       const checkUser = await getUserById(userId);
       if (checkUser.rowCount) {
         const { rows } = await getFavoriteCourse(userId);
-        if (rows[0]) {
+        if (rows.length) {
           res.json(rows);
         } else {
           res.json({
