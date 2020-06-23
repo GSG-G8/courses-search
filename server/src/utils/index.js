@@ -1,5 +1,6 @@
-const { favoriteSchema } = require('./validation');
+const { favoriteSchema, courseDetailsSchema } = require('./validation');
 
 module.exports = {
   favoriteSchema,
+  courseDetailsSchema,
 };
