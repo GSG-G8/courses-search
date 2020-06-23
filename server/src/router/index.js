@@ -1,8 +1,13 @@
 const router = require('express').Router();
 
-const { clientError, serverError } = require('../controllers');
-const { getFavorite } = require('../controllers');
+const {
+  clientError,
+  serverError,
+  getCoursesByCatId,
+  getFavorite,
+} = require('../controllers');
 
+router.get('/:categoryId/courses', getCoursesByCatId);
 router.get('/favorite/:userId', getFavorite);
 router.use(clientError);
 router.use(serverError);
