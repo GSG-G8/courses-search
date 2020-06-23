@@ -1,5 +1,6 @@
-const favoriteSchema = require('./generalSchema');
+const { favoriteSchema, courseDetailsSchema } = require('./generalSchema');
 
 module.exports = {
   favoriteSchema,
+  courseDetailsSchema,
 };
