@@ -9,7 +9,7 @@ const dbBuild = () => {
   const fakeData = readFileSync(join(__dirname, 'fakeData.sql')).toString();
   return connection
     .query(dbFile)
-    .then(connection.query(category))
+    .then(() => connection.query(category))
     .then(() => connection.query(fakeData));
 };
 

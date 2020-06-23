@@ -7,7 +7,8 @@
     "test": "jest --runInBand",
     "lint-fix": "eslint ./src --fix",
     "dev": "nodemon ./src",
-    "start": "node ./src"
+    "start": "node ./src",
+    "kill": "fuser -k 5000/tcp"
   },
   "keywords": [],
   "author": "",
