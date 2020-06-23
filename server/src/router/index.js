@@ -8,7 +8,6 @@ const {
   getCoursesByCatId,
 } = require('../controllers');
 
-
 router.get('/courses', getTopRatedCourses);
 router.get('/:categoryId/courses', getCoursesByCatId);
 router.get('/favorite/:userId', getFavorite);
