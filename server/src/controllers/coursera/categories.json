@@ -1,0 +1,122 @@
+[
+    {
+        "name": "web development",
+        "domain": "mobile-and-web-development",
+        "skills": "Web Development:Web:Web Design:Html:Javascript:Css"
+    },
+    {
+        "name": "mobile apps",
+        "domain": "mobile-and-web-development",
+        "skills": "Mobile App:Mobile Development:Ios Development:Android Development"
+    },
+    {
+        "name": "software engineering",
+        "domain": "software-development",
+        "skills": "Software Engineering"
+    },
+    {
+        "name": "databases",
+        "domain": "software-development",
+        "skills": "Databases"
+    },
+    {
+        "name": "finance",
+        "domain": "finance",
+        "skills": "Finance"
+    },
+    {
+        "name": "management",
+        "domain": "leadership-and-management",
+        "skills": "Leadership And Management"
+    },
+    {
+        "name": "communications",
+        "domain": "personal-development",
+        "skills": "Communication"
+    },
+    {
+        "name": "data and analytics",
+        "domain": "data-science",
+        "skills": "Analysis"
+    },
+    {
+        "name": "food and beverage",
+        "domain": "nutrition",
+        "skills": "Nutrition"
+    },
+    {
+        "name": "Arts and Crafts",
+        "domain": "music-and-art",
+        "skills": "Art"
+    },
+    {
+        "name": "music",
+        "domain": "music-and-art",
+        "skills": "Music"
+    },
+    {
+        "name": "photography",
+        "domain": "music-and-art",
+        "skills": "Photography"
+    },
+    {
+        "name": "science",
+        "domain": "basic-science",
+        "skills": "Biology:Chemistry"
+    },
+    {
+        "name": "math",
+        "domain": "math-and-logic",
+        "skills": "Mathematics:Calculus:Algebra"
+    },
+    {
+        "name": "online education",
+        "domain": "education",
+        "skills": "Online Learning"
+    },
+    {
+        "name": "engineering",
+        "domain": "physical-science-and-engineering",
+        "skills": "Electrical Engineering:Civil Engineering:Mechanical Engineering"
+    },
+    {
+        "name": "public relations",
+        "domain": "marketing",
+        "skills": "Public Relations"
+    },
+    {
+        "name": "digital marketing",
+        "domain": "marketing",
+        "skills": "Digital Marketing"
+    },
+    {
+        "name": "social media marketing",
+        "domain": "marketing",
+        "skills": "Social Media:Social Media Marketing"
+    },
+    {
+        "name": "marketing fundamentals",
+        "domain": "marketing",
+        "skills": "Advertising:Brand"
+    },
+    {
+        "name": "graphic design",
+        "domain": "design-and-product",
+        "skills": "Graphic Design"
+    },
+    {
+        "name": "architectural design",
+        "domain": "design-and-product",
+        "skills": "Architecture"
+    },
+    {
+        "name": "design tools",
+        "domain": "design-and-product",
+        "skills": "Adobe Photoshop:Adobe Indesign:Adobe Illustrator:Autodesk"
+    },
+    {
+        "name": "user experience",
+        "domain": "design-and-product",
+        "skills": "User Experience"
+    }
+]
