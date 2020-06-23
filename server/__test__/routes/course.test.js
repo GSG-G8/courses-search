@@ -1,8 +1,8 @@
 const request = require('supertest');
-const connection = require('../src/database/config/connection');
-const dbBuild = require('../src/database/config/build');
+const connection = require('../../src/database/config/connection');
+const dbBuild = require('../../src/database/config/build');
 
-const app = require('../src/app');
+const app = require('../../src/app');
 
 describe('get all courses', () => {
   beforeAll(() => dbBuild());
