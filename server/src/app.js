@@ -11,7 +11,12 @@ app.disabled('x-powered-by');
 
 app.set('port', process.env.PORT || 5000);
 
-const middlewares = [compression(), cookieParser(), express.json()];
+const middlewares = [
+  compression(),
+  cookieParser(),
+  express.json(),
+  express.urlencoded({ extended: false }),
+];
 
 app.use(middlewares);
 
