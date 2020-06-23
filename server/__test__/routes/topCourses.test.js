@@ -11,7 +11,7 @@ describe('get request to /events/:code', () => {
   it('should return the top rated courses', async () => {
     expect.assertions(1);
     const res = await request(app)
-      .get('/api/v1/courses')
+      .get('/api/v1/topCourses')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200);
