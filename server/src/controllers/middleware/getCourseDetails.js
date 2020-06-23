@@ -1,6 +1,6 @@
-const { getcourseById } = require('../database/queries');
+const { getcourseById } = require('../../database/queries');
 
-exports.getCourseById = async (req, res, next) => {
+exports.getCourseDetails = async (req, res, next) => {
   try {
     const { courseId: id } = req.params;
     const { rows } = await getcourseById(id);

@@ -4,12 +4,12 @@ const {
   clientError,
   serverError,
   getCoursesByCatId,
-  getCourseById,
+  getCourseDetails,
   getFavorite,
 } = require('../controllers');
 
 router.get('/:categoryId/courses', getCoursesByCatId);
-router.get('/courses/:courseId', getCourseById);
+router.get('/courses/:courseId', getCourseDetails);
 router.get('/:categoryId/courses', getCoursesByCatId);
 router.get('/favorite/:userId', getFavorite);
 router.use(clientError);

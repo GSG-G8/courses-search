@@ -1,14 +1,14 @@
 const { getCoursesByCatId } = require('./middleware/getCatcourses');
 
 const { clientError, serverError } = require('./errorHandle');
-const { getCourseById } = require('./getCourseDetails');
+const { getCourseDetails } = require('./middleware/getCourseDetails');
 const getCoursera = require('./coursera/getCourses');
 const getFavorite = require('./middleware/getFavorite');
 
 module.exports = {
   clientError,
   serverError,
-  getCourseById,
+  getCourseDetails,
   getCoursesByCatId,
   getCoursera,
   getFavorite,
