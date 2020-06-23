@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --runInBand",
     "lint-fix": "eslint ./src --fix",
-    "dev": "nodemon ./src",
+    "dev": "NODE_ENV=development nodemon ./src",
     "start": "node ./src"
   },
   "keywords": [],
@@ -34,7 +34,7 @@
     "cheerio": "^1.0.0-rc.3",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
-    "dotenv": "^8.2.0",
+    "env2": "^2.2.2",
     "eslint-plugin-jest": "^23.13.2",
     "express": "^4.17.1",
     "pg": "^8.2.1",
