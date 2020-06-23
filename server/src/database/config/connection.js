@@ -1,7 +1,6 @@
 require('env2')('./.env');
 const { Pool } = require('pg');
 
-console.log(process.env.NODE_ENV);
 let dbUrl;
 switch (process.env.NODE_ENV) {
   case 'development':
