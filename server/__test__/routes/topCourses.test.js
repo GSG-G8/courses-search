@@ -1,8 +1,8 @@
 const request = require('supertest');
 
-const app = require('../src/app');
-const connection = require('../src/database/config/connection');
-const buildDB = require('../src/database/config/build');
+const app = require('../../src/app');
+const connection = require('../../src/database/config/connection');
+const buildDB = require('../../src/database/config/build');
 
 describe('get request to /events/:code', () => {
   beforeAll(() => buildDB());
@@ -24,7 +24,7 @@ describe('get request to /events/:code', () => {
       rate: '5.4',
       reviews: '50 reviews',
       description: 'Hi from Phonetics course',
-      source: 'vsfoijsglas',
+      source: 'udacity',
     });
   });
 });
