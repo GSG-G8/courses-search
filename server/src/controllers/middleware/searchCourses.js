@@ -3,10 +3,14 @@ const {
   getCourseByCatIdName,
 } = require('../../database/queries');
 
+const { searchCoursesSchema } = require('../../utils');
+
 const getCoursesByCatIdName = async (req, res, next) => {
   try {
     const { catId } = req.params;
     const { courseName } = req.body;
+
+    await searchCoursesSchema.validate({ catId, courseName });
 
     if (catId === 0) {
       const { rows } = await getCourseByName(courseName);
