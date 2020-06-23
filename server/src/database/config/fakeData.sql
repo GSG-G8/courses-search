@@ -9,7 +9,7 @@ VALUES(
     '3.4',
     '23 reviews',
     'Hi from computer course',
-    'fkdsh'
+    'udemy'
 ),
 (
     '2',
@@ -19,7 +19,7 @@ VALUES(
     '4.4',
     '60 reviews',
     'Hi from Science course',
-    'ehgfkdsf'
+    'udemy'
 ),
 (   '3',
     'Phonetics',
@@ -28,7 +28,7 @@ VALUES(
     '5.4',
     '50 reviews',
     'Hi from Phonetics course',
-    'vsfoijsglas'
+    'udacity'
 ),
 (   
     '4',
@@ -38,7 +38,6 @@ VALUES(
     '1.3',
     '80 reviews',
     'Hi from Linguistics course',
-    'vskjdghlsd'
+    'udacity'
 );
-
 INSERT INTO favorite (user_id,course_id) VALUES (1, 1), (1, 2);
