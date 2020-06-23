@@ -28,7 +28,7 @@ describe('get course details', () => {
       },
     ]);
   });
-  it("should return all courseDetails with course-id doesn't exist", async () => {
+  it("should return 'course is not avalible' with course-id '30' doesn't exist", async () => {
     expect.assertions(1);
     const res = await request(app)
       .get('/api/v1/courses/30')
@@ -36,5 +36,15 @@ describe('get course details', () => {
       .expect(404);
     const { message } = res.body;
     expect(message).toBe('Sorry, this course is not avalible..!');
+  });
+
+  it("should return 'invalid inputs' with invalid course-id '-3'", async () => {
+    expect.assertions(1);
+    const res = await request(app)
+      .get('/api/v1/courses/-6')
+      .set('Accept', 'application/json')
+      .expect(400);
+    const { message } = res.body;
+    expect(message).toBe('invalid inputs..!');
   });
 });

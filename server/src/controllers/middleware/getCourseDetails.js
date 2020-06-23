@@ -3,9 +3,10 @@ const { courseDetailsSchema } = require('../../utils');
 
 exports.getCourseDetails = async (req, res, next) => {
   try {
-    const { courseId: id } = req.params;
-    await courseDetailsSchema.validate({ id });
-    const { rows } = await getcourseById(id);
+    const { courseId } = req.params;
+
+    await courseDetailsSchema.validate({ courseId });
+    const { rows } = await getcourseById(courseId);
     if (rows.length !== 0) {
       res.json(rows);
     } else {
@@ -14,6 +15,10 @@ exports.getCourseDetails = async (req, res, next) => {
       });
     }
   } catch (err) {
-    next(err);
+    if (err.name === 'ValidationError') {
+      res.status(400).json({ message: 'invalid inputs..!' });
+    } else {
+      next(err);
+    }
   }
 };
