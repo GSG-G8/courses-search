@@ -1,18 +1,20 @@
-require('dotenv').config();
-
+require('env2')('../.env');
 const { Pool } = require('pg');
 
-let dbUrl = '';
-
-if (process.env.NODE_ENV === 'test') {
-  dbUrl = process.env.TEST_DB_URL;
-} else if (process.env.NODE_ENV === 'production') {
-  dbUrl = process.env.DATABASE_URL;
-} else {
-  dbUrl = process.env.DB_URL;
+let dbUrl;
+switch (process.env.NODE_ENV) {
+  case 'development':
+    dbUrl = process.env.DB_URL;
+    break;
+  case 'production':
+    dbUrl = process.env.DATABASE_URL;
+    break;
+  case 'test':
+    dbUrl = process.env.TEST_DB_URL;
+    break;
+  default:
+    throw new Error('No Database URL!!!');
 }
-
-if (!dbUrl) throw new Error('No Database FOUND');
 
 const options = {
   connectionString: dbUrl,
