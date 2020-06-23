@@ -1,4 +1,4 @@
-const getTopCourses = require('../../database/queries');
+const { getTopCourses } = require('../../database/queries');
 
 const getTopRatedCourses = async (req, res, next) => {
   try {
