@@ -40,3 +40,4 @@ VALUES(
     'Hi from Linguistics course',
     'udacity'
 );
+INSERT INTO favorite (user_id,course_id) VALUES (1, 1), (1, 2);
