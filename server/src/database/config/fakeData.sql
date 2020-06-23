@@ -25,7 +25,7 @@ VALUES(
     'Phonetics',
     'Yaser',
     'www.course3.com',
-    '5.4',
+    '5',
     '50 reviews',
     'Hi from Phonetics course',
     'udacity'
