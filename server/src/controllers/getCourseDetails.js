@@ -5,7 +5,7 @@ exports.getCourseById = async (req, res, next) => {
     const { courseId: id } = req.params;
     const { rows } = await getcourseById(id);
     if (rows.length !== 0) {
-      res.json({ data: rows });
+      res.json(rows);
     } else {
       res.status(404).json({
         message: "Sorry There's no courses..!",
