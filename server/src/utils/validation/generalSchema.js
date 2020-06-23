@@ -4,4 +4,7 @@ const favoriteSchema = yup.object({
   userId: yup.number().positive(),
 });
 
-module.exports = favoriteSchema;
+const courseDetailsSchema = yup.object({
+  courseId: yup.number().positive(),
+});
+module.exports = { favoriteSchema, courseDetailsSchema };
