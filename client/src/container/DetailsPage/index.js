@@ -1,1 +1,2 @@
-// export default DetailsPage;
+const DetailsPage = () => {};
+export default DetailsPage;

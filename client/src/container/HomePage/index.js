@@ -1,1 +1,2 @@
-// export default HomePage;
+const HomePage = () => {};
+export default HomePage;

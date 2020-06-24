@@ -1,1 +1,2 @@
-// export default FavoritePage;
+const FavoritePage = () => {};
+export default FavoritePage;
