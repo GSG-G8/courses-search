@@ -3,12 +3,12 @@ const { favoriteSchema } = require('../../utils');
 
 const getFavorite = async (req, res, next) => {
   try {
-    const { userId } = req.params;
-    await favoriteSchema.validate({ userId });
-    if (userId > 0) {
-      const checkUser = await getUserById(userId);
+    const { id } = req.user;
+    await favoriteSchema.validate({ id });
+    if (id > 0) {
+      const checkUser = await getUserById(id);
       if (checkUser.rowCount) {
-        const { rows } = await getFavoriteCourse(userId);
+        const { rows } = await getFavoriteCourse(id);
         if (rows.length) {
           res.json(rows);
         } else {
