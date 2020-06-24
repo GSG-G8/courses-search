@@ -9,7 +9,7 @@ const courseDetailsSchema = yup.object({
 });
 
 const searchCoursesSchema = yup.object({
-  catId: yup.number().positive(),
   courseName: yup.string(),
 });
+
 module.exports = { favoriteSchema, courseDetailsSchema, searchCoursesSchema };

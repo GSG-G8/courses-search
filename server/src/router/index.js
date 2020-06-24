@@ -9,7 +9,7 @@ const {
   getCoursesByCatIdName,
 } = require('../controllers');
 
-router.post('/:catId/courseName', getCoursesByCatIdName);
+router.post('/catId/courseName', getCoursesByCatIdName);
 router.get('/:categoryId/courses', getCoursesByCatId);
 router.get('/courses/:courseId', getCourseDetails);
 router.get('/:categoryId/courses', getCoursesByCatId);
