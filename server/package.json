@@ -38,6 +38,8 @@
     "env2": "^2.2.2",
     "eslint-plugin-jest": "^23.13.2",
     "express": "^4.17.1",
+    "google-auth-library": "^6.0.2",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.2.1",
     "yup": "^0.29.1"
   }

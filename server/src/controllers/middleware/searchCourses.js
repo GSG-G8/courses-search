@@ -5,7 +5,7 @@ const {
 
 const { searchCoursesSchema } = require('../../utils');
 
-const getCoursesByCatIdName = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     const { catId, courseName } = req.body;
 
@@ -28,5 +28,3 @@ const getCoursesByCatIdName = async (req, res, next) => {
     }
   }
 };
-
-module.exports = { getCoursesByCatIdName };
