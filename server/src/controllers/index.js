@@ -8,6 +8,8 @@ const {
 const { clientError, serverError } = require('./errorHandle');
 const getCoursera = require('./coursera/getCourses');
 const getFavorite = require('./getFavorite');
+const addFavorite = require('./favorite/add');
+const deleteFavorite = require('./favorite/delete');
 const googleLogin = require('./googleLogin');
 const verifyUser = require('./verifyUser');
 const logout = require('./logout');
@@ -20,6 +22,8 @@ module.exports = {
   getCatcourses,
   getCoursera,
   getFavorite,
+  addFavorite,
+  deleteFavorite,
   googleLogin,
   verifyUser,
   logout,
