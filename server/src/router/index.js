@@ -4,6 +4,7 @@ const { sign } = require('jsonwebtoken');
 const {
   clientError,
   serverError,
+  getTopRatedCourses,
   getCoursesByCatId,
   getCourseDetails,
   getFavorite,
@@ -15,7 +16,7 @@ const {
 router.post('/login/google', googleLogin);
 router.get('/:categoryId/courses', getCoursesByCatId);
 router.get('/courses/:courseId', getCourseDetails);
-router.get('/:categoryId/courses', getCoursesByCatId);
+router.get('/topCourses', getTopRatedCourses);
 
 router.use(verifyUser);
 

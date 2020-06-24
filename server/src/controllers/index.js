@@ -1,3 +1,4 @@
+const getTopRatedCourses = require('./middleware/getTopRatedCourses');
 const { getCoursesByCatId } = require('./middleware/getCatcourses');
 
 const { clientError, serverError } = require('./errorHandle');
@@ -11,6 +12,7 @@ const logout = require('./logout');
 module.exports = {
   clientError,
   serverError,
+  getTopRatedCourses,
   getCourseDetails,
   getCoursesByCatId,
   getCoursera,
