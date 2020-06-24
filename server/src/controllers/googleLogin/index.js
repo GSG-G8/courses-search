@@ -4,7 +4,7 @@ const { addUserData } = require('../../database/queries');
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-const googleLogin = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     const { tokenId } = req.body;
     const ticket = await client.verifyIdToken({
@@ -22,5 +22,3 @@ const googleLogin = async (req, res, next) => {
     next(err);
   }
 };
-
-module.exports = googleLogin;

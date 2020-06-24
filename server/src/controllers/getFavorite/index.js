@@ -1,7 +1,7 @@
 const { getFavoriteCourse, getUserById } = require('../../database/queries');
 const { favoriteSchema } = require('../../utils');
 
-const getFavorite = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     const { id } = req.user;
     await favoriteSchema.validate({ id });
@@ -30,5 +30,3 @@ const getFavorite = async (req, res, next) => {
     }
   }
 };
-
-module.exports = getFavorite;

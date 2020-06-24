@@ -1,8 +1,11 @@
-const getTopRatedCourses = require('./middleware/getTopRatedCourses');
-const { getCoursesByCatId } = require('./middleware/getCatcourses');
+const {
+  getCatcourses,
+  getCourseDetails,
+  getTopRatedCourses,
+  searchCourses,
+} = require('./middleware');
 
 const { clientError, serverError } = require('./errorHandle');
-const { getCourseDetails } = require('./middleware/getCourseDetails');
 const getCoursera = require('./coursera/getCourses');
 const getFavorite = require('./getFavorite');
 const googleLogin = require('./googleLogin');
@@ -14,10 +17,11 @@ module.exports = {
   serverError,
   getTopRatedCourses,
   getCourseDetails,
-  getCoursesByCatId,
+  getCatcourses,
   getCoursera,
   getFavorite,
   googleLogin,
   verifyUser,
   logout,
+  searchCourses,
 };

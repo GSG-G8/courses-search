@@ -1,7 +1,7 @@
 const { getcourseById } = require('../../database/queries');
 const { courseDetailsSchema } = require('../../utils');
 
-exports.getCourseDetails = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     const { courseId } = req.params;
 

@@ -1,6 +1,4 @@
-const logout = (req, res) => {
+module.exports = (req, res) => {
   res.clearCookie('token');
   res.json({ message: 'logout successfully' });
 };
-
-module.exports = logout;

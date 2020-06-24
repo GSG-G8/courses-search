@@ -1,20 +1,22 @@
 const router = require('express').Router();
-const { sign } = require('jsonwebtoken');
 
 const {
   clientError,
   serverError,
   getTopRatedCourses,
-  getCoursesByCatId,
+  getCatcourses,
   getCourseDetails,
   getFavorite,
   googleLogin,
   verifyUser,
   logout,
+  searchCourses,
 } = require('../controllers');
 
 router.post('/login/google', googleLogin);
-router.get('/:categoryId/courses', getCoursesByCatId);
+router.post('/catId/courseName', searchCourses);
+router.get('/topCourses', getTopRatedCourses);
+router.get('/:categoryId/courses', getCatcourses);
 router.get('/courses/:courseId', getCourseDetails);
 router.get('/topCourses', getTopRatedCourses);
 
