@@ -4,8 +4,8 @@ module.exports = async (req, res, next) => {
   const { courseId } = req.params;
   const userId = 1;
   try {
-    const results = await addFavorite(userId, courseId);
-    res.json(results.rowCount);
+    const { rowCount } = await addFavorite(userId, courseId);
+    res.json({ rowCount });
   } catch (error) {
     next(error);
   }

@@ -19,6 +19,12 @@ describe('test add/delete favorite query', () => {
     expect(results.rowCount).toStrictEqual(0);
   });
 
+  it('the query should do nothing if the user/course does not exists', async () => {
+    expect.hasAssertions();
+    const results = await addFavorite(99999, 99999);
+    expect(results.rowCount).toStrictEqual(0);
+  });
+
   it('the query should delete a course from favorite', async () => {
     expect.hasAssertions();
     const results = await deleteFavorite(2, 4);
