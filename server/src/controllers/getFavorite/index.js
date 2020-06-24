@@ -1,10 +1,8 @@
 const { getFavoriteCourse, getUserById } = require('../../database/queries');
-const { favoriteSchema } = require('../../utils');
 
 module.exports = async (req, res, next) => {
   try {
     const { id } = req.user;
-    await favoriteSchema.validate({ id });
     if (id > 0) {
       const checkUser = await getUserById(id);
       if (checkUser.rowCount) {

@@ -13,8 +13,8 @@ describe('get course details', () => {
       .get('/api/v1/courses/1')
       .set('Accept', 'application/json')
       .expect(200);
-    expect(body).toStrictEqual([
-      {
+    expect(body).toStrictEqual({
+      courseDerails: {
         id: 1,
         category_id: 1,
         title: 'computer',
@@ -26,16 +26,33 @@ describe('get course details', () => {
         description: 'Hi from computer course',
         source: 'udemy',
       },
-    ]);
+      comments: [
+        {
+          comment_id: 1,
+          name: 'Mohammed',
+          content: 'this is my first comment',
+        },
+        {
+          comment_id: 4,
+          name: 'omar',
+          content: 'comment from 2 user',
+        },
+        {
+          comment_id: 5,
+          name: 'omar',
+          content: 'comment from 2 user again',
+        },
+      ],
+    });
   });
-  it("should return 'course is not avalible' with course-id '30' doesn't exist", async () => {
+  it("should return 'course is not available' with course-id '30' doesn't exist", async () => {
     expect.assertions(1);
     const res = await request(app)
       .get('/api/v1/courses/30')
       .set('Accept', 'application/json')
       .expect(404);
     const { message } = res.body;
-    expect(message).toBe('Sorry, this course is not avalible..!');
+    expect(message).toBe('Sorry, this course is not available..!');
   });
 
   it("should return 'invalid inputs' with invalid course-id '-3'", async () => {
