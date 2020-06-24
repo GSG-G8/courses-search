@@ -21,10 +21,6 @@ module.exports = async (req, res, next) => {
       }
     }
   } catch (err) {
-    if (err.name === 'ValidationError') {
-      res.status(400).json({ message: 'invalid inputs' });
-    } else {
-      next(err);
-    }
+    next(err);
   }
 };
