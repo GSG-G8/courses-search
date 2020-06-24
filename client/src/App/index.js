@@ -17,28 +17,26 @@ const failureResponse = (response) => {
 
 function App() {
   return (
-    <div>
-      <Router>
-        <Switch>
-          <Route
-            path="/login"
-            exact
-            render={() => (
-              <div className="login">
-                <GoogleLogin
-                  clientId={process.env.REACT_APP_CLIENT_ID}
-                  buttonText="Login Using Google"
-                  onSuccess={successResponse}
-                  onFailure={failureResponse}
-                  cookiePolicy="single_host_origin"
-                  isSignedIn
-                />
-              </div>
-            )}
-          />
-        </Switch>
-      </Router>
-    </div>
+    <Router>
+      <Switch>
+        <Route
+          path="/login"
+          exact
+          render={() => (
+            <div className="login">
+              <GoogleLogin
+                clientId={process.env.REACT_APP_CLIENT_ID}
+                buttonText="Login Using Google"
+                onSuccess={successResponse}
+                onFailure={failureResponse}
+                cookiePolicy="single_host_origin"
+                isSignedIn
+              />
+            </div>
+          )}
+        />
+      </Switch>
+    </Router>
   );
 }
 
