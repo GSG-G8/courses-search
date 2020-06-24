@@ -30,7 +30,7 @@ const query = `query catalogResultQuery(
 }
 `;
 
-async function getCourses() {
+module.exports = async (req, res, next) => {
   const jsonData = categories.map((category) => ({
     operationName: 'catalogResultQuery',
     variables: {
@@ -71,13 +71,8 @@ async function getCourses() {
     });
 
     await insertCourses(allCourses);
-    return allCourses;
+    res.json({ count: allCourses.length });
   } catch (error) {
-    return error;
+    next(next);
   }
-}
-
-module.exports = async (req, res) => {
-  const courses = await getCourses();
-  res.json({ count: courses.length });
 };
