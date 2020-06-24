@@ -5,6 +5,8 @@ const addUdemyCourse = require('./addUdemyCourse');
 const getFavoriteCourse = require('./getFavoriteCourse');
 const getUserById = require('./getUserById');
 const insertCourses = require('./insertCourses');
+const addFavorite = require('./favorite/add');
+const deleteFavorite = require('./favorite/delete');
 
 module.exports = {
   getFavoriteCourse,
@@ -14,4 +16,6 @@ module.exports = {
   insertCourses,
   getcourseById,
   addFutureCourse,
+  addFavorite,
+  deleteFavorite,
 };

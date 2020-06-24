@@ -5,6 +5,9 @@ const { getCourseDetails } = require('./middleware/getCourseDetails');
 const getCoursera = require('./coursera/getCourses');
 const getFavorite = require('./middleware/getFavorite');
 
+const addFavorite = require('./favorite/add');
+const deleteFavorite = require('./favorite/delete');
+
 module.exports = {
   clientError,
   serverError,
@@ -12,4 +15,6 @@ module.exports = {
   getCoursesByCatId,
   getCoursera,
   getFavorite,
+  addFavorite,
+  deleteFavorite,
 };
