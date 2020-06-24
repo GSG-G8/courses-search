@@ -4,15 +4,42 @@ const {
   clientError,
   serverError,
   getTopRatedCourses,
-  getCoursesByCatId,
+  getCatcourses,
   getCourseDetails,
   getFavorite,
+  addFavorite,
+  deleteFavorite,
+  googleLogin,
+  verifyUser,
+  logout,
+  searchCourses,
 } = require('../controllers');
 
-router.get('/topCourses', getTopRatedCourses);
-router.get('/:categoryId/courses', getCoursesByCatId);
+router.post('/login/google', googleLogin);
+router.post('/catId/courseName', searchCourses);
+router.get('/:categoryId/courses', getCatcourses);
 router.get('/courses/:courseId', getCourseDetails);
-router.get('/favorite/:userId', getFavorite);
+router.get('/topCourses', getTopRatedCourses);
+
+router.all(
+  [
+    '/favorite',
+    '/favorite/add/:courseId',
+    '/favorite/delete/:courseId',
+    '/auth',
+  ],
+  verifyUser
+);
+
+router.get('/auth', (req, res) => {
+  res.json(req.user);
+});
+
+router.get('/favorite', getFavorite);
+router.post('/favorite/add/:courseId', addFavorite);
+router.delete('/favorite/delete/:courseId', deleteFavorite);
+router.get('/logout', logout);
+
 router.use(clientError);
 router.use(serverError);
 

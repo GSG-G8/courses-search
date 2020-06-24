@@ -1,6 +1,6 @@
 const { getTopCourses } = require('../../database/queries');
 
-const getTopRatedCourses = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     const { rows } = await getTopCourses();
     if (!rows.length) {
@@ -11,5 +11,3 @@ const getTopRatedCourses = async (req, res, next) => {
     return next(err);
   }
 };
-
-module.exports = getTopRatedCourses;

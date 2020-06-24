@@ -4,15 +4,21 @@ const dbBuild = require('../../src/database/config/build');
 
 const app = require('../../src/app');
 
-describe('get request to /favorite/:userId', () => {
+const { USER_ONE_TOKEN, USER_TWO_TOKEN } = process.env;
+
+const userOneToken = `token=${USER_ONE_TOKEN}`;
+const usertwoToken = `token=${USER_TWO_TOKEN}`;
+
+describe('get request to /favorite', () => {
   beforeAll(() => dbBuild());
   afterAll(() => connection.end());
 
   it('if user have favotite course will return favorite courses for this user', async () => {
     expect.assertions(2);
     const { body } = await request(app)
-      .get('/api/v1/favorite/1')
+      .get('/api/v1/favorite')
       .set('Accept', 'application/json')
+      .set('Cookie', userOneToken)
       .expect(200);
     expect(body).toHaveLength(2);
     expect(body).toStrictEqual([
@@ -50,22 +56,23 @@ describe('get request to /favorite/:userId', () => {
   it('if user dont have favotite course will return message (this user dont have favorite course)', async () => {
     expect.assertions(1);
     const { body } = await request(app)
-      .get('/api/v1/favorite/2')
+      .get('/api/v1/favorite')
       .set('Accept', 'application/json')
+      .set('Cookie', usertwoToken)
       .expect(200);
     expect(body).toStrictEqual({
       message: 'There is no favorite courses for this user id',
     });
   });
 
-  it('if user id does not exits will return Invalid user id', async () => {
+  it('if user id does not exits will return Sign-in first', async () => {
     expect.assertions(1);
     const { body } = await request(app)
       .get('/api/v1/favorite/3')
       .set('Accept', 'application/json')
       .expect(404);
     expect(body).toStrictEqual({
-      message: 'Invalid id',
+      error: 'Page Not Found',
     });
   });
 });

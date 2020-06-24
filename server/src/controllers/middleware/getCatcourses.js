@@ -1,6 +1,6 @@
 const { getcourseByCatId } = require('../../database/queries');
 
-exports.getCoursesByCatId = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     const { categoryId } = req.params;
     if (categoryId > 0) {
