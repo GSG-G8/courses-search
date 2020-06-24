@@ -8,8 +8,8 @@ const courseDetailsSchema = yup.object({
   courseId: yup.number().positive(),
 });
 
-const searchCoursesSchema = yup.object({
-  courseName: yup.string(),
+const searchCoursesSchema = yup.object().shape({
+  courseName: yup.string().required(),
 });
 
 module.exports = { favoriteSchema, courseDetailsSchema, searchCoursesSchema };

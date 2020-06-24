@@ -11,17 +11,21 @@ const getCoursesByCatIdName = async (req, res, next) => {
 
     await searchCoursesSchema.validate({ courseName });
 
-    if (catId === 0) {
-      const { rows } = await getCourseByName(courseName);
-      return res.json(rows);
-    }
-    if (catId > 0) {
+    if (catId < 0) {
+      res.status(400).json({ message: 'Invalid input' });
+    } else if (catId > 0) {
       const { rows } = await getCourseByCatIdName(catId, courseName);
-      return res.json(rows);
+      res.json(rows);
+    } else {
+      const { rows } = await getCourseByName(courseName);
+      res.json(rows);
     }
-    return res.status(400).json({ message: 'Invalid input' });
   } catch (err) {
-    return next(err);
+    if (err.name === 'ValidationError') {
+      res.status(400).json({ message: 'invalid courseName' });
+    } else {
+      next(err);
+    }
   }
 };
 
