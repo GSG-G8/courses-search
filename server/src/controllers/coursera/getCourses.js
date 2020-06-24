@@ -73,6 +73,6 @@ module.exports = async (req, res, next) => {
     await insertCourses(allCourses);
     res.json({ count: allCourses.length });
   } catch (error) {
-    next(next);
+    next(error);
   }
 };
