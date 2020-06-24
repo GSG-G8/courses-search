@@ -13,6 +13,7 @@ const {
   verifyUser,
   logout,
   searchCourses,
+  getCoursera,
 } = require('../controllers');
 
 router.post('/login/google', googleLogin);
@@ -20,6 +21,7 @@ router.post('/catId/courseName', searchCourses);
 router.get('/:categoryId/courses', getCatcourses);
 router.get('/courses/:courseId', getCourseDetails);
 router.get('/topCourses', getTopRatedCourses);
+router.get('/coursera', getCoursera);
 
 router.all(
   [
