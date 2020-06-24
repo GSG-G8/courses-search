@@ -17,12 +17,11 @@ const {
 
 router.post('/login/google', googleLogin);
 router.post('/catId/courseName', searchCourses);
-router.get('/topCourses', getTopRatedCourses);
 router.get('/:categoryId/courses', getCatcourses);
 router.get('/courses/:courseId', getCourseDetails);
 router.get('/topCourses', getTopRatedCourses);
 
-router.use(verifyUser);
+router.all(['/favorite', '/auth'], verifyUser);
 
 router.get('/auth', (req, res) => {
   res.json(req.user);
