@@ -9,7 +9,7 @@ const { USER_ONE_TOKEN, USER_TWO_TOKEN } = process.env;
 const userOneToken = `token=${USER_ONE_TOKEN}`;
 const usertwoToken = `token=${USER_TWO_TOKEN}`;
 
-describe('get request to /favorite/:userId', () => {
+describe('get request to /favorite', () => {
   beforeAll(() => dbBuild());
   afterAll(() => connection.end());
 

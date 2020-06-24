@@ -1,9 +1,8 @@
 const connection = require('../../src/database/config/connection');
 const dbBuild = require('../../src/database/config/build');
 const { addFavorite } = require('../../src/database/queries');
-const { deleteFavorite } = require('../../src/database/queries');
 
-describe('test add/delete favorite query', () => {
+describe('addFavorite query', () => {
   beforeAll(() => dbBuild());
   afterAll(() => connection.end());
 
@@ -23,11 +22,5 @@ describe('test add/delete favorite query', () => {
     expect.hasAssertions();
     const results = await addFavorite(99999, 99999);
     expect(results.rowCount).toStrictEqual(0);
-  });
-
-  it('the query should delete a course from favorite', async () => {
-    expect.hasAssertions();
-    const results = await deleteFavorite(2, 4);
-    expect(results.rowCount).toStrictEqual(1);
   });
 });

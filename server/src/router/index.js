@@ -29,8 +29,8 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/favorite', getFavorite);
-router.get('/favorite/add/:courseId', addFavorite);
-router.get('/favorite/delete/:courseId', deleteFavorite);
+router.post('/favorite/add/:courseId', addFavorite);
+router.delete('/favorite/delete/:courseId', deleteFavorite);
 router.get('/logout', logout);
 
 router.use(clientError);
