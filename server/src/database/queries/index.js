@@ -6,6 +6,7 @@ const addUdemyCourse = require('./addUdemyCourse');
 const getFavoriteCourse = require('./getFavoriteCourse');
 const getUserById = require('./getUserById');
 const insertCourses = require('./insertCourses');
+const { getCourseByName, getCourseByCatIdName } = require('./searchCourses');
 
 module.exports = {
   getFavoriteCourse,
@@ -16,4 +17,6 @@ module.exports = {
   insertCourses,
   getcourseById,
   addFutureCourse,
+  getCourseByName,
+  getCourseByCatIdName,
 };

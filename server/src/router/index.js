@@ -7,8 +7,10 @@ const {
   getCoursesByCatId,
   getCourseDetails,
   getFavorite,
+  getCoursesByCatIdName,
 } = require('../controllers');
 
+router.post('/catId/courseName', getCoursesByCatIdName);
 router.get('/topCourses', getTopRatedCourses);
 router.get('/:categoryId/courses', getCoursesByCatId);
 router.get('/courses/:courseId', getCourseDetails);
