@@ -3,6 +3,7 @@ const router = require('express').Router();
 const {
   clientError,
   serverError,
+  getTopRatedCourses,
   getCoursesByCatId,
   getCourseDetails,
   getFavorite,
@@ -10,9 +11,9 @@ const {
 } = require('../controllers');
 
 router.post('/catId/courseName', getCoursesByCatIdName);
+router.get('/topCourses', getTopRatedCourses);
 router.get('/:categoryId/courses', getCoursesByCatId);
 router.get('/courses/:courseId', getCourseDetails);
-router.get('/:categoryId/courses', getCoursesByCatId);
 router.get('/favorite/:userId', getFavorite);
 router.use(clientError);
 router.use(serverError);
