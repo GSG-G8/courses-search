@@ -8,4 +8,18 @@ const searchCoursesSchema = yup.object().shape({
   courseName: yup.string().required(),
 });
 
-module.exports = { courseDetailsSchema, searchCoursesSchema };
+const commentSchema = yup.object().shape({
+  content: yup.string().max(255).required(),
+  courseId: yup.number().min(1).required(),
+});
+
+const idSchema = yup.object().shape({
+  id: yup.number().min(1).required(),
+});
+
+module.exports = {
+  courseDetailsSchema,
+  searchCoursesSchema,
+  commentSchema,
+  idSchema,
+};
