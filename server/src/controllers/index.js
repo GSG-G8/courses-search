@@ -12,6 +12,8 @@ const getUdemy = require('./getUdemyData/index');
 const getFavorite = require('./getFavorite');
 const addFavorite = require('./favorite/add');
 const deleteFavorite = require('./favorite/delete');
+const addComment = require('./comment/add');
+const deleteComment = require('./comment/delete');
 const googleLogin = require('./googleLogin');
 const verifyUser = require('./verifyUser');
 const logout = require('./logout');
@@ -30,6 +32,8 @@ module.exports = {
   getFavorite,
   addFavorite,
   deleteFavorite,
+  addComment,
+  deleteComment,
   googleLogin,
   verifyUser,
   logout,

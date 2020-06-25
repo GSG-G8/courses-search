@@ -8,23 +8,30 @@ const { USER_ONE_TOKEN } = process.env;
 
 const userOneToken = `token=${USER_ONE_TOKEN}`;
 
-describe('route DELETE /favorite/:courseId', () => {
+describe('route DELETE /comment/:courseId', () => {
   beforeAll(() => dbBuild());
   afterAll(() => connection.end());
 
-  it('users should be able delete from favorite', async () => {
+  it('should delete a comment by id', async () => {
     expect.assertions(1);
     const { body } = await request(app)
-      .delete('/api/v1/favorite/1')
+      .delete('/api/v1/comment/1')
       .set('Cookie', userOneToken)
       .expect(200);
     expect(body.rowCount).toStrictEqual(1);
   });
 
-  it('unauthorized request should return 401', async () => {
-    expect.assertions(0);
+  it('should NOT delete other users comments', async () => {
+    expect.assertions(1);
     const { body } = await request(app)
-      .delete('/api/v1/favorite/1')
-      .expect(401);
+      .delete('/api/v1/comment/4')
+      .set('Cookie', userOneToken)
+      .expect(200);
+    expect(body.rowCount).toStrictEqual(0);
+  });
+
+  it('should reject unauthorized users', async () => {
+    expect.assertions(0);
+    const { body } = await request(app).delete('/api/v1/comment/1').expect(401);
   });
 });
