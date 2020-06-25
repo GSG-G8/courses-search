@@ -4,7 +4,7 @@ An online courses’ search engine which make it easy to navigate among all educ
 
 ## Live Demo :
 
-[Heroku link , Click here to visit our app]()
+[Heroku link , Click here to visit our app](https://course-search-engine.herokuapp.com/)
 
 ### Team Lead:
 

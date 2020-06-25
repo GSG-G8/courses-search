@@ -1,0 +1,25 @@
+const categoryId = {
+  'Programming for Everybody: Python Data Structures': 1,
+  'Teaching Young Learners Online': 15,
+  'Overcoming Imposter Syndrome: Identify the Patterns Undermining Your Confidence': 7,
+  'Mindfulness for Wellbeing and Peak Performance': 7,
+  'A-level Study Boost: Unseen Poetry and the Creative Process': 10,
+  'Archaeology: from Dig to Lab and Beyond': 6,
+  'Business Fundamentals: Customer Engagement': 6,
+  'Business Futures: Sustainable Business Through Green HR': 6,
+  'Earn a degree from a leading university': 15,
+  'Business Futures: Understanding Omni-channel Retailing and Supply Chains': 6,
+  'COVID-19 in Africa: Managing the Outbreak in Primary Care Settings': 8,
+  'Causes of Human Disease: Exploring Cancer and Genetic Disease': 8,
+  'Challenges in Antibiotic Resistance: Point Prevalence Surveys': 6,
+  'Concurrent Programming in Erlang': 1,
+  'Cryptocurrency and Blockchain Technology Explained': 3,
+  'Data Analytics for Decision Making: An Introduction to Using Excel': 8,
+  'Dementia and the Arts: Sharing Practice, Developing Understanding and Enhancing Lives': 10,
+  'Development and Planning in African Cities: Exploring theories, policies and practices from Sierra Leone': 8,
+  'Differentiation for Learning': 15,
+  'Digital Skills: Artificial Intelligence': 20,
+  'Digital Skills: Digital Marketing': 18,
+};
+
+module.exports = categoryId;
