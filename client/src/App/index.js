@@ -23,7 +23,6 @@ const failureResponse = (response) => {
 function App() {
   return (
     <div className="App">
-      courses search
       <Router>
         <Switch>
           <Route exact path={ROUTES.LANDING} component={HomePage} />

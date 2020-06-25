@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import propTypes from 'prop-types';
 import { notification, Button, Spin, Rate } from 'antd';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 
 import './style.css';
 
-const HomePage = () => {
+const HomePage = (props) => {
   const [loading, isLoading] = useState(true);
   const [topcourses, setTopCourses] = useState([]);
-
-  const history = useHistory();
+  const { history } = props;
 
   const fetchTopCourses = async () => {
     try {
@@ -71,6 +71,9 @@ const HomePage = () => {
       ))}
     </div>
   );
+};
+HomePage.propTypes = {
+  history: propTypes.shape({ push: propTypes.func.isRequired }).isRequired,
 };
 
 export default HomePage;
