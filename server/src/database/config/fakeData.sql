@@ -41,3 +41,6 @@ VALUES(
     'udacity'
 );
 INSERT INTO favorite (user_id,course_id) VALUES (1, 1), (1, 2);
+
+INSERT INTO comment (user_id, course_id, content)
+VALUES (1, 1, 'hello'), (2, 1, 'hello');
