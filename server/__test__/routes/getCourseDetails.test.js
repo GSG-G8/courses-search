@@ -14,7 +14,7 @@ describe('get course details', () => {
       .set('Accept', 'application/json')
       .expect(200);
     expect(body).toStrictEqual({
-      courseDerails: {
+      courseDetails: {
         id: 1,
         category_id: 1,
         title: 'computer',

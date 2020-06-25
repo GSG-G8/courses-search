@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
     const { rows: details } = await getcourseById(courseId);
     const { rows: comments } = await courseComment(courseId);
     if (details.length !== 0) {
-      res.json({ courseDerails: details[0], comments });
+      res.json({ courseDetails: details[0], comments });
     } else {
       res.status(404).json({
         message: 'Sorry, this course is not available..!',
