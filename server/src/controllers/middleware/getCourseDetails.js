@@ -1,4 +1,4 @@
-const { getcourseById } = require('../../database/queries');
+const { getcourseById, courseComment } = require('../../database/queries');
 const { courseDetailsSchema } = require('../../utils');
 
 module.exports = async (req, res, next) => {
@@ -6,12 +6,13 @@ module.exports = async (req, res, next) => {
     const { courseId } = req.params;
 
     await courseDetailsSchema.validate({ courseId });
-    const { rows } = await getcourseById(courseId);
-    if (rows.length !== 0) {
-      res.json(rows);
+    const { rows: details } = await getcourseById(courseId);
+    const { rows: comments } = await courseComment(courseId);
+    if (details.length !== 0) {
+      res.json({ courseDetails: details[0], comments });
     } else {
       res.status(404).json({
-        message: 'Sorry, this course is not avalible..!',
+        message: 'Sorry, this course is not available..!',
       });
     }
   } catch (err) {
