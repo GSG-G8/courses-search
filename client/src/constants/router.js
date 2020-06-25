@@ -1,3 +1,3 @@
 export const LANDING = '/';
 export const FAVORITEPAGE = './favoriteCourses';
-export const DETAILSPAGE = './courseDetails';
+export const DETAILSPAGE = './course/:courseId';
