@@ -27,4 +27,4 @@ const addFutureCourse = ({
   return connection.query(sql);
 };
 
-module.exports = addFutureCourse;
+module.exports = { addFutureCourse };

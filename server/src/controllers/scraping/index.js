@@ -4,6 +4,7 @@ const addFutureCourse = require('../../database/queries');
 const categoryId = require('./categoryId');
 
 axios.get('https://www.futurelearn.com/courses').then((res) => {
+  // console.log(res);
   const $ = cheerio.load(res.data);
   const courses = [];
 

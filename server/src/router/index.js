@@ -6,6 +6,7 @@ const {
   getCoursesByCatId,
   getCourseDetails,
   getFavorite,
+  futureData,
 } = require('../controllers');
 
 router.get('/:categoryId/courses', getCoursesByCatId);
