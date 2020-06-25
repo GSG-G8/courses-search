@@ -24,7 +24,7 @@ describe('route POST /comment/add/:courseId', () => {
   it('should NOT delete other users comments', async () => {
     expect.assertions(1);
     const { body } = await request(app)
-      .delete('/api/v1/comment/delete/2')
+      .delete('/api/v1/comment/delete/4')
       .set('Cookie', userOneToken)
       .expect(200);
     expect(body.rowCount).toStrictEqual(0);
