@@ -1,3 +1,4 @@
+require('env2')('../.env');
 const { readFileSync } = require('fs');
 const { join } = require('path');
 
