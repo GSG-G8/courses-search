@@ -34,10 +34,12 @@ function App() {
                 cookiePolicy="single_host_origin"
                 isSignedIn
               />
-              <HomePage />
             </div>
           )}
         />
+        <Route path="/">
+          <HomePage />
+        </Route>
       </Switch>
     </Router>
   );

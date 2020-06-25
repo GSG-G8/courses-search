@@ -34,7 +34,11 @@ const HomePage = () => {
       {topcourses.map((course) => (
         <div key={course.id}>
           <h2>{course.title}</h2>
-          <img alt="courseImg" src={course.image} />
+          <img
+            alt="courseImg"
+            src={course.image}
+            style={{ borderTopLeftRadius: '50%' }}
+          />
           <p>Rate: {course.rate}</p>
           <h3>{course.source}</h3>
           <Button onClick={() => handleClick(course.id)} type="primary">
