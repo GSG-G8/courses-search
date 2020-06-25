@@ -30,7 +30,16 @@ router.get('/:categoryId/courses', getCatcourses);
 router.get('/courses/:courseId', getCourseDetails);
 router.get('/topCourses', getTopRatedCourses);
 
-router.all(['/favorite', '/favorite/:id', '/comment/:id', '/auth'], verifyUser);
+router.all(
+  [
+    '/favorite',
+    '/favorite/:courseId',
+    '/comment/:commentId',
+    '/comment/:courseId',
+    '/auth',
+  ],
+  verifyUser
+);
 
 router.get('/auth', (req, res) => {
   res.json(req.user);

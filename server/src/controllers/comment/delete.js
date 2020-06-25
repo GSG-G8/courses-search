@@ -10,6 +10,10 @@ module.exports = async (req, res, next) => {
     const { rowCount } = await deleteComment(userId, commentId);
     res.json({ rowCount });
   } catch (error) {
-    next(error);
+    if (error.name === 'ValidationError') {
+      res.status(400).json({ message: 'invalid inputs' });
+    } else {
+      next(error);
+    }
   }
 };
