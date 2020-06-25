@@ -15,6 +15,8 @@ const deleteFavorite = require('./favorite/delete');
 const googleLogin = require('./googleLogin');
 const verifyUser = require('./verifyUser');
 const logout = require('./logout');
+const addFavoriteFolder = require('./addFavoriteFolder');
+const updateCourseToFolder = require('./updateCourseToFolder');
 
 module.exports = {
   clientError,
@@ -32,4 +34,6 @@ module.exports = {
   verifyUser,
   logout,
   searchCourses,
+  addFavoriteFolder,
+  updateCourseToFolder,
 };

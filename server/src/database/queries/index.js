@@ -2,12 +2,15 @@ const getTopCourses = require('./getTopCourses');
 const { getcourseById } = require('./courseDetails');
 const { getcourseByCatId } = require('./catCourses');
 const addUdemyCourse = require('./addUdemyCourse');
-const getFavoriteCourse = require('./getFavoriteCourse');
+const getFavoriteCourse = require('./favorite/getFavoriteCourse');
 const addFavorite = require('./favorite/add');
 const deleteFavorite = require('./favorite/delete');
 const insertCourses = require('./insertCourses');
 const addUserData = require('./addUserData');
 const courseComment = require('./courseComment');
+const addFavoriteFolderQuery = require('./addFavoriteFolderQuery');
+const addCourseToFolderQuery = require('./addCourseToFolderQuery');
+const checkUserFolder = require('./checkUserFolder');
 const { getCourseByName, getCourseByCatIdName } = require('./searchCourses');
 
 module.exports = {
@@ -23,4 +26,7 @@ module.exports = {
   getCourseByName,
   getCourseByCatIdName,
   courseComment,
+  addFavoriteFolderQuery,
+  addCourseToFolderQuery,
+  checkUserFolder,
 };

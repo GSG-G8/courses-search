@@ -1,6 +1,6 @@
 BEGIN;
 
-	DROP TABLE IF EXISTS course , category , comment , favorite, users
+	DROP TABLE IF EXISTS course , category , comment , favorite, users, user_favorite_folders
 	CASCADE;
 
 CREATE TABLE users
@@ -38,10 +38,18 @@ CREATE TABLE comment
 	course_id INTEGER NOT NULL REFERENCES course(id)
 );
 
+CREATE TABLE user_favorite_folders
+(
+	id SERIAL PRIMARY KEY ,
+	title VARCHAR(255) NOT NULL UNIQUE,
+	user_id INTEGER NOT NULL REFERENCES users(id)
+);
+
 CREATE TABLE favorite
 (
 	user_id INTEGER NOT NULL REFERENCES users(id),
 	course_id INTEGER NOT NULL REFERENCES course(id),
+	folder_id INTEGER REFERENCES user_favorite_folders(id),
 	PRIMARY KEY (user_id, course_id)
 );
 

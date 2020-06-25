@@ -8,6 +8,7 @@ const {
   getCourseDetails,
   getFavorite,
   addFavorite,
+  addFavoriteFolder,
   deleteFavorite,
   googleLogin,
   verifyUser,
@@ -16,6 +17,7 @@ const {
   getCoursera,
   getFutureData,
   getUdemy,
+  updateCourseToFolder,
 } = require('../controllers');
 
 router.get('/getData1', getFutureData);
@@ -44,6 +46,8 @@ router.get('/auth', (req, res) => {
 
 router.get('/favorite', getFavorite);
 router.post('/favorite/add/:courseId', addFavorite);
+router.post('/favorite/add-folder', addFavoriteFolder);
+router.post('/favorite/add-to-folder', updateCourseToFolder);
 router.delete('/favorite/delete/:courseId', deleteFavorite);
 router.get('/logout', logout);
 
