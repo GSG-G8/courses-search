@@ -8,14 +8,14 @@ const { USER_ONE_TOKEN } = process.env;
 
 const userOneToken = `token=${USER_ONE_TOKEN}`;
 
-describe('route POST /comment/add/:courseId', () => {
+describe('route POST /comment/:courseId', () => {
   beforeAll(() => dbBuild());
   afterAll(() => connection.end());
 
   it('should add a new comment to a specific course', async () => {
     expect.assertions(1);
     const { body } = await request(app)
-      .post('/api/v1/comment/add/4')
+      .post('/api/v1/comment/4')
       .send({ content: 'hello' })
       .set('Cookie', userOneToken)
       .expect(200);
@@ -25,7 +25,7 @@ describe('route POST /comment/add/:courseId', () => {
   it('should reject unauthorized users', async () => {
     expect.assertions(0);
     const { body } = await request(app)
-      .post('/api/v1/comment/add/4')
+      .post('/api/v1/comment/4')
       .send({ content: 'hello' })
       .expect(401);
   });

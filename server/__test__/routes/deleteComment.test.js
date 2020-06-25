@@ -8,14 +8,14 @@ const { USER_ONE_TOKEN } = process.env;
 
 const userOneToken = `token=${USER_ONE_TOKEN}`;
 
-describe('route POST /comment/add/:courseId', () => {
+describe('route DELETE /comment/:courseId', () => {
   beforeAll(() => dbBuild());
   afterAll(() => connection.end());
 
   it('should delete a comment by id', async () => {
     expect.assertions(1);
     const { body } = await request(app)
-      .delete('/api/v1/comment/delete/1')
+      .delete('/api/v1/comment/1')
       .set('Cookie', userOneToken)
       .expect(200);
     expect(body.rowCount).toStrictEqual(1);
@@ -24,7 +24,7 @@ describe('route POST /comment/add/:courseId', () => {
   it('should NOT delete other users comments', async () => {
     expect.assertions(1);
     const { body } = await request(app)
-      .delete('/api/v1/comment/delete/4')
+      .delete('/api/v1/comment/4')
       .set('Cookie', userOneToken)
       .expect(200);
     expect(body.rowCount).toStrictEqual(0);
@@ -32,8 +32,6 @@ describe('route POST /comment/add/:courseId', () => {
 
   it('should reject unauthorized users', async () => {
     expect.assertions(0);
-    const { body } = await request(app)
-      .delete('/api/v1/comment/delete/1')
-      .expect(401);
+    const { body } = await request(app).delete('/api/v1/comment/1').expect(401);
   });
 });

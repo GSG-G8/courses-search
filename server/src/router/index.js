@@ -30,27 +30,17 @@ router.get('/:categoryId/courses', getCatcourses);
 router.get('/courses/:courseId', getCourseDetails);
 router.get('/topCourses', getTopRatedCourses);
 
-router.all(
-  [
-    '/favorite',
-    '/favorite/add/:courseId',
-    '/favorite/delete/:courseId',
-    '/comment/add/:courseId',
-    '/comment/delete/:commentId',
-    '/auth',
-  ],
-  verifyUser
-);
+router.all(['/favorite', '/favorite/:id', '/comment/:id', '/auth'], verifyUser);
 
 router.get('/auth', (req, res) => {
   res.json(req.user);
 });
 
 router.get('/favorite', getFavorite);
-router.post('/favorite/add/:courseId', addFavorite);
-router.delete('/favorite/delete/:courseId', deleteFavorite);
-router.post('/comment/add/:courseId', addComment);
-router.delete('/comment/delete/:commentId', deleteComment);
+router.post('/favorite/:courseId', addFavorite);
+router.delete('/favorite/:courseId', deleteFavorite);
+router.post('/comment/:courseId', addComment);
+router.delete('/comment/:commentId', deleteComment);
 router.get('/logout', logout);
 
 router.use(clientError);
