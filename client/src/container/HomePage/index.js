@@ -32,7 +32,7 @@ const HomePage = (props) => {
     }
   };
   const handleClick = (id) => {
-    history.push(`/detailsPage/${id}`);
+    history.push(`/course/${id}`);
   };
 
   useEffect(() => {
@@ -41,34 +41,36 @@ const HomePage = (props) => {
 
   return (
     <div className="topRate__container">
-      {loading && <Spin />}
-
-      {topcourses.map((course) => (
-        <div className="topRate__course-card" key={course.id}>
-          <h2>{course.title}</h2>
-          <img
-            className="topRate__course-card__image"
-            alt="courseImg"
-            src={course.image}
-            // style={{ borderTopRightRadius: '50%' }}
-          />
-          {/* <p>Rate: {course.rate}</p> */}
-          <span>
-            <Rate
-              // tooltips={course.rateDes}
-              value={parseFloat(Math.round(course.rate * 2) / 2)}
-              Rate
-              allowHalf
+      {loading ? (
+        <Spin />
+      ) : (
+        topcourses.map((course) => (
+          <div className="topRate__course-card" key={course.id}>
+            <h2>{course.title}</h2>
+            <img
+              className="topRate__course-card__image"
+              alt="courseImg"
+              src={course.image}
+              // style={{ borderTopRightRadius: '50%' }}
             />
-            <span className="ant-rate-text">{course.rateDes}</span>
-          </span>
-          <h3>{course.source}</h3>
-          <Button onClick={() => handleClick(course.id)} type="primary">
-            {' '}
-            More
-          </Button>
-        </div>
-      ))}
+            {/* <p>Rate: {course.rate}</p> */}
+            <span>
+              <Rate
+                // tooltips={course.rateDes}
+                value={Math.round(course.rate * 2) / 2}
+                Rate
+                allowHalf
+              />
+              <span className="ant-rate-text">{course.rateDes}</span>
+            </span>
+            <h3>{course.source}</h3>
+            <Button onClick={() => handleClick(course.id)} type="primary">
+              {' '}
+              More
+            </Button>
+          </div>
+        ))
+      )}
     </div>
   );
 };
