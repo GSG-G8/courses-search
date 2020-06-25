@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { addUdemyCourse } = require('../../database/queries');
 
-module.exports = async () => {
+module.exports = async (req, res) => {
   const udemyCategory = {
     8: 1,
     10: 2,
@@ -58,4 +58,5 @@ module.exports = async () => {
 
   const udemyCourses = await getUdemyData();
   insertAllUdemyCourse(udemyCourses);
+  res.json({ success: 'Done' });
 };
