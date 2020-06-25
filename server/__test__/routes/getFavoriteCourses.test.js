@@ -70,9 +70,9 @@ describe('get request to /favorite', () => {
     const { body } = await request(app)
       .get('/api/v1/favorite/3')
       .set('Accept', 'application/json')
-      .expect(404);
+      .expect(401);
     expect(body).toStrictEqual({
-      error: 'Page Not Found',
+      message: 'Sign-in first',
     });
   });
 });
