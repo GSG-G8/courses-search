@@ -1,4 +1,4 @@
-require('env2')('../.env');
+const env = require('env2')('../.env');
 const { Pool } = require('pg');
 
 let dbUrl;
