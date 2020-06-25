@@ -1,9 +1,5 @@
 const yup = require('yup');
 
-const favoriteSchema = yup.object({
-  userId: yup.number().positive(),
-});
-
 const courseDetailsSchema = yup.object({
   courseId: yup.number().positive(),
 });
@@ -22,7 +18,6 @@ const idSchema = yup.object().shape({
 });
 
 module.exports = {
-  favoriteSchema,
   courseDetailsSchema,
   searchCoursesSchema,
   commentSchema,
