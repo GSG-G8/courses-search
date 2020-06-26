@@ -45,6 +45,8 @@ INSERT INTO user_favorite_folders (title, user_id) VALUES ('user 1 fav folder 1'
 
 INSERT INTO favorite (user_id,course_id, folder_id) VALUES (1, 1, 1), (1, 2, 2);
 
+INSERT INTO favorite (user_id,course_id) VALUES (2, 1);
+
 INSERT INTO comment (content,user_id,course_id)
 VALUES(
     'this is my first comment',
