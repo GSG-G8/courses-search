@@ -14,6 +14,7 @@ const addFavoriteFolderQuery = require('./addFavoriteFolderQuery');
 const addCourseToFolderQuery = require('./addCourseToFolderQuery');
 const checkUserFolder = require('./checkUserFolder');
 const editFavoriteFolderQuery = require('./editFavoriteFolderQuery');
+const deleteFavoriteFolderQuery = require('./deleteFavoriteFolderQuery');
 const { getCourseByName, getCourseByCatIdName } = require('./searchCourses');
 
 module.exports = {
@@ -35,4 +36,5 @@ module.exports = {
   addCourseToFolderQuery,
   checkUserFolder,
   editFavoriteFolderQuery,
+  deleteFavoriteFolderQuery,
 };

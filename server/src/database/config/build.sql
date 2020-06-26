@@ -49,7 +49,7 @@ CREATE TABLE favorite
 (
 	user_id INTEGER NOT NULL REFERENCES users(id),
 	course_id INTEGER NOT NULL REFERENCES course(id),
-	folder_id INTEGER REFERENCES user_favorite_folders(id),
+	folder_id INTEGER REFERENCES user_favorite_folders(id) ON UPDATE CASCADE ON DELETE CASCADE,
 	PRIMARY KEY (user_id, course_id)
 );
 

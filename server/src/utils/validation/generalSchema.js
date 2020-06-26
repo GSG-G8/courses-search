@@ -4,6 +4,10 @@ const courseDetailsSchema = yup.object({
   courseId: yup.number().positive(),
 });
 
+const folderIdSchema = yup.object({
+  folderId: yup.number().positive().required(),
+});
+
 const addCourseToFolder = yup.object({
   courseId: yup.number().positive().required(),
   folderId: yup.number().positive().required(),
@@ -33,4 +37,5 @@ module.exports = {
   addCourseToFolder,
   commentSchema,
   idSchema,
+  folderIdSchema,
 };

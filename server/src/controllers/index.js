@@ -20,6 +20,7 @@ const logout = require('./logout');
 const addFavoriteFolder = require('./addFavoriteFolder');
 const updateCourseToFolder = require('./updateCourseToFolder');
 const editFavoriteFolder = require('./editFavoriteFolder');
+const deleteFavoriteFolder = require('./deleteFavoriteFolder');
 
 module.exports = {
   clientError,
@@ -42,4 +43,5 @@ module.exports = {
   addFavoriteFolder,
   updateCourseToFolder,
   editFavoriteFolder,
+  deleteFavoriteFolder,
 };

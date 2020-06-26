@@ -5,6 +5,7 @@ const {
   addCourseToFolder,
   commentSchema,
   idSchema,
+  folderIdSchema,
 } = require('./generalSchema');
 
 module.exports = {
@@ -14,4 +15,5 @@ module.exports = {
   addCourseToFolder,
   commentSchema,
   idSchema,
+  folderIdSchema,
 };
