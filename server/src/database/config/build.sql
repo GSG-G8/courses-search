@@ -41,7 +41,7 @@ CREATE TABLE comment
 CREATE TABLE user_favorite_folders
 (
 	id SERIAL PRIMARY KEY ,
-	title VARCHAR(255) NOT NULL UNIQUE,
+	title VARCHAR(255) NOT NULL,
 	user_id INTEGER NOT NULL REFERENCES users(id)
 );
 
