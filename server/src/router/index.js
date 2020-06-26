@@ -9,6 +9,7 @@ const {
   getFavorite,
   addFavorite,
   addFavoriteFolder,
+  editFavoriteFolder,
   deleteFavorite,
   addComment,
   deleteComment,
@@ -48,7 +49,8 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/favorite', getFavorite);
-router.post('/favorite/add-folder', addFavoriteFolder);
+router.post('/favorite/folder', addFavoriteFolder);
+router.put('/favorite/folder', editFavoriteFolder);
 router.post('/favorite/add-to-folder', updateCourseToFolder);
 router.post('/favorite/:courseId', addFavorite);
 router.delete('/favorite/:courseId', deleteFavorite);

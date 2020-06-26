@@ -19,6 +19,7 @@ const verifyUser = require('./verifyUser');
 const logout = require('./logout');
 const addFavoriteFolder = require('./addFavoriteFolder');
 const updateCourseToFolder = require('./updateCourseToFolder');
+const editFavoriteFolder = require('./editFavoriteFolder');
 
 module.exports = {
   clientError,
@@ -40,4 +41,5 @@ module.exports = {
   searchCourses,
   addFavoriteFolder,
   updateCourseToFolder,
+  editFavoriteFolder,
 };
