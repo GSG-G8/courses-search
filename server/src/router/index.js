@@ -41,10 +41,10 @@ router.all(
     '/favorite/:courseId',
     '/comment/:commentId',
     '/comment/:courseId',
-    '/favorite/folder/:folderId',
-    '/favorite/folder/:folderId/:courseId',
     '/favorite/folder',
+    '/favorite/folder/:folderId',
     '/favorite/add-to-folder',
+    '/favorite/folder/:folderId/:courseId',
     '/auth',
   ],
   verifyUser
@@ -55,11 +55,16 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/favorite', getFavorite);
-router.post('/favorite/folder', addFavoriteFolder);
-router.put('/favorite/folder', editFavoriteFolder);
+
+router
+  .route('/favorite/folder')
+  .post(addFavoriteFolder)
+  .put(editFavoriteFolder);
 router.delete('/favorite/folder/:folderId', deleteFavoriteFolder);
-router.delete('/favorite/folder/:folderId/:courseId', removeCourseFromFolder);
+
 router.post('/favorite/add-to-folder', updateCourseToFolder);
+router.delete('/favorite/folder/:folderId/:courseId', removeCourseFromFolder);
+
 router.post('/favorite/:courseId', addFavorite);
 router.delete('/favorite/:courseId', deleteFavorite);
 router.post('/comment/:courseId', addComment);

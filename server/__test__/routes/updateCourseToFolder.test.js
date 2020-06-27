@@ -30,9 +30,9 @@ describe('route POST /favorite/add-to-folder', () => {
       .post('/api/v1/favorite/add-to-folder')
       .set('Cookie', userOneToken)
       .send({ courseId: 1, folderId: 3 })
-      .expect(400);
+      .expect(401);
     expect(body).toStrictEqual({
-      message: 'this folder not available for this user',
+      message: 'Un-Authorized',
     });
   });
 
@@ -44,5 +44,14 @@ describe('route POST /favorite/add-to-folder', () => {
       .send({ courseId: 'text', folderId: 'text' })
       .expect(400);
     expect(body).toStrictEqual({ message: 'invalid inputs..!' });
+  });
+
+  it('if user do not have access token', async () => {
+    expect.assertions(1);
+    const { body } = await request(app)
+      .post('/api/v1/favorite/add-to-folder')
+      .send({ courseId: 'text', folderId: 'text' })
+      .expect(401);
+    expect(body).toStrictEqual({ message: 'Sign-in first' });
   });
 });

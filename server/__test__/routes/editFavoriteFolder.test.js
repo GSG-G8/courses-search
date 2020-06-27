@@ -30,9 +30,9 @@ describe('route PUT /favorite/folder', () => {
       .put('/api/v1/favorite/folder')
       .set('Cookie', userOneToken)
       .send({ title: 'test', folderId: 3 })
-      .expect(400);
+      .expect(401);
     expect(body).toStrictEqual({
-      message: 'this folder not available for this user',
+      message: 'Un-Authorized',
     });
   });
 

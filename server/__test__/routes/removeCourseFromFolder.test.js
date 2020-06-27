@@ -28,9 +28,9 @@ describe('route DELETE /favorite/folder/:folderId/:courseId', () => {
     const { body } = await request(app)
       .delete('/api/v1/favorite/folder/3/1')
       .set('Cookie', userOneToken)
-      .expect(400);
+      .expect(401);
     expect(body).toStrictEqual({
-      message: 'this folder not available for this user',
+      message: 'Un-Authorized',
     });
   });
 

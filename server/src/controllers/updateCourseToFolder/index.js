@@ -15,9 +15,7 @@ module.exports = async (req, res, next) => {
       await addCourseToFolderQuery(id, courseId, folderId);
       res.json({ message: 'course assigned to folder successfully' });
     } else {
-      res
-        .status(400)
-        .json({ message: 'this folder not available for this user' });
+      res.status(401).json({ message: 'Un-Authorized' });
     }
   } catch (error) {
     if (error.name === 'ValidationError') {

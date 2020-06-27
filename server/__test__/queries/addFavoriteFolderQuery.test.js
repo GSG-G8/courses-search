@@ -12,6 +12,12 @@ describe('addFavoriteFolderQuery', () => {
       1,
       'first folder from test'
     );
+    const { rows } = await connection.query(
+      "SELECT * FROM user_favorite_folders WHERE user_id = 1 AND title = 'first folder from test'"
+    );
     expect(rowCount).toStrictEqual(1);
+    expect(rows).toStrictEqual([
+      { id: 3, title: 'first folder from test', user_id: 1 },
+    ]);
   });
 });

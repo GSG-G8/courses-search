@@ -16,16 +16,14 @@ module.exports = async (req, res, next) => {
       (folder) => folder.id === integerFolderId
     );
     if (isUserHaveFolder) {
-      const body = await deleteCourseFromFolderQuery(id, courseId);
-      if (body.rowCount) {
+      const { rowCount } = await deleteCourseFromFolderQuery(id, courseId);
+      if (rowCount) {
         res.json({ message: 'course remove from folder successfully' });
       } else {
         res.status(404).json({ message: 'course not in your favorite' });
       }
     } else {
-      res
-        .status(400)
-        .json({ message: 'this folder not available for this user' });
+      res.status(401).json({ message: 'Un-Authorized' });
     }
   } catch (error) {
     if (error.name === 'ValidationError') {

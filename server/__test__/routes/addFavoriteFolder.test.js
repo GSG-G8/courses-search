@@ -41,4 +41,13 @@ describe('route POST /favorite/folder', () => {
       .expect(400);
     expect(body).toStrictEqual({ message: 'invalid inputs..!' });
   });
+
+  it('if user token does not exist', async () => {
+    expect.assertions(1);
+    const { body } = await request(app)
+      .post('/api/v1/favorite/folder')
+      .send({ title: 'first folder for unknown user' })
+      .expect(401);
+    expect(body).toStrictEqual({ message: 'Sign-in first' });
+  });
 });

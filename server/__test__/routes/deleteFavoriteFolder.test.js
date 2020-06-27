@@ -26,16 +26,30 @@ describe('route DELETE /favorite/folder', () => {
     const { body } = await request(app)
       .delete('/api/v1/favorite/folder/2')
       .set('Cookie', userOneToken)
-      .expect(400);
+      .expect(401);
     expect(body).toStrictEqual({
-      message: 'this folder not available for this user',
+      message: 'Un-Authorized',
     });
   });
 
-  it('unauthorized request should return 401', async () => {
-    expect.assertions(0);
+  it('if there is an error in folderId', async () => {
+    expect.assertions(1);
+    const { body } = await request(app)
+      .delete('/api/v1/favorite/folder/test')
+      .set('Cookie', userOneToken)
+      .expect(400);
+    expect(body).toStrictEqual({
+      message: 'invalid inputs..!',
+    });
+  });
+
+  it('if user do not have token', async () => {
+    expect.assertions(1);
     const { body } = await request(app)
       .delete('/api/v1/favorite/folder/1')
       .expect(401);
+    expect(body).toStrictEqual({
+      message: 'Sign-in first',
+    });
   });
 });

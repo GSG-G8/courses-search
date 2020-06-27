@@ -19,9 +19,7 @@ module.exports = async (req, res, next) => {
       await deleteFavoriteFolderQuery(folderId, id);
       res.json({ message: 'folder deleted successfully' });
     } else {
-      res
-        .status(400)
-        .json({ message: 'this folder not available for this user' });
+      res.status(401).json({ message: 'Un-Authorized' });
     }
   } catch (error) {
     if (error.name === 'ValidationError') {
