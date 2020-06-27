@@ -1,5 +1,5 @@
-const { addFavoriteFolderQuery } = require('../../database/queries');
-const { folderTitleSchema } = require('../../utils');
+const { addFavoriteFolderQuery } = require('../../../database/queries');
+const { folderTitleSchema } = require('../../../utils');
 
 module.exports = async (req, res, next) => {
   const { id } = req.user;

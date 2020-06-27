@@ -1,4 +1,4 @@
-const connection = require('../config/connection');
+const connection = require('../../config/connection');
 
 const editFavoriteFolderQuery = (title, folderId) =>
   connection.query(

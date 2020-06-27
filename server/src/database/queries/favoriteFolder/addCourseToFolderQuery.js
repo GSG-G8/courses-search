@@ -1,4 +1,4 @@
-const connection = require('../config/connection');
+const connection = require('../../config/connection');
 
 const addCourseToFolderQuery = (userId, courseId, folderId) =>
   connection.query(

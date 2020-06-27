@@ -1,8 +1,8 @@
 const {
   deleteCourseFromFolderQuery,
   checkUserFolder,
-} = require('../../database/queries');
-const { addCourseToFolder } = require('../../utils');
+} = require('../../../database/queries');
+const { addCourseToFolder } = require('../../../utils');
 
 module.exports = async (req, res, next) => {
   const { folderId, courseId } = req.params;
