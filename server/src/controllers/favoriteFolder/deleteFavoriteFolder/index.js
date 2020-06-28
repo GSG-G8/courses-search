@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
     );
     if (isUserHaveFolder) {
       await deleteFavoriteFolderQuery(folderId, id);
-      res.json({ message: 'folder deleted successfully' });
+      res.json({ message: 'folder has deleted successfully' });
     } else {
       res.status(401).json({ message: 'Un-Authorized' });
     }

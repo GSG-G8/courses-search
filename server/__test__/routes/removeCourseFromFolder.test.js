@@ -23,7 +23,7 @@ describe('route DELETE /favorite/folder/:folderId/:courseId', () => {
     });
   });
 
-  it('if user do not have this folder', async () => {
+  it('if user does not has a specific  folder', async () => {
     expect.assertions(1);
     const { body } = await request(app)
       .delete('/api/v1/favorite/folder/3/1')

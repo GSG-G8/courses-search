@@ -6,7 +6,7 @@ describe('addCourseToFolderQuery', () => {
   beforeAll(() => dbBuild());
   afterAll(() => connection.end());
 
-  it('add Course To favorite Folder for specific user', async () => {
+  it('edit favorite folder title', async () => {
     expect.hasAssertions();
     const { rowCount } = await editFavoriteFolderQuery('change title', 1);
     const { rows } = await connection.query(

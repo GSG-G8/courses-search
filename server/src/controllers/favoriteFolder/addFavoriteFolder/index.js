@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
   try {
     await folderTitleSchema.validate({ title });
     await addFavoriteFolderQuery(id, title);
-    res.json({ message: 'folder add successfully' });
+    res.json({ message: 'new folder has added successfully' });
   } catch (error) {
     if (error.name === 'ValidationError') {
       res.status(400).json({ message: 'invalid inputs..!' });

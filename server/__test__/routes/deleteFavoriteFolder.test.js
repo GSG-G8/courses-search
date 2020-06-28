@@ -18,10 +18,10 @@ describe('route DELETE /favorite/folder', () => {
       .delete('/api/v1/favorite/folder/2')
       .set('Cookie', userOneToken)
       .expect(200);
-    expect(body).toStrictEqual({ message: 'folder deleted successfully' });
+    expect(body).toStrictEqual({ message: 'folder has deleted successfully' });
   });
 
-  it('if user do not have this folder', async () => {
+  it('if user does not has a specific  folder', async () => {
     expect.assertions(1);
     const { body } = await request(app)
       .delete('/api/v1/favorite/folder/2')
@@ -43,7 +43,7 @@ describe('route DELETE /favorite/folder', () => {
     });
   });
 
-  it('if user do not have token', async () => {
+  it('if user does not has a token', async () => {
     expect.assertions(1);
     const { body } = await request(app)
       .delete('/api/v1/favorite/folder/1')

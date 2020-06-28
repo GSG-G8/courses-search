@@ -19,10 +19,12 @@ describe('route POST /favorite/folder', () => {
       .send({ title: 'first folder for user 1' })
       .set('Cookie', userOneToken)
       .expect(200);
-    expect(body).toStrictEqual({ message: 'folder add successfully' });
+    expect(body).toStrictEqual({
+      message: 'new folder has added successfully',
+    });
   });
 
-  it('un valid title in request body', async () => {
+  it('in-valid title in request body', async () => {
     expect.assertions(1);
     const { body } = await request(app)
       .post('/api/v1/favorite/folder')
