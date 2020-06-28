@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-import { notification, Button, Spin, Rate, TreeSelect, Input } from 'antd';
+import {
+  notification,
+  Button,
+  Spin,
+  Rate,
+  TreeSelect,
+  Input,
+  Alert,
+} from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
+
 import axios from 'axios';
 import categories from './categories';
 import './style.css';
@@ -22,12 +31,11 @@ const HomePage = (props) => {
   const [topcourses, setTopCourses] = useState([]);
   const [searchCourseName, setSearchCourseName] = useState('');
   const [cat, setCat] = useState('');
-  // const [courseArr, setCourseArr] = useState([]);
 
   const fetchSelectedCourseData = async (catId, courseName) => {
     try {
       const { data } = await axios.post(`/api/v1/catId/courseName`, {
-        catId,
+        catId: catId || undefined,
         courseName,
       });
       setTopCourses(data);
@@ -59,9 +67,7 @@ const HomePage = (props) => {
     history.push(`/course/${id}`);
   };
   const onChange = (value) => {
-    console.log(value);
     setCat(value);
-    // fetchSelectedCourseData(value);
     fetchSelectedCourseData(value, searchCourseName);
   };
   const onInputChange = (value) => {
@@ -71,22 +77,31 @@ const HomePage = (props) => {
   useEffect(() => {
     fetchTopCourses();
   }, []);
+  // const treeData =
+  //  categories.map((catt) => ({
+  //   title: catt.title,
+  //   value: catt.value,
+  //   children: catt.children,
+  // }));
 
   return (
     <div>
-      <div>
+      <div className="search-container">
         <TreeSelect
-          style={{ width: '50%' }}
+          style={{ width: '20%', marginRight: '10px' }}
           placeholder="Please select category"
           value={cat}
           dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
           treeData={categories}
           // treeDefaultExpandAll
           onChange={onChange}
-          // onSearch={onSearch}
+          // selectable={false}
+          // onSearch={onChange}
           // showSearch
         />
+
         <Search
+          style={{ width: '20%' }}
           placeholder="input search text"
           onSearch={onInputChange}
           enterButton
@@ -97,7 +112,7 @@ const HomePage = (props) => {
       <div className="topRate__container">
         {loading ? (
           <Spin />
-        ) : (
+        ) : topcourses.length > 0 ? (
           topcourses.map((course) => (
             <div className="topRate__course-card" key={course.id}>
               <h2>{course.title}</h2>
@@ -124,6 +139,11 @@ const HomePage = (props) => {
               </Button>
             </div>
           ))
+        ) : (
+          <Alert
+            message="Sorry This Course Name Not Avaliable..!"
+            type="warning"
+          />
         )}
       </div>
     </div>
