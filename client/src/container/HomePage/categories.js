@@ -2,6 +2,7 @@ const categories = [
   {
     title: 'development',
     value: 'c-0',
+    selectable: false,
     children: [
       { title: 'web development', value: 1 },
       { title: 'mobile apps', value: 2 },
@@ -12,6 +13,7 @@ const categories = [
   {
     title: 'business',
     value: 'c-1',
+    selectable: false,
     children: [
       { title: 'finance', value: 5 },
       { title: 'management', value: 6 },
@@ -22,6 +24,7 @@ const categories = [
   {
     title: 'lifeStyle',
     value: 'c-2',
+    selectable: false,
     children: [
       { title: 'food and beverage', value: 9 },
       { title: 'arts and crafts', value: 10 },
@@ -32,6 +35,7 @@ const categories = [
   {
     title: 'Teaching and Academics',
     value: 'c-3',
+    selectable: false,
     children: [
       { title: 'science', value: 13 },
       { title: 'math', value: 14 },
@@ -42,6 +46,7 @@ const categories = [
   {
     title: 'Marketing',
     value: 'c-4',
+    selectable: false,
     children: [
       { title: 'public relations', value: 17 },
       { title: 'digital marketing', value: 18 },
@@ -52,6 +57,7 @@ const categories = [
   {
     title: 'Design',
     value: 'c-5',
+    selectable: false,
     children: [
       { title: 'graphic design', value: 21 },
       { title: 'architectural design', value: 22 },
