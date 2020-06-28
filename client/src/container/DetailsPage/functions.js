@@ -42,11 +42,24 @@ export const getAuth = async ({ setIsAuth, setUserInfo }) => {
   }
 };
 
-// export const addComment = async ({ courseId }) => {
-//   try {
-//     const { data } = await axios.post(`/api/v1/comment/${courseId}`);
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+export const addComment = async ({
+  courseId,
+  content,
+  setIsPosting,
+  comments,
+  setComments,
+  name,
+}) => {
+  try {
+    setIsPosting(true);
+    const { data } = await axios.post(`/api/v1/comment/${courseId}`, {
+      content,
+    });
+    setIsPosting(false);
+    if (data.rowCount) {
+      setComments([...comments, { name, content }]);
+    }
+  } catch (error) {
+    setIsPosting(false);
+  }
+};

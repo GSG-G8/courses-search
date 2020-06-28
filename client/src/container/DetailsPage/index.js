@@ -10,10 +10,19 @@ import {
   notification,
   Divider,
   Typography,
+  Input,
 } from 'antd';
-import { addToFavorite, getCourseDetails } from './functions';
+import {
+  addToFavorite,
+  getCourseDetails,
+  getAuth,
+  addComment,
+} from './functions';
 import './style.css';
 
+import userImage from './defaultUser.png';
+
+const { TextArea } = Input;
 const { Title, Text, Link } = Typography;
 
 const DetailsPage = () => {
@@ -23,8 +32,10 @@ const DetailsPage = () => {
   const [comments, setComments] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // const [isAuth, setIsAuth] = useState(false);
-  // const [userInfo, setUserInfo] = useState({});
+  const [isAuth, setIsAuth] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
+  const [newComment, setNewComment] = useState('');
+  const [isPosting, setIsPosting] = useState(false);
 
   useEffect(() => {
     getCourseDetails({
@@ -34,7 +45,7 @@ const DetailsPage = () => {
       setCourseDetails,
       setComments,
     });
-    // getAuth({ setIsAuth, setUserInfo });
+    getAuth({ setIsAuth, setUserInfo });
   }, []);
 
   const {
@@ -50,9 +61,23 @@ const DetailsPage = () => {
   } = courseDetails;
   return (
     <>
-      {isLoading && <Spin />}
-      {errorMessage && <Alert message={errorMessage} type="error" showIcon />}
-      <Row gutter={16} className="course-details-row">
+      {isLoading && (
+        <Row className="course-details-row">
+          <Col span={24}>
+            <Spin>
+              <Alert message="Loading ..." type="info" />
+            </Spin>
+          </Col>
+        </Row>
+      )}
+      {errorMessage && (
+        <Row className="course-details-row">
+          <Col span={24}>
+            <Alert message={errorMessage} type="error" showIcon />
+          </Col>
+        </Row>
+      )}
+      <Row className="course-details-row">
         <Col span={24}>
           <Title level={2}>{title}</Title>
         </Col>
@@ -110,11 +135,58 @@ const DetailsPage = () => {
               </Button>
             </Col>
           </Row>
-        </Col>
-      </Row>
-      <Row gutter={16} className="course-details-row">
-        <Col span={24}>
-          <Divider orientation="left">{`${comments.length} Comments`}</Divider>
+          <Row gutter={16} className="course-details-row">
+            <Col span={24}>
+              <Divider orientation="center">{`${comments.length} Comments`}</Divider>
+            </Col>
+          </Row>
+          {comments.map(({ name, content }) => (
+            <Row gutter={16}>
+              <Col span={3}>
+                <img className="user-image" src={userImage} alt="user" />
+              </Col>
+              <Col span={21}>
+                <strong>{`by (${name})`}</strong>
+                <p>{content}</p>
+              </Col>
+            </Row>
+          ))}
+
+          {isAuth ? (
+            <Row gutter={16}>
+              <Col span={3}>
+                <img className="user-image" src={userImage} alt="user" />
+              </Col>
+              <Col span={21}>
+                <TextArea
+                  onChange={({ target }) => setNewComment(target.value)}
+                  autoSize={{ minRows: 3, maxRows: 6 }}
+                  value={newComment}
+                  maxLength={255}
+                  disabled={isPosting}
+                />
+                <Button
+                  type="primary"
+                  style={{ margin: '16px 0' }}
+                  onClick={() => {
+                    addComment({
+                      courseId,
+                      content: newComment,
+                      setIsPosting,
+                      comments,
+                      name: userInfo.name,
+                      setComments,
+                    });
+                  }}
+                  disabled={isPosting}
+                >
+                  add your comment
+                </Button>
+              </Col>
+            </Row>
+          ) : (
+            <Alert description="Login to add comments" type="info" />
+          )}
         </Col>
       </Row>
     </>
