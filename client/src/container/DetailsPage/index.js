@@ -12,14 +12,15 @@ import {
   Typography,
   Input,
 } from 'antd';
+
 import {
   addToFavorite,
   getCourseDetails,
   getAuth,
   addComment,
 } from './functions';
-import './style.css';
 
+import './style.css';
 import userImage from './defaultUser.png';
 
 const { TextArea } = Input;
@@ -31,21 +32,30 @@ const DetailsPage = () => {
   const [courseDetails, setCourseDetails] = useState({});
   const [comments, setComments] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-
   const [isAuth, setIsAuth] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [newComment, setNewComment] = useState('');
   const [isPosting, setIsPosting] = useState(false);
 
+  const allStates = {
+    courseId,
+    notification,
+    setIsLoading,
+    setErrorMessage,
+    setCourseDetails,
+    setComments,
+    setIsAuth,
+    setUserInfo,
+    content: newComment,
+    setIsPosting,
+    comments,
+    name: userInfo.name,
+    setNewComment,
+  };
+
   useEffect(() => {
-    getCourseDetails({
-      courseId,
-      setIsLoading,
-      setErrorMessage,
-      setCourseDetails,
-      setComments,
-    });
-    getAuth({ setIsAuth, setUserInfo });
+    getCourseDetails(allStates);
+    getAuth(allStates);
   }, []);
 
   const {
@@ -59,6 +69,7 @@ const DetailsPage = () => {
     url,
     source = 'unknown',
   } = courseDetails;
+
   return (
     <>
       {isLoading && (
@@ -83,10 +94,10 @@ const DetailsPage = () => {
         </Col>
       </Row>
       <Row gutter={16} className="course-details-row">
-        <Col span={8}>
+        <Col sm={24} md={8}>
           <img className="course-image" src={image} alt={title} />
         </Col>
-        <Col className="gutter-row" span={16}>
+        <Col className="gutter-row" sm={24} md={16}>
           <Row>
             <Col span={6}>
               <Text strong>Reviews :</Text>
@@ -99,7 +110,6 @@ const DetailsPage = () => {
             </Col>
             <Col span={18}>{authorName}</Col>
           </Row>
-
           <Row>
             <Col span={6}>
               <Text strong>Sourse :</Text>
@@ -117,18 +127,19 @@ const DetailsPage = () => {
               <Text strong> {rate}</Text>
             </Col>
           </Row>
-
           <Row>
             <Col span={6}>
               <Text strong>Description :</Text>
             </Col>
-            <Col span={18}>{description}</Col>
+            <Col xs={24} sm={18}>
+              {description}
+            </Col>
           </Row>
           <Row>
             <Col span={18} offset={6}>
               <Button
                 type="primary"
-                onClick={() => addToFavorite({ courseId, notification })}
+                onClick={() => addToFavorite(allStates)}
                 disabled={isLoading || errorMessage}
               >
                 add to favorite
@@ -140,6 +151,7 @@ const DetailsPage = () => {
               <Divider orientation="center">{`${comments.length} Comments`}</Divider>
             </Col>
           </Row>
+
           {comments.map(({ name, content }) => (
             <Row gutter={16}>
               <Col span={3}>
@@ -169,14 +181,7 @@ const DetailsPage = () => {
                   type="primary"
                   style={{ margin: '16px 0' }}
                   onClick={() => {
-                    addComment({
-                      courseId,
-                      content: newComment,
-                      setIsPosting,
-                      comments,
-                      name: userInfo.name,
-                      setComments,
-                    });
+                    addComment(allStates);
                   }}
                   disabled={isPosting}
                 >

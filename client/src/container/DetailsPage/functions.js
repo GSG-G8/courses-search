@@ -49,6 +49,8 @@ export const addComment = async ({
   comments,
   setComments,
   name,
+  notification,
+  setNewComment,
 }) => {
   try {
     setIsPosting(true);
@@ -58,8 +60,14 @@ export const addComment = async ({
     setIsPosting(false);
     if (data.rowCount) {
       setComments([...comments, { name, content }]);
+      setNewComment('');
+      notification.success({
+        message: 'your comment has been added successfuly !',
+      });
     }
-  } catch (error) {
+  } catch ({ response }) {
+    const message = response.data.message || response.data;
     setIsPosting(false);
+    notification.error({ message });
   }
 };
