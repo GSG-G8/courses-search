@@ -17,6 +17,7 @@ const deleteComment = require('./comment/delete');
 const googleLogin = require('./googleLogin');
 const verifyUser = require('./verifyUser');
 const logout = require('./logout');
+const getFavoriteFolder = require('./getFavoriteFolder');
 
 module.exports = {
   clientError,
@@ -36,4 +37,5 @@ module.exports = {
   verifyUser,
   logout,
   searchCourses,
+  getFavoriteFolder,
 };

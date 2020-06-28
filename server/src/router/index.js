@@ -18,6 +18,7 @@ const {
   getCoursera,
   getFutureData,
   getUdemy,
+  getFavoriteFolder,
 } = require('../controllers');
 
 router.get('/getData1', getFutureData);
@@ -37,6 +38,7 @@ router.all(
     '/comment/:commentId',
     '/comment/:courseId',
     '/auth',
+    '/favorite/folder',
   ],
   verifyUser
 );
@@ -46,6 +48,7 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/favorite', getFavorite);
+router.get('/favorite/folder', getFavoriteFolder);
 router.post('/favorite/:courseId', addFavorite);
 router.delete('/favorite/:courseId', deleteFavorite);
 router.post('/comment/:courseId', addComment);

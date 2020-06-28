@@ -11,6 +11,7 @@ const insertCourses = require('./insertCourses');
 const addUserData = require('./addUserData');
 const courseComment = require('./courseComment');
 const { getCourseByName, getCourseByCatIdName } = require('./searchCourses');
+const getFavoriteFolderQuery = require('./getFavoriteFolderQuery');
 
 module.exports = {
   getFavoriteCourse,
@@ -27,4 +28,5 @@ module.exports = {
   getCourseByName,
   getCourseByCatIdName,
   courseComment,
+  getFavoriteFolderQuery,
 };
