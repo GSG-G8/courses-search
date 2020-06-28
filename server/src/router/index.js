@@ -25,9 +25,9 @@ const {
   removeCourseFromFolder,
 } = require('../controllers');
 
-router.get('/getData1', getFutureData);
-router.get('/getData2', getUdemy);
-router.get('/getData3', getCoursera);
+router.get('/getFutureData', getFutureData);
+router.get('/getUdemyData', getUdemy);
+router.get('/getCourseraData', getCoursera);
 
 router.post('/login/google', googleLogin);
 router.post('/catId/courseName', searchCourses);
