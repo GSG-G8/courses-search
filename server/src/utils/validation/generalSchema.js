@@ -5,7 +5,11 @@ const courseDetailsSchema = yup.object({
 });
 
 const searchCoursesSchema = yup.object().shape({
-  courseName: yup.string().required(),
+  courseName: yup.string(),
+  catId: yup.number().positive(),
+});
+const getCatCourses = yup.object().shape({
+  categoryId: yup.number().positive(),
 });
 
-module.exports = { courseDetailsSchema, searchCoursesSchema };
+module.exports = { courseDetailsSchema, searchCoursesSchema, getCatCourses };
