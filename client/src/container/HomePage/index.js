@@ -32,7 +32,7 @@ const HomePage = (props) => {
   const [searchCourseName, setSearchCourseName] = useState('');
   const [cat, setCat] = useState('');
 
-  const fetchSelectedCourseData = async (catId, courseName) => {
+  const fetchCoursesByNameAndCatId = async (catId, courseName) => {
     try {
       const { data } = await axios.post(`/api/v1/catId/courseName`, {
         catId: catId || undefined,
@@ -68,11 +68,11 @@ const HomePage = (props) => {
   };
   const onChange = (value) => {
     setCat(value);
-    fetchSelectedCourseData(value, searchCourseName);
+    fetchCoursesByNameAndCatId(value, searchCourseName);
   };
   const onInputChange = (value) => {
     setSearchCourseName(value);
-    fetchSelectedCourseData(cat, value);
+    fetchCoursesByNameAndCatId(cat, value);
   };
   useEffect(() => {
     fetchTopCourses();
