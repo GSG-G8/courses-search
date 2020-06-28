@@ -2,11 +2,7 @@
   width: 100%;
 }
 
-.course-details {
+.course-details-row {
   text-align: left;
-  padding: 0 30px;
-}
-
-.course-title {
   padding: 0 30px;
 }
