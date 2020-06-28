@@ -7,13 +7,10 @@ const { searchCoursesSchema } = require('../../utils');
 
 module.exports = async (req, res, next) => {
   try {
-    const { catId, courseName } = req.body;
+    const { catId, courseName = '' } = req.body;
+    await searchCoursesSchema.validate({ courseName, catId });
 
-    await searchCoursesSchema.validate({ courseName });
-
-    if (catId < 0) {
-      res.status(400).json({ message: 'Invalid input' });
-    } else if (catId > 0) {
+    if (catId) {
       const { rows } = await getCourseByCatIdName(catId, courseName);
       res.json(rows);
     } else {
@@ -22,7 +19,7 @@ module.exports = async (req, res, next) => {
     }
   } catch (err) {
     if (err.name === 'ValidationError') {
-      res.status(400).json({ message: 'invalid courseName' });
+      res.status(400).json({ message: 'invalid input' });
     } else {
       next(err);
     }
