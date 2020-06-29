@@ -21,10 +21,18 @@ import {
 } from './functions';
 
 import './style.css';
-// import userImage from './defaultUser.png';
+import categories from '../../assets/categories';
 import images from '../../assets/images';
 
 const { defaultUserPhoto } = images;
+
+const subCategory = {};
+categories.forEach(({ children }) => {
+  if (children)
+    children.forEach(({ title, value }) => {
+      subCategory[value] = title;
+    });
+});
 
 const { TextArea } = Input;
 const { Title, Text, Link } = Typography;
@@ -66,7 +74,7 @@ const DetailsPage = () => {
     title,
     rate = 0,
     reviews = 0,
-    // category_id: categoryId,
+    category_id: categoryId,
     author_name: authorName = 'unknown',
     description,
     url,
@@ -129,6 +137,14 @@ const DetailsPage = () => {
           </Row>
           <Row>
             <Col span={6}>
+              <Text strong>Category :</Text>
+            </Col>
+            <Col xs={24} sm={18}>
+              {subCategory[categoryId]}
+            </Col>
+          </Row>
+          <Row>
+            <Col span={6}>
               <Text strong>Rating :</Text>
             </Col>
             <Col span={18}>
@@ -161,8 +177,8 @@ const DetailsPage = () => {
             </Col>
           </Row>
 
-          {comments.map(({ name, content }) => (
-            <Row gutter={16}>
+          {comments.map(({ name, content, comment_id: commentId }) => (
+            <Row gutter={16} key={commentId}>
               <Col span={3}>
                 <img className="user-image" src={defaultUserPhoto} alt="user" />
               </Col>
