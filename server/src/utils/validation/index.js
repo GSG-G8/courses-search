@@ -1,13 +1,15 @@
 const {
-  favoriteSchema,
   courseDetailsSchema,
   searchCoursesSchema,
   getCatCourses,
+  commentSchema,
+  idSchema,
 } = require('./generalSchema');
 
 module.exports = {
-  favoriteSchema,
   courseDetailsSchema,
   searchCoursesSchema,
   getCatCourses,
+  commentSchema,
+  idSchema,
 };

@@ -9,6 +9,8 @@ const {
   getFavorite,
   addFavorite,
   deleteFavorite,
+  addComment,
+  deleteComment,
   googleLogin,
   verifyUser,
   logout,
@@ -32,8 +34,9 @@ router.get('/coursera', getCoursera);
 router.all(
   [
     '/favorite',
-    '/favorite/add/:courseId',
-    '/favorite/delete/:courseId',
+    '/favorite/:courseId',
+    '/comment/:commentId',
+    '/comment/:courseId',
     '/auth',
   ],
   verifyUser
@@ -44,8 +47,10 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/favorite', getFavorite);
-router.post('/favorite/add/:courseId', addFavorite);
-router.delete('/favorite/delete/:courseId', deleteFavorite);
+router.post('/favorite/:courseId', addFavorite);
+router.delete('/favorite/:courseId', deleteFavorite);
+router.post('/comment/:courseId', addComment);
+router.delete('/comment/:commentId', deleteComment);
 router.get('/logout', logout);
 
 router.use(clientError);
