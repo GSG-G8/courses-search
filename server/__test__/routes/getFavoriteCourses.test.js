@@ -7,13 +7,12 @@ const app = require('../../src/app');
 const { USER_ONE_TOKEN, USER_TWO_TOKEN } = process.env;
 
 const userOneToken = `token=${USER_ONE_TOKEN}`;
-const usertwoToken = `token=${USER_TWO_TOKEN}`;
 
 describe('get request to /favorite', () => {
   beforeAll(() => dbBuild());
   afterAll(() => connection.end());
 
-  it('if user have favotite course will return favorite courses for this user', async () => {
+  it('if user have favorite course will return favorite courses for this user', async () => {
     expect.assertions(2);
     const { body } = await request(app)
       .get('/api/v1/favorite')
@@ -32,6 +31,7 @@ describe('get request to /favorite', () => {
         rate: '3.4',
         reviews: '23 reviews',
         description: 'Hi from computer course',
+        folder_id: 1,
         source: 'udemy',
         user_id: 1,
         course_id: 1,
@@ -46,23 +46,12 @@ describe('get request to /favorite', () => {
         rate: '4.4',
         reviews: '60 reviews',
         description: 'Hi from Science course',
+        folder_id: 2,
         source: 'udemy',
         user_id: 1,
         course_id: 2,
       },
     ]);
-  });
-
-  it('if user dont have favotite course will return message (this user dont have favorite course)', async () => {
-    expect.assertions(1);
-    const { body } = await request(app)
-      .get('/api/v1/favorite')
-      .set('Accept', 'application/json')
-      .set('Cookie', usertwoToken)
-      .expect(200);
-    expect(body).toStrictEqual({
-      message: 'There is no favorite courses for this user id',
-    });
   });
 
   it('if user id does not exits will return Sign-in first', async () => {
