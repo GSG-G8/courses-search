@@ -7,7 +7,7 @@ import {
   Rate,
   TreeSelect,
   Input,
-  Alert,
+  Empty,
 } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 
@@ -143,10 +143,7 @@ const HomePage = ({ history }) => {
             </div>
           ))
         ) : (
-          <Alert
-            message="Sorry This Course Name Not Avaliable..!"
-            type="warning"
-          />
+          <Empty />
         )}
       </div>
     </div>
