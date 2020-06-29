@@ -80,12 +80,6 @@ const HomePage = ({ history }) => {
   useEffect(() => {
     fetchTopCourses();
   }, []);
-  // const treeData =
-  //  categories.map((catt) => ({
-  //   title: catt.title,
-  //   value: catt.value,
-  //   children: catt.children,
-  // }));
 
   return (
     <div>
