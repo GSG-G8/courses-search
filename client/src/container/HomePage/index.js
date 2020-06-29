@@ -8,7 +8,7 @@ import './style.css';
 
 const HomePage = () => {
   const [loading, isLoading] = useState(true);
-  const [topcourses, setTopCourses] = useState([]);
+  const [topCourses, setTopCourses] = useState([]);
   const history = useHistory();
 
   const fetchTopCourses = async () => {
@@ -62,7 +62,7 @@ const HomePage = () => {
           </Dropdown>
         ))}
 
-        {topcourses.map((course) => (
+        {topCourses.map((course) => (
           <div key={course.id}>
             <h2>{course.title}</h2>
             <img alt="courseImg" src={course.image} />
