@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { notification, Button, Spin, Menu } from 'antd';
-import { AlignLeftOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
 // import { object } from 'prop-types';
@@ -79,7 +79,7 @@ const HomePage = () => {
             >
               {children.map(({ title, value }) => (
                 <Menu.Item
-                  icon={<AlignLeftOutlined />}
+                  icon={<MenuOutlined />}
                   key={value}
                   onClick={({ key }) => fetchCategoryCourses(key)}
                 >
