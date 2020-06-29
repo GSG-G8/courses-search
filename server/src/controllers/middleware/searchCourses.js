@@ -7,7 +7,7 @@ const { searchCoursesSchema } = require('../../utils');
 
 module.exports = async (req, res, next) => {
   try {
-    const { catId, courseName = '' } = req.body;
+    const { catId, courseName } = req.body;
     await searchCoursesSchema.validate({ courseName, catId });
 
     if (catId) {
@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
     }
   } catch (err) {
     if (err.name === 'ValidationError') {
-      res.status(400).json({ message: 'invalid input' });
+      res.status(400).json({ msg: 'invalid input' });
     } else {
       next(err);
     }
