@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { notification, Button, Spin, Menu, Dropdown } from 'antd';
+import { AlignLeftOutlined, CaretDownOutlined } from '@ant-design/icons';
+
 import { useHistory } from 'react-router-dom';
 // import { object } from 'prop-types';
 import axios from 'axios';
@@ -48,6 +50,7 @@ const HomePage = () => {
               <Menu>
                 {children.map(({ title, value }) => (
                   <Menu.Item
+                    icon={<AlignLeftOutlined />}
                     onClick={({ key }) => fetchCategoryCourses(key)}
                     key={value}
                   >
@@ -58,7 +61,7 @@ const HomePage = () => {
             )}
             placement="bottomLeft"
           >
-            <Button>{main}</Button>
+            <Button icon={<CaretDownOutlined />}>{main}</Button>
           </Dropdown>
         ))}
 
