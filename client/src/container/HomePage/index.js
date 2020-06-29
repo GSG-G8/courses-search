@@ -70,7 +70,7 @@ const HomePage = () => {
         >
           {categories.map(({ title: main, children }) => (
             <SubMenu
-              key="sub1"
+              key={main}
               title={
                 <span>
                   <span>{main}</span>
@@ -80,8 +80,8 @@ const HomePage = () => {
               {children.map(({ title, value }) => (
                 <Menu.Item
                   icon={<AlignLeftOutlined />}
-                  onClick={({ key }) => fetchCategoryCourses(key)}
                   key={value}
+                  onClick={({ key }) => fetchCategoryCourses(key)}
                 >
                   {title}
                 </Menu.Item>
