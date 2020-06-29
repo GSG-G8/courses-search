@@ -62,14 +62,20 @@ const HomePage = ({ history }) => {
     history.push(`/course/${id}`);
   };
   const treeSelectOnChange = (value) => {
-    setCat(value);
-    fetchCoursesByNameAndCatId(value, searchCourseName);
+    if (searchCourseName) {
+      setCat(value);
+      fetchCoursesByNameAndCatId(value, searchCourseName);
+    }
   };
-  const inputOnChange = (value) => {
-    if (value) {
+  const inputOnSearch = (value) => {
+    if (value.value) {
       setSearchCourseName(value);
       fetchCoursesByNameAndCatId(cat, value);
     }
+  };
+  const inputOnChange = (e) => {
+    setSearchCourseName(e.target.value);
+    fetchCoursesByNameAndCatId(cat, e.target.value);
   };
   useEffect(() => {
     fetchTopCourses();
@@ -86,7 +92,7 @@ const HomePage = ({ history }) => {
       <div className="search-container">
         <TreeSelect
           style={{ width: '20%', marginRight: '10px' }}
-          value={cat}
+          // value={cat}
           dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
           treeData={categories}
           // treeDefaultExpandAll
@@ -100,7 +106,8 @@ const HomePage = ({ history }) => {
         <Search
           style={{ width: '20%' }}
           placeholder="input search text"
-          onSearch={inputOnChange}
+          onSearch={inputOnSearch}
+          onChange={inputOnChange}
           enterButton
           suffix={suffix}
         />
@@ -145,8 +152,8 @@ const HomePage = ({ history }) => {
     </div>
   );
 };
+
 HomePage.propTypes = {
   history: propTypes.shape({ push: propTypes.func.isRequired }).isRequired,
 };
-
 export default HomePage;
