@@ -62,11 +62,11 @@ const HomePage = (props) => {
   const handleClick = (id) => {
     history.push(`/course/${id}`);
   };
-  const onChange = (value) => {
+  const treeSelectOnChange = (value) => {
     setCat(value);
     fetchCoursesByNameAndCatId(value, searchCourseName);
   };
-  const onInputChange = (value) => {
+  const inputOnChange = (value) => {
     if (value) {
       setSearchCourseName(value);
       fetchCoursesByNameAndCatId(cat, value);
@@ -92,7 +92,7 @@ const HomePage = (props) => {
           dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
           treeData={categories}
           // treeDefaultExpandAll
-          onChange={onChange}
+          onChange={treeSelectOnChange}
           // selectable={false}
           // onSearch={onChange}
           // showSearch
@@ -101,7 +101,7 @@ const HomePage = (props) => {
         <Search
           style={{ width: '20%' }}
           placeholder="input search text"
-          onSearch={onInputChange}
+          onSearch={inputOnChange}
           enterButton
           suffix={suffix}
         />
