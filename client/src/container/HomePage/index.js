@@ -12,7 +12,7 @@ import {
 import { AudioOutlined } from '@ant-design/icons';
 
 import axios from 'axios';
-import categories from './categories';
+import categories from '../../assets/categories';
 import './style.css';
 
 const { Search } = Input;
