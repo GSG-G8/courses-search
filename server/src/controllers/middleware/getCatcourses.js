@@ -3,6 +3,7 @@ const { getcourseByCatId } = require('../../database/queries');
 module.exports = async (req, res, next) => {
   try {
     const { categoryId } = req.params;
+
     if (categoryId > 0) {
       const { rows } = await getcourseByCatId(categoryId);
       if (rows.length !== 0) {

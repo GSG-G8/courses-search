@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
-import './App.css';
-import * as ROUTES from '../constants/router';
 import HomePage from '../container/HomePage';
+import * as ROUTES from '../constants/router';
 import FavoritePage from '../container/FavoritePage';
 import DetailsPage from '../container/DetailsPage';
+import 'antd/dist/antd.css';
+import './App.css';
 
 const axios = require('axios');
 
@@ -41,6 +42,7 @@ function App() {
                   cookiePolicy="single_host_origin"
                   isSignedIn
                 />
+                <HomePage />
               </div>
             )}
           />
