@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { notification, Button, Spin, Menu, Dropdown } from 'antd';
-import { AlignLeftOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { notification, Button, Spin, Menu } from 'antd';
+import { AlignLeftOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
 // import { object } from 'prop-types';
@@ -8,10 +8,28 @@ import axios from 'axios';
 import categories from './categories';
 import './style.css';
 
+const { SubMenu } = Menu;
+
 const HomePage = () => {
+  const rootSubmenuKeys = ['sub1'];
+
   const [loading, isLoading] = useState(true);
   const [topCourses, setTopCourses] = useState([]);
+  const [openKeys, setOpenKeys] = useState(['sub1']);
   const history = useHistory();
+
+  const onOpenChange = (openKeysParams) => {
+    const latestOpenKey = openKeysParams.find(
+      (key) => openKeys.indexOf(key) === -1
+    );
+
+    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+      setOpenKeys([...openKeysParams]);
+    } else {
+      const test = latestOpenKey ? [latestOpenKey] : [];
+      setOpenKeys([...test]);
+    }
+  };
 
   const fetchTopCourses = async () => {
     try {
@@ -44,40 +62,47 @@ const HomePage = () => {
       <div className="Home">
         {loading && <Spin />}
 
-        {categories.map(({ title: main, children }) => (
-          <Dropdown
-            overlay={() => (
-              <Menu>
-                {children.map(({ title, value }) => (
-                  <Menu.Item
-                    icon={<AlignLeftOutlined />}
-                    onClick={({ key }) => fetchCategoryCourses(key)}
-                    key={value}
-                  >
-                    {title}
-                  </Menu.Item>
-                ))}
-              </Menu>
-            )}
-            placement="bottomLeft"
-          >
-            <Button icon={<CaretDownOutlined />}>{main}</Button>
-          </Dropdown>
-        ))}
-
-        {topCourses.map((course) => (
-          <div key={course.id}>
-            <h2>{course.title}</h2>
-            <img alt="courseImg" src={course.image} />
-            <p>Rate: {course.rate}</p>
-            <h3>{course.source}</h3>
-            <Button onClick={() => handleClick(course.id)} type="primary">
-              {' '}
-              More
-            </Button>
-          </div>
-        ))}
+        <Menu
+          mode="inline"
+          openKeys={openKeys}
+          onOpenChange={onOpenChange}
+          style={{ width: 256 }}
+        >
+          {categories.map(({ title: main, children }) => (
+            <SubMenu
+              key="sub1"
+              title={
+                <span>
+                  <span>{main}</span>
+                </span>
+              }
+            >
+              {children.map(({ title, value }) => (
+                <Menu.Item
+                  icon={<AlignLeftOutlined />}
+                  onClick={({ key }) => fetchCategoryCourses(key)}
+                  key={value}
+                >
+                  {title}
+                </Menu.Item>
+              ))}
+            </SubMenu>
+          ))}
+        </Menu>
       </div>
+
+      {topCourses.map((course) => (
+        <div key={course.id}>
+          <h2>{course.title}</h2>
+          <img alt="courseImg" src={course.image} />
+          <p>Rate: {course.rate}</p>
+          <h3>{course.source}</h3>
+          <Button onClick={() => handleClick(course.id)} type="primary">
+            {' '}
+            More
+          </Button>
+        </div>
+      ))}
     </>
   );
 };
