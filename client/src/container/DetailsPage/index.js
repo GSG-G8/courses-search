@@ -21,7 +21,10 @@ import {
 } from './functions';
 
 import './style.css';
-import userImage from './defaultUser.png';
+// import userImage from './defaultUser.png';
+import images from '../../assets/images';
+
+const { defaultUserPhoto } = images;
 
 const { TextArea } = Input;
 const { Title, Text, Link } = Typography;
@@ -70,24 +73,30 @@ const DetailsPage = () => {
     source = 'unknown',
   } = courseDetails;
 
+  if (errorMessage) {
+    return (
+      <Row className="course-details-row">
+        <Col span={24}>
+          <Alert message={errorMessage} type="error" showIcon />
+        </Col>
+      </Row>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <Row className="course-details-row">
+        <Col span={24}>
+          <Spin>
+            <Alert message="Loading ..." type="info" />
+          </Spin>
+        </Col>
+      </Row>
+    );
+  }
+
   return (
     <>
-      {isLoading && (
-        <Row className="course-details-row">
-          <Col span={24}>
-            <Spin>
-              <Alert message="Loading ..." type="info" />
-            </Spin>
-          </Col>
-        </Row>
-      )}
-      {errorMessage && (
-        <Row className="course-details-row">
-          <Col span={24}>
-            <Alert message={errorMessage} type="error" showIcon />
-          </Col>
-        </Row>
-      )}
       <Row className="course-details-row">
         <Col span={24}>
           <Title level={2}>{title}</Title>
@@ -140,7 +149,7 @@ const DetailsPage = () => {
               <Button
                 type="primary"
                 onClick={() => addToFavorite(allStates)}
-                disabled={isLoading || errorMessage}
+                disabled={isLoading}
               >
                 add to favorite
               </Button>
@@ -155,7 +164,7 @@ const DetailsPage = () => {
           {comments.map(({ name, content }) => (
             <Row gutter={16}>
               <Col span={3}>
-                <img className="user-image" src={userImage} alt="user" />
+                <img className="user-image" src={defaultUserPhoto} alt="user" />
               </Col>
               <Col span={21}>
                 <strong>{`by (${name})`}</strong>
@@ -167,7 +176,7 @@ const DetailsPage = () => {
           {isAuth ? (
             <Row gutter={16}>
               <Col span={3}>
-                <img className="user-image" src={userImage} alt="user" />
+                <img className="user-image" src={defaultUserPhoto} alt="user" />
               </Col>
               <Col span={21}>
                 <TextArea
