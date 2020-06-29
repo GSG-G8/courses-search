@@ -42,7 +42,7 @@ const HomePage = (props) => {
     } catch (err) {
       let error;
       if (err.response) error = err.response.data.msg || 'Something went wrong';
-      else error = 'Something went wrong';
+      else error = 'No Course with this name';
       notification.error({ message: error });
     }
   };
@@ -55,7 +55,7 @@ const HomePage = (props) => {
     } catch (err) {
       let error;
       if (err.response) error = err.response.data.msg || 'Something went wrong';
-      else error = 'Something went wrong';
+      else error = 'No Courses';
       notification.error({ message: error });
     }
   };
