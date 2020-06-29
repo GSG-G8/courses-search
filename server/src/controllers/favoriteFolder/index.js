@@ -3,6 +3,7 @@ const deleteFavoriteFolder = require('./deleteFavoriteFolder');
 const editFavoriteFolder = require('./editFavoriteFolder');
 const removeCourseFromFolder = require('./removeCourseFromFolder');
 const updateCourseToFolder = require('./updateCourseToFolder');
+const getFavoriteFolder = require('./getFavoriteFolder');
 
 module.exports = {
   addFavoriteFolder,
@@ -10,4 +11,5 @@ module.exports = {
   editFavoriteFolder,
   removeCourseFromFolder,
   updateCourseToFolder,
+  getFavoriteFolder,
 };

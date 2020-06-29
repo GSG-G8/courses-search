@@ -47,7 +47,7 @@ describe('get request to /favorite/folder', () => {
     });
   });
 
-  it('if user id does not exits will return Sign-in first', async () => {
+  it('if user id does not exist will return Sign-in first', async () => {
     expect.assertions(1);
     const { body } = await request(app)
       .get('/api/v1/favorite/folder')

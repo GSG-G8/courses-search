@@ -11,6 +11,7 @@ const {
   editFavoriteFolder,
   deleteFavoriteFolder,
   removeCourseFromFolder,
+  getFavoriteFolder,
 } = require('./favoriteFolder');
 
 const { clientError, serverError } = require('./errorHandle');
@@ -25,7 +26,6 @@ const deleteComment = require('./comment/delete');
 const googleLogin = require('./googleLogin');
 const verifyUser = require('./verifyUser');
 const logout = require('./logout');
-const getFavoriteFolder = require('./getFavoriteFolder');
 
 module.exports = {
   clientError,
