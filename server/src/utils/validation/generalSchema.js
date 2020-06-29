@@ -6,7 +6,7 @@ const courseDetailsSchema = yup.object({
 
 const searchCoursesSchema = yup.object().shape({
   courseName: yup.string(),
-  catId: yup.number().positive(),
+  catId: yup.string(),
 });
 const getCatCourses = yup.object().shape({
   categoryId: yup.number().positive(),
