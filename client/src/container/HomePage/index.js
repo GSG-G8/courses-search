@@ -5,7 +5,7 @@ import { AlignLeftOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 // import { object } from 'prop-types';
 import axios from 'axios';
-import categories from './categories';
+import categories from '../../assets/categories';
 import './style.css';
 
 const { SubMenu } = Menu;
