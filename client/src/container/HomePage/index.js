@@ -35,29 +35,19 @@ const HomePage = (props) => {
   const fetchCoursesByNameAndCatId = async (catId, courseName) => {
     try {
       const { data } = await axios.post(`/api/v1/catId/courseName`, {
-        catId: catId || undefined,
+        catId,
         courseName,
       });
       setTopCourses(data);
     } catch (err) {
-      notification.error(err);
+      notification.error({ message: err });
     }
   };
 
   const fetchTopCourses = async () => {
     try {
       const { data } = await axios.get(`/api/v1/topCourses`);
-      const courseData = data.map((course) => {
-        let rateDes = '';
-        const courseRate = parseFloat(course.rate);
-        if (courseRate >= 4.5) rateDes = 'wonderful';
-        else if (courseRate > 3.5) rateDes = 'good';
-        else if (courseRate > 2.5) rateDes = 'normal';
-        else if (courseRate > 1.5) rateDes = 'bad';
-        else rateDes = 'terrible';
-        return { ...course, rateDes };
-      });
-      setTopCourses(courseData);
+      setTopCourses(data);
       isLoading(false);
     } catch (err) {
       notification.error(err);
@@ -122,15 +112,8 @@ const HomePage = (props) => {
                 src={course.image}
                 // style={{ borderTopRightRadius: '50%' }}
               />
-              {/* <p>Rate: {course.rate}</p> */}
               <span>
-                <Rate
-                  // tooltips={course.rateDes}
-                  value={Math.round(course.rate * 2) / 2}
-                  Rate
-                  allowHalf
-                />
-                <span className="ant-rate-text">{course.rateDes}</span>
+                <Rate value={Math.round(course.rate * 2) / 2} Rate allowHalf />
               </span>
               <h3>{course.source}</h3>
               <Button onClick={() => handleClick(course.id)} type="primary">
