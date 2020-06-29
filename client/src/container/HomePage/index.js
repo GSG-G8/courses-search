@@ -67,8 +67,10 @@ const HomePage = (props) => {
     fetchCoursesByNameAndCatId(value, searchCourseName);
   };
   const onInputChange = (value) => {
-    setSearchCourseName(value);
-    fetchCoursesByNameAndCatId(cat, value);
+    if (value) {
+      setSearchCourseName(value);
+      fetchCoursesByNameAndCatId(cat, value);
+    }
   };
   useEffect(() => {
     fetchTopCourses();
