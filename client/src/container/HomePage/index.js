@@ -89,10 +89,7 @@ const HomePage = ({ history }) => {
           // value={cat}
           dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
           treeData={categories}
-          // treeDefaultExpandAll
           onChange={treeSelectOnChange}
-          // onSearch={treeSelectOnChange}
-          // showSearch
           placeholder="Please select"
           treeDefaultExpandAll
         />
