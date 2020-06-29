@@ -87,15 +87,15 @@ const HomePage = (props) => {
       <div className="search-container">
         <TreeSelect
           style={{ width: '20%', marginRight: '10px' }}
-          placeholder="Please select category"
           value={cat}
           dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
           treeData={categories}
           // treeDefaultExpandAll
           onChange={treeSelectOnChange}
-          // selectable={false}
-          // onSearch={onChange}
+          // onSearch={treeSelectOnChange}
           // showSearch
+          placeholder="Please select"
+          treeDefaultExpandAll
         />
 
         <Search
@@ -120,9 +120,15 @@ const HomePage = (props) => {
                 src={course.image}
                 // style={{ borderTopRightRadius: '50%' }}
               />
-              <span>
-                <Rate value={Math.round(course.rate * 2) / 2} Rate allowHalf />
-              </span>
+              {course.rate && (
+                <span>
+                  <Rate
+                    value={Math.round(course.rate * 2) / 2}
+                    Rate
+                    allowHalf
+                  />
+                </span>
+              )}
               <h3>{course.source}</h3>
               <Button onClick={() => handleClick(course.id)} type="primary">
                 {' '}
