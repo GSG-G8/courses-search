@@ -5,6 +5,14 @@ const {
   searchCourses,
 } = require('./middleware');
 
+const {
+  addFavoriteFolder,
+  updateCourseToFolder,
+  editFavoriteFolder,
+  deleteFavoriteFolder,
+  removeCourseFromFolder,
+} = require('./favoriteFolder');
+
 const { clientError, serverError } = require('./errorHandle');
 const getCoursera = require('./coursera/getCourses');
 const getFutureData = require('./scraping/index');
@@ -37,5 +45,10 @@ module.exports = {
   verifyUser,
   logout,
   searchCourses,
+  addFavoriteFolder,
+  updateCourseToFolder,
+  editFavoriteFolder,
+  deleteFavoriteFolder,
+  removeCourseFromFolder,
   getFavoriteFolder,
 };

@@ -8,6 +8,8 @@ const {
   getCourseDetails,
   getFavorite,
   addFavorite,
+  addFavoriteFolder,
+  editFavoriteFolder,
   deleteFavorite,
   addComment,
   deleteComment,
@@ -18,12 +20,15 @@ const {
   getCoursera,
   getFutureData,
   getUdemy,
+  updateCourseToFolder,
+  deleteFavoriteFolder,
+  removeCourseFromFolder,
   getFavoriteFolder,
 } = require('../controllers');
 
-router.get('/getData1', getFutureData);
-router.get('/getData2', getUdemy);
-router.get('/getData3', getCoursera);
+router.get('/getFutureData', getFutureData);
+router.get('/getUdemyData', getUdemy);
+router.get('/getCourseraData', getCoursera);
 
 router.post('/login/google', googleLogin);
 router.post('/catId/courseName', searchCourses);
@@ -37,6 +42,10 @@ router.all(
     '/favorite/:courseId',
     '/comment/:commentId',
     '/comment/:courseId',
+    '/favorite/folder',
+    '/favorite/folder/:folderId',
+    '/favorite/add-to-folder',
+    '/favorite/folder/:folderId/:courseId',
     '/auth',
     '/favorite/folder',
   ],
@@ -48,7 +57,17 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/favorite', getFavorite);
-router.get('/favorite/folder', getFavoriteFolder);
+
+router
+  .route('/favorite/folder')
+  .get(getFavoriteFolder)
+  .post(addFavoriteFolder)
+  .put(editFavoriteFolder);
+router.delete('/favorite/folder/:folderId', deleteFavoriteFolder);
+
+router.post('/favorite/add-to-folder', updateCourseToFolder);
+router.delete('/favorite/folder/:folderId/:courseId', removeCourseFromFolder);
+
 router.post('/favorite/:courseId', addFavorite);
 router.delete('/favorite/:courseId', deleteFavorite);
 router.post('/comment/:courseId', addComment);
