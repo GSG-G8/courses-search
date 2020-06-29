@@ -25,9 +25,8 @@ const suffix = (
   />
 );
 
-const HomePage = (props) => {
-  const { history } = props;
-  const [loading, isLoading] = useState(true);
+const HomePage = ({ history }) => {
+  const [loading, setLoading] = useState(true);
   const [topcourses, setTopCourses] = useState([]);
   const [searchCourseName, setSearchCourseName] = useState('');
   const [cat, setCat] = useState('');
@@ -51,7 +50,7 @@ const HomePage = (props) => {
     try {
       const { data } = await axios.get(`/api/v1/topCourses`);
       setTopCourses(data);
-      isLoading(false);
+      setLoading(false);
     } catch (err) {
       let error;
       if (err.response) error = err.response.data.msg || 'Something went wrong';
