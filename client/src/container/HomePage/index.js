@@ -40,7 +40,10 @@ const HomePage = (props) => {
       });
       setTopCourses(data);
     } catch (err) {
-      notification.error({ message: err });
+      let error;
+      if (err.response) error = err.response.data.msg || 'Something went wrong';
+      else error = 'Something went wrong';
+      notification.error({ message: error });
     }
   };
 
@@ -50,7 +53,10 @@ const HomePage = (props) => {
       setTopCourses(data);
       isLoading(false);
     } catch (err) {
-      notification.error(err);
+      let error;
+      if (err.response) error = err.response.data.msg || 'Something went wrong';
+      else error = 'Something went wrong';
+      notification.error({ message: error });
     }
   };
   const handleClick = (id) => {
