@@ -1,5 +1,10 @@
 const categories = [
   {
+    title: 'All',
+    value: 0,
+    checkable: true,
+  },
+  {
     title: 'development',
     value: 'c-0',
     selectable: false,
