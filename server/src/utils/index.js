@@ -1,15 +1,19 @@
 const {
   courseDetailsSchema,
   searchCoursesSchema,
-  getCatCourses,
+  folderTitleSchema,
+  addCourseToFolder,
   commentSchema,
   idSchema,
+  folderIdSchema,
 } = require('./validation');
 
 module.exports = {
   courseDetailsSchema,
   searchCoursesSchema,
-  getCatCourses,
+  folderTitleSchema,
+  addCourseToFolder,
   commentSchema,
   idSchema,
+  folderIdSchema,
 };
