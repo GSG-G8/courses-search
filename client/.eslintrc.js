@@ -15,6 +15,7 @@ module.exports = {
     },
     rules: {
       "arrow-body-style": ["error", "as-needed"],
+      "prettier/prettier": "error",
       "react/state-in-constructor": 0,
       "react/prop-types": 0,
       "import/prefer-default-export": 0,
