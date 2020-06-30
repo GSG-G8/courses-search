@@ -3,7 +3,7 @@ const connection = require('../config/connection');
 const getCourseByCatIdName = (catId, name, offset) =>
   connection.query({
     text: `SELECT id, title, image, rate, source
-      FROM course WHERE title ILIKE $1 AND (category_id = $2 OR $2='0' ) offset $3 limit 10 `,
+      FROM course WHERE title ILIKE $1 AND (category_id = $2 OR $2='0' ) order by rate DESC offset $3 limit 10 `,
     values: [`%${name}%`, catId, offset],
   });
 
