@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+
 import {
   Spin,
   Rate,
@@ -32,8 +32,8 @@ categories.forEach(({ children }) => {
 const { TextArea } = Input;
 const { Title, Text, Link } = Typography;
 
-const DetailsPage = () => {
-  const { courseId } = useParams();
+const DetailsPage = ({ match: { params } }) => {
+  const { courseId } = params;
   const [isLoading, setIsLoading] = useState(true);
   const [courseDetails, setCourseDetails] = useState({});
   const [comments, setComments] = useState([]);
