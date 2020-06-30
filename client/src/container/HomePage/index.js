@@ -86,7 +86,8 @@ const HomePage = ({ history }) => {
           <div className="search-container">
             <TreeSelect
               style={{ width: '20%', marginRight: '10px' }}
-              // value={cat}
+              value={cat}
+              defaultValue={0}
               dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
               treeData={categories}
               onChange={treeSelectOnChange}
