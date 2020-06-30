@@ -1,15 +1,20 @@
 const connection = require('../config/connection');
 
-const getCourseByName = (name) =>
+const getCourseByCatIdName = (catId, name, offset) =>
   connection.query({
     text: `SELECT id, title, image, rate, source
-    FROM course WHERE title ILIKE '%${name}%' `,
+      FROM course WHERE title ILIKE $1 AND (category_id = $2 OR $2='0' ) offset $3 limit 10 `,
+    values: [`%${name}%`, catId, offset],
   });
 
-const getCourseByCatIdName = (catId, name) =>
+const getCourseByCatIdNameCount = (catId, name) =>
   connection.query({
-    text: `SELECT id, title, image, rate, source
-      FROM course WHERE title ILIKE '%${name}%' AND category_id = ${catId} `,
+    text: `SELECT count(*)
+      FROM course WHERE title ILIKE $1 AND (category_id = $2 OR $2='0')  `,
+    values: [`%${name}%`, catId],
   });
 
-module.exports = { getCourseByName, getCourseByCatIdName };
+module.exports = {
+  getCourseByCatIdName,
+  getCourseByCatIdNameCount,
+};

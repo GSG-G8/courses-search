@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-import { Button, Spin, Rate, TreeSelect, Input, Empty, Result } from 'antd';
+
+import {
+  Button,
+  Spin,
+  Rate,
+  TreeSelect,
+  Input,
+  Empty,
+  Pagination,
+  Result,
+} from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import categories from '../../assets/categories';
@@ -21,16 +31,21 @@ const HomePage = ({ history }) => {
   const [searchCourseName, setSearchCourseName] = useState('');
   const [cat, setCat] = useState(0);
   const [error, setError] = useState('');
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
 
   const fetchCoursesByNameAndCatId = async (catId, courseName) => {
     try {
       const { data } = await axios.post(`/api/v1/catId/courseName`, {
         catId,
         courseName,
+        offset: (page - 1) * 10,
       });
       setCourses(data);
       setLoading(false);
       setError('');
+      setTotal(data.count);
+      setCourses(data.rows);
     } catch (err) {
       const message =
         err.response.data.message || 'Something went wrong, try again later';
@@ -56,25 +71,20 @@ const HomePage = ({ history }) => {
     history.push(`/course/${id}`);
   };
   const treeSelectOnChange = (value) => {
-    if (searchCourseName) {
-      setCat(value);
-      fetchCoursesByNameAndCatId(value, searchCourseName);
-    }
+    setCat(value);
   };
   const inputOnSearch = (value) => {
-    if (value) {
-      setSearchCourseName(value);
-      fetchCoursesByNameAndCatId(cat, value);
-    }
+    setSearchCourseName(value);
   };
   const inputOnChange = (e) => {
     setSearchCourseName(e.target.value);
-    fetchCoursesByNameAndCatId(cat, e.target.value);
   };
   useEffect(() => {
     fetchTopCourses();
   }, []);
-
+  useEffect(() => {
+    fetchCoursesByNameAndCatId(cat, searchCourseName);
+  }, [page, cat, searchCourseName]);
   return (
     <div>
       {error ? (
@@ -136,6 +146,12 @@ const HomePage = ({ history }) => {
               <Empty />
             )}
           </div>
+          <Pagination
+            onChange={(k) => setPage(k)}
+            defaultCurrent={1}
+            total={total}
+            showSizeChanger={false}
+          />
         </>
       )}
     </div>

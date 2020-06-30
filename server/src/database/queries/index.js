@@ -19,7 +19,10 @@ const insertCourses = require('./insertCourses');
 const addUserData = require('./addUserData');
 const courseComment = require('./courseComment');
 const checkUserFolder = require('./checkUserFolder');
-const { getCourseByName, getCourseByCatIdName } = require('./searchCourses');
+const {
+  getCourseByCatIdName,
+  getCourseByCatIdNameCount,
+} = require('./searchCourses');
 
 module.exports = {
   getFavoriteCourse,
@@ -33,7 +36,6 @@ module.exports = {
   insertCourses,
   addUserData,
   getcourseById,
-  getCourseByName,
   getCourseByCatIdName,
   courseComment,
   addFavoriteFolderQuery,
@@ -42,4 +44,5 @@ module.exports = {
   editFavoriteFolderQuery,
   deleteFavoriteFolderQuery,
   deleteCourseFromFolderQuery,
+  getCourseByCatIdNameCount,
 };
