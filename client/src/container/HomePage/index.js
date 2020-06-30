@@ -8,14 +8,13 @@ import {
   TreeSelect,
   Input,
   Empty,
+  Result,
 } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
-
 import axios from 'axios';
 import categories from '../../assets/categories';
 import './style.css';
 
-const { Search } = Input;
 const suffix = (
   <AudioOutlined
     style={{
@@ -30,6 +29,7 @@ const HomePage = ({ history }) => {
   const [topcourses, setTopCourses] = useState([]);
   const [searchCourseName, setSearchCourseName] = useState('');
   const [cat, setCat] = useState('');
+  const [error, setError] = useState('');
 
   const fetchCoursesByNameAndCatId = async (catId, courseName) => {
     try {
@@ -38,11 +38,17 @@ const HomePage = ({ history }) => {
         courseName,
       });
       setTopCourses(data);
+      setLoading(false);
+      setError('');
     } catch (err) {
-      let error;
-      if (err.response) error = err.response.data.msg || 'Something went wrong';
-      else error = 'No Course with this name';
-      notification.error({ message: error });
+      let message;
+      if (err.response) {
+        message = err.response.data.msg;
+      } else {
+        message = 'Something went wrong';
+        notification.error({ message });
+        setError(message);
+      }
     }
   };
 
@@ -51,11 +57,16 @@ const HomePage = ({ history }) => {
       const { data } = await axios.get(`/api/v1/topCourses`);
       setTopCourses(data);
       setLoading(false);
+      setError('');
     } catch (err) {
-      let error;
-      if (err.response) error = err.response.data.msg || 'Something went wrong';
-      else error = 'No Courses';
-      notification.error({ message: error });
+      let message;
+      if (err.response) {
+        message = err.response.data.msg;
+      } else {
+        message = 'Something went wrong';
+        notification.error({ message });
+        setError(message);
+      }
     }
   };
   const handleClick = (id) => {
@@ -83,60 +94,66 @@ const HomePage = ({ history }) => {
 
   return (
     <div>
-      <div className="search-container">
-        <TreeSelect
-          style={{ width: '20%', marginRight: '10px' }}
-          // value={cat}
-          dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-          treeData={categories}
-          onChange={treeSelectOnChange}
-          placeholder="Please select"
-          treeDefaultExpandAll
-        />
+      {error ? (
+        <Result status="error" title="Internal server Error." />
+      ) : loading ? (
+        <Spin />
+      ) : (
+        <>
+          <div className="search-container">
+            <TreeSelect
+              style={{ width: '20%', marginRight: '10px' }}
+              // value={cat}
+              dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+              treeData={categories}
+              onChange={treeSelectOnChange}
+              placeholder="Please select"
+              treeDefaultExpandAll
+            />
 
-        <Search
-          style={{ width: '20%' }}
-          placeholder="input search text"
-          onSearch={inputOnSearch}
-          onChange={inputOnChange}
-          enterButton
-          suffix={suffix}
-        />
-      </div>
+            <Input.Search
+              style={{ width: '20%' }}
+              placeholder="input search text"
+              onSearch={inputOnSearch}
+              onChange={inputOnChange}
+              enterButton
+              suffix={suffix}
+            />
+          </div>
 
-      <div className="topRate__container">
-        {loading ? (
-          <Spin />
-        ) : topcourses.length > 0 ? (
-          topcourses.map((course) => (
-            <div className="topRate__course-card" key={course.id}>
-              <h2>{course.title}</h2>
-              <img
-                className="topRate__course-card__image"
-                alt="courseImg"
-                src={course.image}
-                // style={{ borderTopRightRadius: '50%' }}
-              />
-              {course.rate && (
-                <span>
-                  <Rate
-                    value={Math.round(course.rate * 2) / 2}
-                    Rate
-                    allowHalf
+          <div className="topRate__container">
+            {topcourses.length > 0 ? (
+              topcourses.map((course) => (
+                <div className="topRate__course-card" key={course.id}>
+                  <h2>{course.title}</h2>
+                  <img
+                    className="topRate__course-card__image"
+                    alt="courseImg"
+                    src={course.image}
+                    // style={{ borderTopRightRadius: '50%' }}
                   />
-                </span>
-              )}
-              <h3>{course.source}</h3>
-              <Button onClick={() => handleClick(course.id)} type="primary">
-                {' '}
-                More
-              </Button>
-            </div>
-          ))
-        ) : (
-          <Empty />
-        )}
-      </div>
+                  {course.rate && (
+                    <span>
+                      <Rate
+                        value={Math.round(course.rate * 2) / 2}
+                        Rate
+                        allowHalf
+                      />
+                    </span>
+                  )}
+                  <h3>{course.source}</h3>
+                  <Button onClick={() => handleClick(course.id)} type="primary">
+                    {' '}
+                    More
+                  </Button>
+                </div>
+              ))
+            ) : (
+              <Empty />
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -144,4 +161,5 @@ const HomePage = ({ history }) => {
 HomePage.propTypes = {
   history: propTypes.shape({ push: propTypes.func.isRequired }).isRequired,
 };
+
 export default HomePage;
