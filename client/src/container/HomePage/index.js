@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { notification, Button, Spin, Menu } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import { AlignLeftOutlined } from '@ant-design/icons';
 
 import axios from 'axios';
 import propTypes from 'prop-types';
@@ -56,7 +56,7 @@ const HomePage = ({ history }) => {
             >
               {children.map(({ title, value }) => (
                 <Menu.Item
-                  icon={<MenuOutlined />}
+                  icon={<AlignLeftOutlined />}
                   key={value}
                   onClick={({ key }) => fetchCategoryCourses(key)}
                 >
