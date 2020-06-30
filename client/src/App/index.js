@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
-import './App.css';
 import * as ROUTES from '../constants/router';
 import HomePage from '../container/HomePage';
-import FavoritePage from '../container/FavoritePage';
 import DetailsPage from '../container/DetailsPage';
+import FavoritePage from '../container/FavoritePage';
+import './App.css';
+import 'antd/dist/antd.css';
 
 const axios = require('axios');
 
@@ -22,7 +23,6 @@ const failureResponse = (response) => {
 function App() {
   return (
     <div className="App">
-      courses search
       <Router>
         <Switch>
           <Route exact path={ROUTES.LANDING} component={HomePage} />

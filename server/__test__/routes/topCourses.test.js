@@ -17,6 +17,7 @@ describe('get request to /events/:code', () => {
       .expect(200);
     expect(res.body[0]).toStrictEqual({
       category_id: 3,
+      id: 3,
       title: 'Phonetics',
       image: 'https://uniweb.qwebbuilder.com.ng/images/onlinecourses.jpg',
       author_name: 'Yaser',
