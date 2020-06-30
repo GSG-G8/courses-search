@@ -19,7 +19,7 @@ const HomePage = ({ history }) => {
   const [loading, setLoading] = useState(true);
   const [courses, setCourses] = useState([]);
   const [searchCourseName, setSearchCourseName] = useState('');
-  const [cat, setCat] = useState('');
+  const [cat, setCat] = useState(0);
   const [error, setError] = useState('');
 
   const fetchCoursesByNameAndCatId = async (catId, courseName) => {
