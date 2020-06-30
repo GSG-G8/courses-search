@@ -11,20 +11,15 @@ import {
   Divider,
   Typography,
   Input,
+  Modal,
 } from 'antd';
 
-import {
-  addToFavorite,
-  getCourseDetails,
-  getAuth,
-  addComment,
-} from './functions';
+import { addToFavorite, getCourseDetails, addComment } from './functions';
 
 import './style.css';
+import { Login } from '../../components';
 import categories from '../../assets/categories';
-import images from '../../assets/images';
-
-const { defaultUserPhoto } = images;
+import { defaultUserPhoto } from '../../assets/images';
 
 const subCategory = {};
 categories.forEach(({ children }) => {
@@ -47,6 +42,7 @@ const DetailsPage = () => {
   const [userInfo, setUserInfo] = useState({});
   const [newComment, setNewComment] = useState('');
   const [isPosting, setIsPosting] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const allStates = {
     courseId,
@@ -55,8 +51,6 @@ const DetailsPage = () => {
     setErrorMessage,
     setCourseDetails,
     setComments,
-    setIsAuth,
-    setUserInfo,
     content: newComment,
     setIsPosting,
     comments,
@@ -66,7 +60,6 @@ const DetailsPage = () => {
 
   useEffect(() => {
     getCourseDetails(allStates);
-    getAuth(allStates);
   }, []);
 
   const {
@@ -164,7 +157,10 @@ const DetailsPage = () => {
             <Col span={18} offset={6}>
               <Button
                 type="primary"
-                onClick={() => addToFavorite(allStates)}
+                onClick={() => {
+                  if (isAuth) addToFavorite(allStates);
+                  else setShowModal(true);
+                }}
                 disabled={isLoading}
               >
                 add to favorite
@@ -189,36 +185,53 @@ const DetailsPage = () => {
             </Row>
           ))}
 
-          {isAuth ? (
-            <Row gutter={16}>
-              <Col span={3}>
-                <img className="user-image" src={defaultUserPhoto} alt="user" />
-              </Col>
-              <Col span={21}>
-                <TextArea
-                  onChange={({ target }) => setNewComment(target.value)}
-                  autoSize={{ minRows: 3, maxRows: 6 }}
-                  value={newComment}
-                  maxLength={255}
-                  disabled={isPosting}
-                />
-                <Button
-                  type="primary"
-                  style={{ margin: '16px 0' }}
-                  onClick={() => {
-                    addComment(allStates);
-                  }}
-                  disabled={isPosting}
-                >
-                  add your comment
-                </Button>
-              </Col>
-            </Row>
-          ) : (
-            <Alert description="Login to add comments" type="info" />
-          )}
+          <Row gutter={16}>
+            <Col span={3}>
+              <img className="user-image" src={defaultUserPhoto} alt="user" />
+            </Col>
+            <Col span={21}>
+              <TextArea
+                onChange={({ target }) => setNewComment(target.value)}
+                autoSize={{ minRows: 3, maxRows: 6 }}
+                value={newComment}
+                maxLength={255}
+                disabled={isPosting}
+              />
+              <Button
+                type="primary"
+                style={{ margin: '16px 0' }}
+                onClick={() => {
+                  if (isAuth) addComment(allStates);
+                  else setShowModal(true);
+                }}
+                disabled={isPosting}
+              >
+                add your comment
+              </Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
+
+      <Modal
+        title="Login"
+        forceRender
+        visible={showModal && !isAuth}
+        onOk={() => {
+          setShowModal(false);
+        }}
+        onCancel={() => {
+          setShowModal(false);
+        }}
+      >
+        <p>you need to login first</p>
+        <Login
+          onSuccess={({ data }) => {
+            setIsAuth(true);
+            setUserInfo(data);
+          }}
+        />
+      </Modal>
     </>
   );
 };

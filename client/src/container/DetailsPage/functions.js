@@ -32,16 +32,6 @@ export const getCourseDetails = async ({
   }
 };
 
-export const getAuth = async ({ setIsAuth, setUserInfo }) => {
-  try {
-    const { data } = await axios.get(`/api/v1/auth`);
-    setIsAuth(true);
-    setUserInfo(data);
-  } catch (error) {
-    setIsAuth(false);
-  }
-};
-
 export const addComment = async ({
   courseId,
   content,

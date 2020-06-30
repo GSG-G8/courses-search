@@ -1,3 +1,3 @@
 import defaultUserPhoto from './defaultUser.png';
 
-export default { defaultUserPhoto };
+export { defaultUserPhoto };
