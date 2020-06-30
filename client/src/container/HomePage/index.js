@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-import {
-  notification,
-  Button,
-  Spin,
-  Rate,
-  TreeSelect,
-  Input,
-  Empty,
-  Result,
-} from 'antd';
+import { Button, Spin, Rate, TreeSelect, Input, Empty, Result } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import categories from '../../assets/categories';
@@ -26,7 +17,7 @@ const suffix = (
 
 const HomePage = ({ history }) => {
   const [loading, setLoading] = useState(true);
-  const [topcourses, setTopCourses] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [searchCourseName, setSearchCourseName] = useState('');
   const [cat, setCat] = useState('');
   const [error, setError] = useState('');
@@ -37,36 +28,28 @@ const HomePage = ({ history }) => {
         catId,
         courseName,
       });
-      setTopCourses(data);
+      setCourses(data);
       setLoading(false);
       setError('');
     } catch (err) {
-      let message;
-      if (err.response) {
-        message = err.response.data.msg;
-      } else {
-        message = 'Something went wrong';
-        notification.error({ message });
-        setError(message);
-      }
+      const message =
+        err.response.data.message || 'Something went wrong, try again later';
+      setLoading(false);
+      setError(message);
     }
   };
 
   const fetchTopCourses = async () => {
     try {
       const { data } = await axios.get(`/api/v1/topCourses`);
-      setTopCourses(data);
+      setCourses(data);
       setLoading(false);
       setError('');
     } catch (err) {
-      let message;
-      if (err.response) {
-        message = err.response.data.msg;
-      } else {
-        message = 'Something went wrong';
-        notification.error({ message });
-        setError(message);
-      }
+      const message =
+        err.response.data.message || 'Something went wrong, try again later';
+      setLoading(false);
+      setError(message);
     }
   };
   const handleClick = (id) => {
@@ -79,7 +62,7 @@ const HomePage = ({ history }) => {
     }
   };
   const inputOnSearch = (value) => {
-    if (value.value) {
+    if (value) {
       setSearchCourseName(value);
       fetchCoursesByNameAndCatId(cat, value);
     }
@@ -122,8 +105,8 @@ const HomePage = ({ history }) => {
           </div>
 
           <div className="topRate__container">
-            {topcourses.length > 0 ? (
-              topcourses.map((course) => (
+            {courses.length > 0 ? (
+              courses.map((course) => (
                 <div className="topRate__course-card" key={course.id}>
                   <h2>{course.title}</h2>
                   <img
