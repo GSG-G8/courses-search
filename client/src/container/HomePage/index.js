@@ -2,34 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { notification, Button, Spin, Menu } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 
-import { useHistory } from 'react-router-dom';
-// import { object } from 'prop-types';
 import axios from 'axios';
+import propTypes from 'prop-types';
 import categories from '../../assets/categories';
 import './style.css';
 
 const { SubMenu } = Menu;
 
-const HomePage = () => {
-  const rootSubmenuKeys = ['sub1'];
-
+const HomePage = ({ history }) => {
   const [loading, isLoading] = useState(true);
   const [topCourses, setTopCourses] = useState([]);
-  const [openKeys, setOpenKeys] = useState(['sub1']);
-  const history = useHistory();
-
-  const onOpenChange = (openKeysParams) => {
-    const latestOpenKey = openKeysParams.find(
-      (key) => openKeys.indexOf(key) === -1
-    );
-
-    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-      setOpenKeys([...openKeysParams]);
-    } else {
-      const test = latestOpenKey ? [latestOpenKey] : [];
-      setOpenKeys([...test]);
-    }
-  };
 
   const fetchTopCourses = async () => {
     try {
@@ -62,12 +44,7 @@ const HomePage = () => {
       <div className="Home">
         {loading && <Spin />}
 
-        <Menu
-          mode="inline"
-          openKeys={openKeys}
-          onOpenChange={onOpenChange}
-          style={{ width: 256 }}
-        >
+        <Menu mode="inline" style={{ width: 256 }}>
           {categories.map(({ title: main, children }) => (
             <SubMenu
               key={main}
@@ -105,6 +82,10 @@ const HomePage = () => {
       ))}
     </>
   );
+};
+
+HomePage.propTypes = {
+  history: propTypes.shape({ push: propTypes.func.isRequired }).isRequired,
 };
 
 export default HomePage;
