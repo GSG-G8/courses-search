@@ -15,6 +15,7 @@ module.exports = {
     },
     rules: {
       "arrow-body-style": ["error", "as-needed"],
+      "prettier/prettier": "error",
       "react/state-in-constructor": 0,
       "react/jsx-filename-extension": [
         1,

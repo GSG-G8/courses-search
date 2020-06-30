@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import {
+  Button,
+  Spin,
+  Menu,
+  Rate,
+  TreeSelect,
+  Input,
+  Empty,
+  Result,
+} from 'antd';
+import { AlignLeftOutlined, AudioOutlined } from '@ant-design/icons';
+
 import propTypes from 'prop-types';
-import { Button, Spin, Rate, TreeSelect, Input, Empty, Result } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import categories from '../../assets/categories';
 import './style.css';
+
+const { SubMenu } = Menu;
 
 const suffix = (
   <AudioOutlined
@@ -46,8 +58,13 @@ const HomePage = ({ history }) => {
       setLoading(false);
       setError('');
     } catch (err) {
-      const message =
-        err.response.data.message || 'Something went wrong, try again later';
+      let message;
+      if (err.response) {
+        message = err.response.data.message;
+      } else {
+        message = 'Something went wrong, try again later';
+      }
+
       setLoading(false);
       setError(message);
     }
@@ -75,6 +92,24 @@ const HomePage = ({ history }) => {
     fetchTopCourses();
   }, []);
 
+  const fetchCategoryCourses = async (categoryId) => {
+    try {
+      const { data } = await axios.get(`/api/v1/${categoryId}/courses`);
+      setCourses(data);
+      setLoading(false);
+    } catch (err) {
+      let message;
+      if (err.response) {
+        message = err.response.data.message;
+      } else {
+        message = 'Something went wrong, try again later';
+      }
+
+      setLoading(false);
+      setError(message);
+    }
+  };
+
   return (
     <div>
       {error ? (
@@ -83,6 +118,30 @@ const HomePage = ({ history }) => {
         <Spin />
       ) : (
         <>
+          <div>
+            <Menu mode="inline" style={{ width: 256 }}>
+              {categories.slice(1).map(({ title: main, children }) => (
+                <SubMenu
+                  key={main}
+                  title={
+                    <span>
+                      <span>{main}</span>
+                    </span>
+                  }
+                >
+                  {children.map(({ title, value }) => (
+                    <Menu.Item
+                      icon={<AlignLeftOutlined />}
+                      key={value}
+                      onClick={({ key }) => fetchCategoryCourses(key)}
+                    >
+                      {title}
+                    </Menu.Item>
+                  ))}
+                </SubMenu>
+              ))}
+            </Menu>
+          </div>
           <div className="search-container">
             <TreeSelect
               style={{ width: '20%', marginRight: '10px' }}
@@ -92,7 +151,6 @@ const HomePage = ({ history }) => {
               treeData={categories}
               onChange={treeSelectOnChange}
               placeholder="Please select"
-              treeDefaultExpandAll
             />
 
             <Input.Search
