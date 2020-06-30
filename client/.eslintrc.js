@@ -37,7 +37,9 @@ module.exports = {
           trailingComma: "es5",
           singleQuote: true
         }
-      ]
+      ],
+      'no-nested-ternary': [0, {allowParensWrapped: true}], // nested ternary
+      'no-unused-expressions': [0, {allowParensWrapped: true}],
     },
     plugins: ["react", "prettier"]
   };
