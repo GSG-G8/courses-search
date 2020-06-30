@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  notification,
   Button,
   Spin,
   Menu,
@@ -99,7 +98,15 @@ const HomePage = ({ history }) => {
       setCourses(data);
       setLoading(false);
     } catch (err) {
-      notification.error(err);
+      let message;
+      if (err.response) {
+        message = err.response.data.message;
+      } else {
+        message = 'Something went wrong, try again later';
+      }
+
+      setLoading(false);
+      setError(message);
     }
   };
 
