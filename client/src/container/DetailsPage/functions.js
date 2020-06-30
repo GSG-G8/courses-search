@@ -7,7 +7,7 @@ export const addToFavorite = async ({ courseId, notification }) => {
       data.rowCount === 1 ? 'added to favorite' : 'already in favorite';
     notification.success({ message });
   } catch ({ response }) {
-    const message = response.data.message || response.data;
+    const message = response.data.message || 'failed to add to favorite !';
     notification.error({ message });
   }
 };
@@ -26,7 +26,7 @@ export const getCourseDetails = async ({
     setIsLoading(false);
     setErrorMessage('');
   } catch ({ response }) {
-    const message = response.data.message || response.data;
+    const message = response.data.message || 'sorry, something went wrong !';
     setIsLoading(false);
     setErrorMessage(message);
   }
@@ -56,7 +56,7 @@ export const addComment = async ({
       });
     }
   } catch ({ response }) {
-    const message = response.data.message || response.data;
+    const message = response.data.message || 'failed to add comment !';
     setIsPosting(false);
     notification.error({ message });
   }

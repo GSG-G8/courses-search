@@ -3,7 +3,5 @@ exports.clientError = (req, res) => {
 };
 
 exports.serverError = (err, req, res, next) => {
-  res
-    .status(err.status || 500)
-    .json({ msg: err.msg || 'Something went wrong, try again later' });
+  res.status(500).json({ message: 'Something went wrong, try again later' });
 };
