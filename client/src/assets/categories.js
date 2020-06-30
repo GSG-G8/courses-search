@@ -1,6 +1,6 @@
 const categories = [
   {
-    title: 'All',
+    title: 'All Categories',
     value: 0,
     checkable: true,
   },
