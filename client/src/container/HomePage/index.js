@@ -10,7 +10,7 @@ import {
   Result,
   Pagination,
 } from 'antd';
-import { AlignLeftOutlined, AudioOutlined } from '@ant-design/icons';
+import { AlignLeftOutlined } from '@ant-design/icons';
 
 import propTypes from 'prop-types';
 import axios from 'axios';
@@ -18,15 +18,6 @@ import categories from '../../assets/categories';
 import './style.css';
 
 const { SubMenu } = Menu;
-
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1890ff',
-    }}
-  />
-);
 
 const HomePage = ({ history }) => {
   const [loading, setLoading] = useState(true);
@@ -49,8 +40,10 @@ const HomePage = ({ history }) => {
       setTotal(data.count);
       setCourses(data.rows);
     } catch (err) {
-      const message =
-        err.response.data.message || 'Something went wrong, try again later';
+      const message = err.response
+        ? err.response.data.message
+        : 'sorry, something went wrong , try again later !';
+
       setLoading(false);
       setError(message);
     }
@@ -101,7 +94,6 @@ const HomePage = ({ history }) => {
               onSearch={inputOnSearch}
               onChange={inputOnChange}
               enterButton
-              suffix={suffix}
             />
           </div>
           <div className="container">
