@@ -90,11 +90,18 @@ const FavoritePage = () => {
 
   const addFolderName = async () => {
     try {
-      await axios.post('/api/v1/favorite/folder', {
-        title: inputValue,
-      });
-      getUserFolder();
-      setShowAddFolder(false);
+      if (inputValue !== '') {
+        await axios.post('/api/v1/favorite/folder', {
+          title: inputValue,
+        });
+        getUserFolder();
+        setShowAddFolder(false);
+      } else {
+        notification.error({
+          message: 'Error',
+          description: 'invalid input',
+        });
+      }
     } catch (err) {
       errorNotification(err);
     }
@@ -102,12 +109,19 @@ const FavoritePage = () => {
 
   const editFolder = async () => {
     try {
-      await axios.put('/api/v1/favorite/folder', {
-        title: inputValue,
-        folderId: currentFolderId,
-      });
-      getUserFolder();
-      setShowEditFolder(false);
+      if (inputValue !== '') {
+        await axios.put('/api/v1/favorite/folder', {
+          title: inputValue,
+          folderId: currentFolderId,
+        });
+        getUserFolder();
+        setShowEditFolder(false);
+      } else {
+        notification.error({
+          message: 'Error',
+          description: 'invalid input',
+        });
+      }
     } catch (err) {
       errorNotification(err);
     }
@@ -252,7 +266,7 @@ const FavoritePage = () => {
           >
             <CloseOutlined />
           </button>
-          <Input onChange={onChangeInput} placeholder="Basic usage" />
+          <Input onChange={onChangeInput} placeholder="Add Name" />
           <button type="button" onClick={addFolderName}>
             Add
           </button>
@@ -268,7 +282,7 @@ const FavoritePage = () => {
           </button>
           <Input onChange={onChangeInput} placeholder={currentFolderName} />
           <button type="button" onClick={editFolder}>
-            Add
+            Edit
           </button>
         </div>
       )}
