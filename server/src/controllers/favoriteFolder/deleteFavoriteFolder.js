@@ -1,8 +1,8 @@
 const {
   deleteFavoriteFolderQuery,
   checkUserFolder,
-} = require('../../../database/queries');
-const { folderIdSchema } = require('../../../utils');
+} = require('../../database/queries');
+const { folderIdSchema } = require('../../utils');
 
 module.exports = async (req, res, next) => {
   const { folderId } = req.params;

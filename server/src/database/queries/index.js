@@ -4,6 +4,7 @@ const {
   deleteCourseFromFolderQuery,
   deleteFavoriteFolderQuery,
   editFavoriteFolderQuery,
+  getFavoriteFolderQuery,
 } = require('./favoriteFolder');
 
 const getTopCourses = require('./getTopCourses');
@@ -45,4 +46,5 @@ module.exports = {
   deleteFavoriteFolderQuery,
   deleteCourseFromFolderQuery,
   getCourseByCatIdNameCount,
+  getFavoriteFolderQuery,
 };
