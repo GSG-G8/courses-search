@@ -3,6 +3,12 @@
   justify-content: center;
   margin: 20px auto;
 }
+.container {
+  display: flex;
+}
+.menu {
+  margin-top: 100px;
+}
 .topRate__container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
@@ -16,10 +22,17 @@
 .topRate__course-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .topRate__course-card__image {
   width: 200px;
 }
 .topRate__course-card button {
   width: 100px;
+}
+.pagination {
+  width: 70%;
+  margin-top: 30px;
+  margin-left: 340px;
 }
