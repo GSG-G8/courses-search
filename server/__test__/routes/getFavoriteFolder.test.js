@@ -35,16 +35,14 @@ describe('get request to /favorite/folder', () => {
     ]);
   });
 
-  it('if user does not has favorite folder will return message (There is no favorite folder for this user id)', async () => {
+  it('if user does not has favorite folder will return empty array', async () => {
     expect.assertions(1);
     const { body } = await request(app)
       .get('/api/v1/favorite/folder')
       .set('Accept', 'application/json')
       .set('Cookie', usertwoToken)
       .expect(200);
-    expect(body).toStrictEqual({
-      message: 'There is no favorite folder for this user id',
-    });
+    expect(body).toStrictEqual([]);
   });
 
   it('if user id does not exist will return Sign-in first', async () => {

@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
 
   const makeUdemyRequest = async (item) =>
     axios.get(
-      `https://www.udemy.com/api-2.0/discovery-units/all_courses/?p=3&page_size=60&source_page=subcategory_page&sos=ps&fl=scat&subcategory_id=${item}`
+      `https://www.udemy.com/api-2.0/discovery-units/all_courses/?p=3&page_size=20&source_page=subcategory_page&sos=ps&fl=scat&subcategory_id=${item}`
     );
 
   const getUdemyData = async () =>
