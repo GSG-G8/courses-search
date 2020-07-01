@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import propTypes from 'prop-types';
-
 import {
   Button,
   Spin,
+  Menu,
   Rate,
   TreeSelect,
   Input,
   Empty,
-  Pagination,
   Result,
+  Pagination,
 } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
+import { AlignLeftOutlined, AudioOutlined } from '@ant-design/icons';
+
+import propTypes from 'prop-types';
 import axios from 'axios';
 import categories from '../../assets/categories';
 import './style.css';
+
+const { SubMenu } = Menu;
 
 const suffix = (
   <AudioOutlined
@@ -41,7 +44,6 @@ const HomePage = ({ history }) => {
         courseName,
         offset: (page - 1) * 10,
       });
-      setCourses(data);
       setLoading(false);
       setError('');
       setTotal(data.count);
@@ -67,6 +69,7 @@ const HomePage = ({ history }) => {
   //     setError(message);
   //   }
   // };
+
   const handleClick = (id) => {
     history.push(`/course/${id}`);
   };
@@ -89,9 +92,26 @@ const HomePage = ({ history }) => {
     fetchCoursesByNameAndCatId(cat, searchCourseName);
   }, [page, cat, searchCourseName]);
 
+  const fetchCategoryCourses = async (categoryId) => {
+    try {
+      const { data } = await axios.get(`/api/v1/${categoryId}/courses`);
+      setCourses(data);
+      setLoading(false);
+    } catch (err) {
+      let message;
+      if (err.response) {
+        message = err.response.data.message;
+      } else {
+        message = 'Something went wrong, try again later';
+      }
+
+      setLoading(false);
+      setError(message);
+    }
+  };
+
   return (
     <div>
-      {console.log(total, page)}
       {error ? (
         <Result status="error" title="Internal server Error." />
       ) : loading ? (
@@ -107,7 +127,6 @@ const HomePage = ({ history }) => {
               treeData={categories}
               onChange={treeSelectOnChange}
               placeholder="Please select"
-              treeDefaultExpandAll
             />
 
             <Input.Search
@@ -119,44 +138,74 @@ const HomePage = ({ history }) => {
               suffix={suffix}
             />
           </div>
+          <div className="container">
+            <div className="menu">
+              <Menu mode="inline" style={{ width: 256 }}>
+                {categories.slice(1).map(({ title: main, children }) => (
+                  <SubMenu
+                    key={main}
+                    title={
+                      <span>
+                        <span>{main}</span>
+                      </span>
+                    }
+                  >
+                    {children.map(({ title, value }) => (
+                      <Menu.Item
+                        icon={<AlignLeftOutlined />}
+                        key={value}
+                        onClick={({ key }) => fetchCategoryCourses(key)}
+                      >
+                        {title}
+                      </Menu.Item>
+                    ))}
+                  </SubMenu>
+                ))}
+              </Menu>
+            </div>
 
-          <div className="topRate__container">
-            {courses.length > 0 ? (
-              courses.map((course) => (
-                <div className="topRate__course-card" key={course.id}>
-                  <h2>{course.title}</h2>
-                  <img
-                    className="topRate__course-card__image"
-                    alt="courseImg"
-                    src={course.image}
-                    // style={{ borderTopRightRadius: '50%' }}
-                  />
-                  {course.rate && (
-                    <span>
-                      <Rate
-                        value={Math.round(course.rate * 2) / 2}
-                        Rate
-                        allowHalf
-                      />
-                    </span>
-                  )}
-                  <h3>{course.source}</h3>
-                  <Button onClick={() => handleClick(course.id)} type="primary">
-                    {' '}
-                    More
-                  </Button>
-                </div>
-              ))
-            ) : (
-              <Empty />
-            )}
+            <div className="topRate__container">
+              {courses.length > 0 ? (
+                courses.map((course) => (
+                  <div className="topRate__course-card" key={course.id}>
+                    <h2>{course.title}</h2>
+                    <img
+                      className="topRate__course-card__image"
+                      alt="courseImg"
+                      src={course.image}
+                      // style={{ borderTopRightRadius: '50%' }}
+                    />
+                    {course.rate && (
+                      <span>
+                        <Rate
+                          value={Math.round(course.rate * 2) / 2}
+                          Rate
+                          allowHalf
+                        />
+                      </span>
+                    )}
+                    <h3>{course.source}</h3>
+                    <Button
+                      onClick={() => handleClick(course.id)}
+                      type="primary"
+                    >
+                      {' '}
+                      More
+                    </Button>
+                  </div>
+                ))
+              ) : (
+                <Empty />
+              )}
+              <Pagination
+                className="pagination"
+                onChange={(k) => setPage(k)}
+                defaultCurrent={1}
+                total={total}
+                showSizeChanger={false}
+              />
+            </div>
           </div>
-          <Pagination
-            onChange={(k) => setPage(k)}
-            defaultCurrent={1}
-            total={total}
-            showSizeChanger={false}
-          />
         </>
       )}
     </div>
