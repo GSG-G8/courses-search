@@ -16,9 +16,12 @@ const FavoritePage = () => {
   const [showEditFolder, setShowEditFolder] = useState(false);
 
   const errorNotification = ({ response }) => {
+    const errMessage = response
+      ? response.data.message
+      : 'sorry, something went wrong !';
     notification.error({
       message: 'Error',
-      description: response.data.message,
+      description: errMessage || 'sorry, something went wrong !',
     });
   };
 
