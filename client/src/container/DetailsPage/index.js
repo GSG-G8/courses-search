@@ -32,8 +32,8 @@ categories.forEach(({ children }) => {
 const { TextArea } = Input;
 const { Title, Text, Link } = Typography;
 
-const DetailsPage = ({ match: { params } }) => {
-  const { courseId } = params;
+const DetailsPage = ({ match }) => {
+  const { courseId } = match.params;
   const [isLoading, setIsLoading] = useState(true);
   const [courseDetails, setCourseDetails] = useState({});
   const [comments, setComments] = useState([]);
