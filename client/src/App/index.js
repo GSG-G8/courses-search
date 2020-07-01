@@ -6,18 +6,21 @@ import HomePage from '../container/HomePage';
 import FavoritePage from '../container/FavoritePage';
 import DetailsPage from '../container/DetailsPage';
 import { Login } from '../components';
+import { AuthProvider } from '../container/authContext';
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path={ROUTES.LANDING} component={HomePage} />
-          <Route exact path={ROUTES.FAVORITEPAGE} component={FavoritePage} />
-          <Route exact path={ROUTES.DETAILSPAGE} component={DetailsPage} />
-          <Route exact path="/login" component={Login} />
-        </Switch>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <Route exact path={ROUTES.LANDING} component={HomePage} />
+            <Route exact path={ROUTES.FAVORITEPAGE} component={FavoritePage} />
+            <Route exact path={ROUTES.DETAILSPAGE} component={DetailsPage} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
