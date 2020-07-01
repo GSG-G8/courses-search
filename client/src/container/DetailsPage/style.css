@@ -1,0 +1,18 @@
+.course-image {
+  width: 100%;
+  border: 1px solid #aaa;
+  padding: 2px;
+}
+
+.user-image {
+  border: 1px solid #aaa;
+  padding: 2px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  width: 100%;
+}
+
+.course-details-row {
+  text-align: left;
+  padding: 0 30px;
+}
