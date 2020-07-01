@@ -56,20 +56,6 @@ const HomePage = ({ history }) => {
     }
   };
 
-  // const fetchTopCourses = async () => {
-  //   try {
-  //     const { data } = await axios.get(`/api/v1/topCourses`);
-  //     setCourses(data);
-  //     setLoading(false);
-  //     setError('');
-  //   } catch (err) {
-  //     const message =
-  //       err.response.data.message || 'Something went wrong, try again later';
-  //     setLoading(false);
-  //     setError(message);
-  //   }
-  // };
-
   const handleClick = (id) => {
     history.push(`/course/${id}`);
   };
@@ -85,9 +71,7 @@ const HomePage = ({ history }) => {
     setSearchCourseName(e.target.value);
     setPage(1);
   };
-  // useEffect(() => {
-  //   fetchTopCourses();
-  // }, []);
+
   useEffect(() => {
     fetchCoursesByNameAndCatId(cat, searchCourseName);
   }, [page, cat, searchCourseName]);
