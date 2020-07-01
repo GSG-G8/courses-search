@@ -9,7 +9,6 @@ const {
 
 const getTopCourses = require('./getTopCourses');
 const { getcourseById } = require('./courseDetails');
-const { getcourseByCatId } = require('./catCourses');
 const addUdemyCourse = require('./addUdemyCourse');
 const getFavoriteCourse = require('./favorite/getFavoriteCourse');
 const addFavorite = require('./favorite/add');
@@ -32,7 +31,6 @@ module.exports = {
   addComment,
   deleteComment,
   getTopCourses,
-  getcourseByCatId,
   addUdemyCourse,
   insertCourses,
   addUserData,

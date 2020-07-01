@@ -1,7 +1,6 @@
 const {
   courseDetailsSchema,
   searchCoursesSchema,
-  getCatCourses,
   folderTitleSchema,
   addCourseToFolder,
   commentSchema,
@@ -12,7 +11,6 @@ const {
 module.exports = {
   courseDetailsSchema,
   searchCoursesSchema,
-  getCatCourses,
   folderTitleSchema,
   addCourseToFolder,
   commentSchema,
