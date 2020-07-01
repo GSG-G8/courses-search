@@ -92,24 +92,6 @@ const HomePage = ({ history }) => {
     fetchCoursesByNameAndCatId(cat, searchCourseName);
   }, [page, cat, searchCourseName]);
 
-  const fetchCategoryCourses = async (categoryId) => {
-    try {
-      const { data } = await axios.get(`/api/v1/${categoryId}/courses`);
-      setCourses(data);
-      setLoading(false);
-    } catch (err) {
-      let message;
-      if (err.response) {
-        message = err.response.data.message;
-      } else {
-        message = 'Something went wrong, try again later';
-      }
-
-      setLoading(false);
-      setError(message);
-    }
-  };
-
   return (
     <div>
       {error ? (
@@ -154,7 +136,9 @@ const HomePage = ({ history }) => {
                       <Menu.Item
                         icon={<AlignLeftOutlined />}
                         key={value}
-                        onClick={({ key }) => fetchCategoryCourses(key)}
+                        onClick={({ key }) => {
+                          setCat(key);
+                        }}
                       >
                         {title}
                       </Menu.Item>
