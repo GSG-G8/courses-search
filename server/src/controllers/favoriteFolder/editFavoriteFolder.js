@@ -1,19 +1,19 @@
 const {
-  addCourseToFolderQuery,
+  editFavoriteFolderQuery,
   checkUserFolder,
-} = require('../../../database/queries');
-const { addCourseToFolder } = require('../../../utils');
+} = require('../../database/queries');
+const { folderTitleSchema } = require('../../utils');
 
 module.exports = async (req, res, next) => {
   const { id } = req.user;
-  const { courseId, folderId } = req.body;
+  const { title, folderId } = req.body;
   try {
-    await addCourseToFolder.validate({ courseId, folderId });
     const { rows } = await checkUserFolder(id);
     const isUserHaveFolder = rows.some((folder) => folder.id === folderId);
     if (isUserHaveFolder) {
-      await addCourseToFolderQuery(id, courseId, folderId);
-      res.json({ message: 'course assigned to folder successfully' });
+      await folderTitleSchema.validate({ title });
+      await editFavoriteFolderQuery(title, folderId);
+      res.json({ message: 'folder title updated successfully' });
     } else {
       res.status(401).json({ message: 'Un-Authorized' });
     }

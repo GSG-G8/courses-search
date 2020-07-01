@@ -22,6 +22,7 @@ const {
   updateCourseToFolder,
   deleteFavoriteFolder,
   removeCourseFromFolder,
+  getFavoriteFolder,
 } = require('../controllers');
 
 router.get('/getFutureData', getFutureData);
@@ -44,6 +45,7 @@ router.all(
     '/favorite/add-to-folder',
     '/favorite/folder/:folderId/:courseId',
     '/auth',
+    '/favorite/folder',
   ],
   verifyUser
 );
@@ -56,6 +58,7 @@ router.get('/favorite', getFavorite);
 
 router
   .route('/favorite/folder')
+  .get(getFavoriteFolder)
   .post(addFavoriteFolder)
   .put(editFavoriteFolder);
 router.delete('/favorite/folder/:folderId', deleteFavoriteFolder);

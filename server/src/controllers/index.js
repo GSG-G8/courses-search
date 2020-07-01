@@ -11,6 +11,7 @@ const {
   editFavoriteFolder,
   deleteFavoriteFolder,
   removeCourseFromFolder,
+  getFavoriteFolder,
 } = require('./favoriteFolder');
 
 const { clientError, serverError } = require('./errorHandle');
@@ -50,4 +51,5 @@ module.exports = {
   editFavoriteFolder,
   deleteFavoriteFolder,
   removeCourseFromFolder,
+  getFavoriteFolder,
 };

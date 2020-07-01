@@ -3,6 +3,7 @@ const addFavoriteFolderQuery = require('./addFavoriteFolderQuery');
 const deleteCourseFromFolderQuery = require('./deleteCourseFromFolderQuery');
 const deleteFavoriteFolderQuery = require('./deleteFavoriteFolderQuery');
 const editFavoriteFolderQuery = require('./editFavoriteFolderQuery');
+const getFavoriteFolderQuery = require('./getFavoriteFolderQuery');
 
 module.exports = {
   addCourseToFolderQuery,
@@ -10,4 +11,5 @@ module.exports = {
   deleteCourseFromFolderQuery,
   deleteFavoriteFolderQuery,
   editFavoriteFolderQuery,
+  getFavoriteFolderQuery,
 };
