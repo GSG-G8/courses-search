@@ -7,9 +7,7 @@ const {
   getFavoriteFolderQuery,
 } = require('./favoriteFolder');
 
-const getTopCourses = require('./getTopCourses');
 const { getcourseById } = require('./courseDetails');
-const { getcourseByCatId } = require('./catCourses');
 const addUdemyCourse = require('./addUdemyCourse');
 const getFavoriteCourse = require('./favorite/getFavoriteCourse');
 const addFavorite = require('./favorite/add');
@@ -20,7 +18,10 @@ const insertCourses = require('./insertCourses');
 const addUserData = require('./addUserData');
 const courseComment = require('./courseComment');
 const checkUserFolder = require('./checkUserFolder');
-const { getCourseByName, getCourseByCatIdName } = require('./searchCourses');
+const {
+  getCourseByCatIdName,
+  getCourseByCatIdNameCount,
+} = require('./searchCourses');
 
 module.exports = {
   getFavoriteCourse,
@@ -28,13 +29,10 @@ module.exports = {
   deleteFavorite,
   addComment,
   deleteComment,
-  getTopCourses,
-  getcourseByCatId,
   addUdemyCourse,
   insertCourses,
   addUserData,
   getcourseById,
-  getCourseByName,
   getCourseByCatIdName,
   courseComment,
   addFavoriteFolderQuery,
@@ -43,5 +41,6 @@ module.exports = {
   editFavoriteFolderQuery,
   deleteFavoriteFolderQuery,
   deleteCourseFromFolderQuery,
+  getCourseByCatIdNameCount,
   getFavoriteFolderQuery,
 };
