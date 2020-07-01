@@ -14,7 +14,11 @@ const addCourseToFolder = yup.object({
 });
 
 const searchCoursesSchema = yup.object().shape({
-  courseName: yup.string().required(),
+  courseName: yup.string(),
+  catId: yup.string(),
+});
+const getCatCourses = yup.object().shape({
+  categoryId: yup.number().positive(),
 });
 
 const folderTitleSchema = yup.object().shape({
@@ -37,5 +41,6 @@ module.exports = {
   addCourseToFolder,
   commentSchema,
   idSchema,
+  getCatCourses,
   folderIdSchema,
 };

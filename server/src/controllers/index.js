@@ -26,6 +26,7 @@ const deleteComment = require('./comment/delete');
 const googleLogin = require('./googleLogin');
 const verifyUser = require('./verifyUser');
 const logout = require('./logout');
+// const getUdemy =require('./getUdemyData')
 
 module.exports = {
   clientError,

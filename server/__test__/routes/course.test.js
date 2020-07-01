@@ -43,6 +43,6 @@ describe('get all courses', () => {
       .expect(400)
       .expect('Content-Type', /json/);
     const { message } = res.body;
-    expect(message).toBe('wrong category Id');
+    expect(message).toBe('invalid inputs..!');
   });
 });

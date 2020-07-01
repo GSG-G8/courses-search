@@ -15,7 +15,10 @@ module.exports = {
     },
     rules: {
       "arrow-body-style": ["error", "as-needed"],
+      "prettier/prettier": "error",
       "react/state-in-constructor": 0,
+      "react/prop-types": 0,
+      "import/prefer-default-export": 0,
       "react/jsx-filename-extension": [
         1,
         {
@@ -36,7 +39,9 @@ module.exports = {
           trailingComma: "es5",
           singleQuote: true
         }
-      ]
+      ],
+      'no-nested-ternary': [0, {allowParensWrapped: true}], // nested ternary
+      'no-unused-expressions': [0, {allowParensWrapped: true}],
     },
     plugins: ["react", "prettier"]
   };

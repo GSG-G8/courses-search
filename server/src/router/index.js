@@ -17,7 +17,6 @@ const {
   verifyUser,
   logout,
   searchCourses,
-  getCoursera,
   getFutureData,
   getUdemy,
   updateCourseToFolder,
@@ -28,7 +27,6 @@ const {
 
 router.get('/getFutureData', getFutureData);
 router.get('/getUdemyData', getUdemy);
-router.get('/getCourseraData', getCoursera);
 
 router.post('/login/google', googleLogin);
 router.post('/catId/courseName', searchCourses);

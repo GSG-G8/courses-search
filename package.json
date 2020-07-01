@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/GSG-G8/courses-search#readme",
   "dependencies": {
+    "@ant-design/icons": "^4.2.1",
     "cross-env": "^7.0.2",
     "env2": "^2.2.2"
   },
