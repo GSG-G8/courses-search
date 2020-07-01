@@ -3,7 +3,6 @@ const router = require('express').Router();
 const {
   clientError,
   serverError,
-  getTopRatedCourses,
   getCourseDetails,
   getFavorite,
   addFavorite,
@@ -30,7 +29,6 @@ router.get('/getUdemyData', getUdemy);
 router.post('/login/google', googleLogin);
 router.post('/catId/courseName', searchCourses);
 router.get('/courses/:courseId', getCourseDetails);
-router.get('/topCourses', getTopRatedCourses);
 
 router.all(
   [

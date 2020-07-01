@@ -7,7 +7,6 @@ const {
   getFavoriteFolderQuery,
 } = require('./favoriteFolder');
 
-const getTopCourses = require('./getTopCourses');
 const { getcourseById } = require('./courseDetails');
 const addUdemyCourse = require('./addUdemyCourse');
 const getFavoriteCourse = require('./favorite/getFavoriteCourse');
@@ -30,7 +29,6 @@ module.exports = {
   deleteFavorite,
   addComment,
   deleteComment,
-  getTopCourses,
   addUdemyCourse,
   insertCourses,
   addUserData,

@@ -1,9 +1,4 @@
-const {
-  getCatcourses,
-  getCourseDetails,
-  getTopRatedCourses,
-  searchCourses,
-} = require('./middleware');
+const { getCourseDetails, searchCourses } = require('./middleware');
 
 const {
   addFavoriteFolder,
@@ -31,9 +26,7 @@ const logout = require('./logout');
 module.exports = {
   clientError,
   serverError,
-  getTopRatedCourses,
   getCourseDetails,
-  getCatcourses,
   getCoursera,
   getFutureData,
   getUdemy,
