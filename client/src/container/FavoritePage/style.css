@@ -1,0 +1,30 @@
+.favorite-page {
+  min-height: 100vh;
+}
+
+.favorite-page .favorite-page-header {
+  height: 65px;
+}
+
+.favorite-page .ant-layout-sider {
+  background: #3ba0e9;
+}
+
+.favorite-page .ant-layout-content {
+  background-color: rgba(16, 142, 233, 1);
+}
+
+.add-to-folder {
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  top: 100px;
+  left: 250px;
+  background-color: aqua;
+}
+
+.favorite-add-folder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
