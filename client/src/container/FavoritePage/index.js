@@ -15,10 +15,10 @@ const FavoritePage = () => {
   const [showAddFolder, setShowAddFolder] = useState(false);
   const [showEditFolder, setShowEditFolder] = useState(false);
 
-  const errorNotification = (err) => {
+  const errorNotification = ({ response }) => {
     notification.error({
       message: 'Error',
-      description: err.message,
+      description: response.data.message,
     });
   };
 
