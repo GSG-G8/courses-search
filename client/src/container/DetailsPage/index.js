@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import {
   Spin,
@@ -11,15 +11,14 @@ import {
   Divider,
   Typography,
   Input,
-  Modal,
 } from 'antd';
 
 import { addToFavorite, getCourseDetails, addComment } from './functions';
 
 import './style.css';
-import { Login } from '../../components';
 import categories from '../../assets/categories';
 import { defaultUserPhoto } from '../../assets/images';
+import { AuthContext } from '../authContext';
 
 const subCategory = {};
 categories.forEach(({ children }) => {
@@ -38,11 +37,10 @@ const DetailsPage = ({ match }) => {
   const [courseDetails, setCourseDetails] = useState({});
   const [comments, setComments] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isAuth, setIsAuth] = useState(false);
-  const [userInfo, setUserInfo] = useState({});
   const [newComment, setNewComment] = useState('');
   const [isPosting, setIsPosting] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+
+  const { isAuth, userInfo, showLoginModal } = useContext(AuthContext);
 
   const allStates = {
     courseId,
@@ -159,7 +157,7 @@ const DetailsPage = ({ match }) => {
                 type="primary"
                 onClick={() => {
                   if (isAuth) addToFavorite(allStates);
-                  else setShowModal(true);
+                  else showLoginModal(true);
                 }}
                 disabled={isLoading}
               >
@@ -202,7 +200,7 @@ const DetailsPage = ({ match }) => {
                 style={{ margin: '16px 0' }}
                 onClick={() => {
                   if (isAuth) addComment(allStates);
-                  else setShowModal(true);
+                  else showLoginModal(true);
                 }}
                 disabled={isPosting}
               >
@@ -212,26 +210,6 @@ const DetailsPage = ({ match }) => {
           </Row>
         </Col>
       </Row>
-
-      <Modal
-        title="Login"
-        forceRender
-        visible={showModal && !isAuth}
-        onOk={() => {
-          setShowModal(false);
-        }}
-        onCancel={() => {
-          setShowModal(false);
-        }}
-      >
-        <p>you need to login first</p>
-        <Login
-          onSuccess={({ data }) => {
-            setIsAuth(true);
-            setUserInfo(data);
-          }}
-        />
-      </Modal>
     </>
   );
 };
