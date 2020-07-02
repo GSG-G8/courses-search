@@ -9,15 +9,13 @@ import {
   Empty,
   Result,
   Pagination,
+  Dropdown,
 } from 'antd';
-import { AlignLeftOutlined } from '@ant-design/icons';
 
 import propTypes from 'prop-types';
 import axios from 'axios';
 import categories from '../../assets/categories';
 import './style.css';
-
-const { SubMenu } = Menu;
 
 const HomePage = ({ history }) => {
   const [loading, setLoading] = useState(true);
@@ -97,20 +95,13 @@ const HomePage = ({ history }) => {
             />
           </div>
           <div className="container">
-            <div className="menu">
-              <Menu mode="inline" style={{ width: 256 }}>
-                {categories.slice(1).map(({ title: main, children }) => (
-                  <SubMenu
-                    key={main}
-                    title={
-                      <span>
-                        <span>{main}</span>
-                      </span>
-                    }
-                  >
+            <div className="menu" />
+            {categories.slice(1).map(({ title: main, children }) => (
+              <Dropdown
+                overlay={() => (
+                  <Menu>
                     {children.map(({ title, value }) => (
                       <Menu.Item
-                        icon={<AlignLeftOutlined />}
                         key={value}
                         onClick={({ key }) => {
                           setCat(key);
@@ -119,10 +110,13 @@ const HomePage = ({ history }) => {
                         {title}
                       </Menu.Item>
                     ))}
-                  </SubMenu>
-                ))}
-              </Menu>
-            </div>
+                  </Menu>
+                )}
+                placement="bottomLeft"
+              >
+                <Button>{main}</Button>
+              </Dropdown>
+            ))}
 
             <div className="topRate__container">
               {courses.length > 0 ? (
