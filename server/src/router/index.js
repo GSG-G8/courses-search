@@ -21,10 +21,12 @@ const {
   deleteFavoriteFolder,
   removeCourseFromFolder,
   getFavoriteFolder,
+  getCoursera,
 } = require('../controllers');
 
 router.get('/getFutureData', getFutureData);
 router.get('/getUdemyData', getUdemy);
+router.get('/getCourseraData', getCoursera);
 
 router.post('/login/google', googleLogin);
 router.post('/catId/courseName', searchCourses);

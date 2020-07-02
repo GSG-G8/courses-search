@@ -1,5 +1,5 @@
 exports.clientError = (req, res) => {
-  res.status(404).json({ error: 'Page Not Found' });
+  res.status(404).json({ message: 'Page Not Found' });
 };
 
 exports.serverError = (err, req, res, next) => {
