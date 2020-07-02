@@ -17,7 +17,7 @@ function App() {
             <Route exact path={ROUTES.LANDING} component={HomePage} />
             <Route exact path={ROUTES.FAVORITEPAGE} component={FavoritePage} />
             <Route exact path={ROUTES.DETAILSPAGE} component={DetailsPage} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path={ROUTES.LOGIN} component={Login} />
           </Switch>
         </Router>
       </AuthProvider>
