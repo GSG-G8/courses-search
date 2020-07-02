@@ -35,8 +35,8 @@ const FavoritePage = () => {
     }
   };
 
-  const getAllFavoriteCourses = () => {
-    const data = getFavoriteForFolder();
+  const getAllFavoriteCourses = async () => {
+    const data = await getFavoriteForFolder();
     setDisplayFavoriteData([...data]);
   };
 
