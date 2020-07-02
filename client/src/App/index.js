@@ -7,12 +7,14 @@ import FavoritePage from '../container/FavoritePage';
 import DetailsPage from '../container/DetailsPage';
 import { Login } from '../components';
 import { AuthProvider } from '../container/authContext';
+import Header from '../components/header';
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <Router>
+          <Header />
           <Switch>
             <Route exact path={ROUTES.LANDING} component={HomePage} />
             <Route exact path={ROUTES.FAVORITEPAGE} component={FavoritePage} />
