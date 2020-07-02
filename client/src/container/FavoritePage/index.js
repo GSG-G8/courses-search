@@ -25,23 +25,19 @@ const FavoritePage = () => {
     });
   };
 
-  const getAllFavoriteCourses = async () => {
-    try {
-      const { data } = await axios.get('/api/v1/favorite');
-      setAllFavoriteData([...data]);
-      setDisplayFavoriteData([...data]);
-    } catch (err) {
-      errorNotification(err);
-    }
-  };
-
   const getFavoriteForFolder = async () => {
     try {
       const { data } = await axios.get('/api/v1/favorite');
       setAllFavoriteData([...data]);
+      return data;
     } catch (err) {
-      errorNotification(err);
+      return errorNotification(err);
     }
+  };
+
+  const getAllFavoriteCourses = () => {
+    const data = getFavoriteForFolder();
+    setDisplayFavoriteData([...data]);
   };
 
   const getUserFolder = async () => {
