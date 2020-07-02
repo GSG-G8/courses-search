@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import './style.css';
 import { Modal } from 'antd';
 import { FaBookmark, FaUserAlt } from 'react-icons/all';
-import Axios from 'axios';
+// import Axios from 'axios';
 import Logo from '../../assets/Logo.svg';
 import { AuthContext } from '../../container/authContext';
 
