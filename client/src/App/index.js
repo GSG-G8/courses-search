@@ -6,6 +6,7 @@ import HomePage from '../container/HomePage';
 import FavoritePage from '../container/FavoritePage';
 import DetailsPage from '../container/DetailsPage';
 import { Login } from '../components';
+import Footer from '../components/common/footer';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path={ROUTES.DETAILSPAGE} component={DetailsPage} />
           <Route exact path="/login" component={Login} />
         </Switch>
+        <Footer />
       </Router>
     </div>
   );

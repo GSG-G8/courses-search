@@ -15,7 +15,6 @@ import { AlignLeftOutlined } from '@ant-design/icons';
 import propTypes from 'prop-types';
 import axios from 'axios';
 import categories from '../../assets/categories';
-import Footer from '../../components/common/footer';
 import './style.css';
 
 const { SubMenu } = Menu;
@@ -167,7 +166,6 @@ const HomePage = ({ history }) => {
               />
             </div>
           </div>
-          <Footer />
         </>
       )}
     </div>
