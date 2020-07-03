@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import './style.css';
-import { Modal } from 'antd';
-import { FaBookmark, FaUserAlt } from 'react-icons/all';
-// import Axios from 'axios';
+import { Modal, Menu, Dropdown } from 'antd';
+import { FaBookmark, FaUserAlt, AiFillHome, IoMdLogOut } from 'react-icons/all';
 import Logo from '../../assets/Logo.svg';
 import { AuthContext } from '../../container/authContext';
 
-const Header = () => {
+const Header = ({ history }) => {
   const { userInfo, isAuth, showLoginModal } = useContext(AuthContext);
 
   // const logout = () => Axios.get('/api/v1/logout');
@@ -29,6 +28,30 @@ const Header = () => {
       onOk() {},
     });
   };
+  const menu = (
+    <Menu>
+      <Menu.Item key="1" onClick={() => history.push('/')}>
+        <AiFillHome />
+        Home
+      </Menu.Item>
+
+      {isAuth && (
+        <Menu.Item key="2" onClick={() => history.push('/FavoritePage')}>
+          <FaBookmark />
+          FavoritePage
+        </Menu.Item>
+      )}
+      {isAuth && (
+        <Menu.Item
+          key="3"
+          // onClick={logout}
+        >
+          <IoMdLogOut />
+          logout
+        </Menu.Item>
+      )}
+    </Menu>
+  );
   return (
     <div className="header-container">
       <div className="header-left">
@@ -48,30 +71,42 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <button className="about" type="button" onClick={info}>
+              <button
+                className="header__list__button"
+                type="button"
+                onClick={info}
+              >
                 About
               </button>
             </li>
           </ul>
         </div>
       </div>
-      <div className="header-left">
-        <button className="header_left__button" type="button">
+      <div className="header-right">
+        {/* <button className="header_Right__button" type="button">
           <FaBookmark />
-        </button>
+        </button> */}
+
         {isAuth ? (
           <>
-            Hi {userInfo.name}
+            <Dropdown.Button
+              className="header-right__dropdown-menu"
+              overlay={menu}
+              icon={<FaUserAlt />}
+            >
+              <AuthContext>{() => `Hello, ${userInfo.name}!`}</AuthContext>
+            </Dropdown.Button>
+            {/* Hi {userInfo.name}
             <button
               type="button"
               // onClick={logout}
             >
               Logout
-            </button>
+            </button> */}
           </>
         ) : (
           <button
-            className="header_left__button"
+            className="header_Right__button"
             type="button"
             onClick={showLoginModal}
           >
@@ -83,4 +118,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

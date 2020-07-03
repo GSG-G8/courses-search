@@ -28,30 +28,50 @@
   margin-right: 20px;
   color: black;
 }
-.header-left {
+.header-right {
   display: flex;
   /* justify-content: space-between; */
 }
-.about {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
 
-.about:hover,
-.header-left button:hover {
-  background-color: #61aba2;
-}
-.header-left button {
+/*
+
+.header-right button {
   border-radius: 50%;
   margin-right: 5px;
   border: none;
   outline: none;
-}
+  cursor: pointer;
+} */
 
 .home__list {
   color: black;
 }
 .active {
   color: #61aba2;
+}
+
+.header_Right__button {
+  color: #61aba2;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+}
+
+.ant-btn-icon-only,
+.ant-btn-default {
+  color: #61aba2;
+}
+.ant-btn-default:hover {
+  color: antiquewhite;
+}
+.header__list__button:hover,
+.header-right button:hover {
+  background-color: #61aba2;
+  color: antiquewhite;
+}
+.header__list__button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
