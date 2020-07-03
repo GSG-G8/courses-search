@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
-
+import { useGoogleLogout } from 'react-google-login';
 import { Login } from '../components';
 
 const AuthContext = React.createContext();
@@ -10,20 +10,31 @@ function AuthProvider({ children }) {
   const [userInfo, setUserInfo] = useState({});
   const [showModal, setShowModal] = useState(false);
 
+  const { signOut } = useGoogleLogout({
+    clientId: process.env.REACT_APP_CLIENT_ID,
+    cookiePolicy: 'single_host_origin',
+    onLogoutSuccess: () => {
+      setIsAuth(false);
+      setShowModal(false);
+    },
+  });
+
   const showLoginModal = () => {
     setShowModal(true);
   };
 
   return (
     <div>
-      <AuthContext.Provider value={{ isAuth, userInfo, showLoginModal }}>
+      <AuthContext.Provider
+        value={{ isAuth, userInfo, showLoginModal, signOut }}
+      >
         {children}
       </AuthContext.Provider>
 
       <Modal
         title="Login"
         forceRender
-        visible={showModal && !isAuth}
+        visible={showModal}
         onOk={() => {
           setShowModal(false);
         }}
@@ -33,9 +44,10 @@ function AuthProvider({ children }) {
       >
         <p>login to save your favorite courses and add comments</p>
         <Login
-          onSuccess={({ data }) => {
+          onSuccess={(profileObj) => {
             setIsAuth(true);
-            setUserInfo(data);
+            setShowModal(false);
+            setUserInfo(profileObj);
           }}
         />
       </Modal>
