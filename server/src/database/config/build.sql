@@ -7,7 +7,7 @@ CREATE TABLE users
 (
 	id SERIAL PRIMARY KEY ,
 	name VARCHAR(255) NOT NULL,
-	picture VARCHAR(255),
+	picture TEXT,
 	email VARCHAR(255) NOT NULL UNIQUE
 );
 
