@@ -30,7 +30,7 @@
 }
 
 .ant-select {
-  width: 14% !important;
+  width: 25% !important;
 }
 
 .ant-input-search {
@@ -40,12 +40,27 @@
 .menu {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.menu {
+  justify-content: center;
   margin-top: 100px;
 }
+.ant-dropdown-trigger {
+  width: 185px;
+  margin-right: 10px;
+  height: 47px;
+  border-radius: 80px;
+  outline: none !important;
+}
+
+.ant-select-selector {
+  height: 50px !important;
+  box-shadow: 0px 5px 10px #00000014 !important;
+  border-radius: 50px !important;
+}
+
+.ant-select-selection-item {
+  margin-top: 8px !important;
+}
+
 .topRate__container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));

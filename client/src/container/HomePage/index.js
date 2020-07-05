@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Button,
   Spin,
@@ -27,6 +27,7 @@ const HomePage = ({ history }) => {
   const [error, setError] = useState('');
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+  const searchRef = useRef(null);
 
   const fetchCoursesByNameAndCatId = async (catId, courseName) => {
     try {
@@ -59,10 +60,20 @@ const HomePage = ({ history }) => {
   const inputOnSearch = (value) => {
     setSearchCourseName(value);
     setPage(1);
+    if (searchRef.current) {
+      searchRef.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
   };
   const inputOnChange = (e) => {
     setSearchCourseName(e.target.value);
     setPage(1);
+    if (searchRef.current) {
+      searchRef.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
   };
 
   useEffect(() => {
@@ -108,7 +119,7 @@ const HomePage = ({ history }) => {
               <img className="main-img" src={mainImg} alt="img" />
             </div>
           </div>
-          <div className="container">
+          <div className="container" ref={searchRef}>
             <div className="menu">
               {categories.slice(1).map(({ title: main, children }) => (
                 <Dropdown
