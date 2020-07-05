@@ -44,7 +44,7 @@ export const addComment = async ({
   setIsPosting,
   comments,
   setComments,
-  name,
+  userInfo,
   notification,
   setNewComment,
 }) => {
@@ -55,7 +55,15 @@ export const addComment = async ({
     });
     setIsPosting(false);
     if (data.rowCount) {
-      setComments([...comments, { name, content }]);
+      setComments([
+        ...comments,
+        {
+          comment_id: data.id,
+          name: userInfo.name,
+          content,
+          picture: userInfo.imageUrl,
+        },
+      ]);
       setNewComment('');
       notification.success({
         message: 'your comment has been added successfuly !',
@@ -67,6 +75,33 @@ export const addComment = async ({
       : 'failed to add comment !';
 
     setIsPosting(false);
+    notification.error({ message });
+  }
+};
+
+export const deleteComment = async ({
+  commentId,
+  comments,
+  setComments,
+  notification,
+}) => {
+  try {
+    const { data } = await axios.delete(`/api/v1/comment/${commentId}`);
+    if (data.rowCount > 0) {
+      setComments(comments.filter((com) => com.comment_id !== commentId));
+      notification.success({
+        message: 'the comment has been deleted !',
+      });
+    } else {
+      notification.error({
+        message: 'something went wrong !',
+      });
+    }
+  } catch ({ response }) {
+    const message = response
+      ? response.data.message
+      : 'failed to delete comment !';
+
     notification.error({ message });
   }
 };

@@ -12,10 +12,16 @@ import {
   Typography,
   Input,
   Tag,
+  Popconfirm,
 } from 'antd';
 
-import { FaBookmark, FaComment } from 'react-icons/fa';
-import { addToFavorite, getCourseDetails, addComment } from './functions';
+import { FaBookmark, FaComment, FaTrash } from 'react-icons/fa';
+import {
+  addToFavorite,
+  getCourseDetails,
+  addComment,
+  deleteComment,
+} from './functions';
 
 import './style.css';
 import categories from '../../assets/categories';
@@ -54,7 +60,7 @@ const DetailsPage = ({ match }) => {
     content: newComment,
     setIsPosting,
     comments,
-    name: userInfo.name,
+    userInfo,
     setNewComment,
   };
 
@@ -133,12 +139,12 @@ const DetailsPage = ({ match }) => {
                 onClick={() => {
                   if (isAuth) addToFavorite(allStates);
                   else
-                    notification.warn({ message: 'you need to login first' });
+                    notification.warn({ message: 'you need to login first !' });
                 }}
                 disabled={isLoading}
               >
                 <FaBookmark />
-                <span style={{ marginLeft: '1em' }}>add to favorite</span>
+                <span className="margin-left">add to favorite</span>
               </Button>
             </Col>
           </Row>
@@ -157,7 +163,11 @@ const DetailsPage = ({ match }) => {
 
       <Row gutter={16}>
         <Col xs={4} md={3} lg={2}>
-          <img className="user-image" src={defaultUserPhoto} alt="user" />
+          <img
+            className="user-image"
+            src={userInfo.imageUrl || defaultUserPhoto}
+            alt="user"
+          />
         </Col>
         <Col xs={20} md={21} lg={22}>
           <TextArea
@@ -178,18 +188,43 @@ const DetailsPage = ({ match }) => {
             disabled={isPosting}
           >
             <FaComment />
-            <span style={{ marginLeft: '1em' }}>add your comment</span>
+            <span className="margin-left">add your comment</span>
           </Button>
         </Col>
       </Row>
 
-      {comments.map(({ name, content, comment_id: commentId }) => (
+      {comments.map(({ name, content, comment_id: commentId, picture }) => (
         <Row gutter={16} key={commentId}>
-          <Col xs={4} md={3} lg={2} xl={2}>
-            <img className="user-image" src={defaultUserPhoto} alt="user" />
+          <Col xs={4} md={3} lg={2}>
+            <img
+              className="user-image"
+              src={picture || defaultUserPhoto}
+              alt="user"
+            />
           </Col>
-          <Col xs={20} md={21} lg={22} xl={22}>
+          <Col xs={20} md={21} lg={22}>
             <strong>{`by (${name})`}</strong>
+            {userInfo.imageUrl === picture && (
+              <Popconfirm
+                title="Are you sure delete this comment ?"
+                onConfirm={() => {
+                  deleteComment({
+                    commentId,
+                    comments,
+                    setComments,
+                    notification,
+                  });
+                }}
+                okText="Delete"
+                okType="danger"
+              >
+                <Button danger type="link">
+                  <FaTrash />
+                  <span className="margin-left">delete</span>
+                </Button>
+              </Popconfirm>
+            )}
+
             <p>{content}</p>
           </Col>
         </Row>
