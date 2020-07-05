@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Modal } from 'antd';
+import { Modal, notification } from 'antd';
 import { useGoogleLogout } from 'react-google-login';
+import axios from 'axios';
 import { Login } from '../components';
 
 const AuthContext = React.createContext();
@@ -10,7 +11,7 @@ function AuthProvider({ children }) {
   const [userInfo, setUserInfo] = useState({});
   const [showModal, setShowModal] = useState(false);
 
-  const { signOut } = useGoogleLogout({
+  const { signOut: googleSignOut } = useGoogleLogout({
     clientId: process.env.REACT_APP_CLIENT_ID,
     cookiePolicy: 'single_host_origin',
     onLogoutSuccess: () => {
@@ -18,6 +19,15 @@ function AuthProvider({ children }) {
       setShowModal(false);
     },
   });
+
+  const signOut = async () => {
+    try {
+      await axios.get('/api/v1/logout');
+      googleSignOut();
+    } catch (error) {
+      notification.error({ message: 'failed to log-out' });
+    }
+  };
 
   const showLoginModal = () => {
     setShowModal(true);

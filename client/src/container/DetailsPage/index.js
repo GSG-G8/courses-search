@@ -52,7 +52,7 @@ const DetailsPage = ({ match }) => {
     content: newComment,
     setIsPosting,
     comments,
-    name: userInfo.name,
+    userInfo,
     setNewComment,
   };
 
