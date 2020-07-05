@@ -129,12 +129,19 @@ const HomePage = ({ history }) => {
                 courses.map((course) => (
                   <div className="topRate__course-card" key={course.id}>
                     <h2>{course.title}</h2>
-                    <img
-                      className="topRate__course-card__image"
-                      alt="courseImg"
-                      src={course.image}
-                      // style={{ borderTopRightRadius: '50%' }}
-                    />
+                    <div
+                      style={{
+                        width: 'min(25em, calc(100% - 8vw))',
+                        height: '16em',
+                      }}
+                    >
+                      <img
+                        className="topRate__course-card__image"
+                        alt="courseImg"
+                        src={course.image}
+                        style={{ width: '100%', height: '100%' }}
+                      />
+                    </div>
                     {course.rate && (
                       <span>
                         <Rate

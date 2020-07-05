@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+body {
+  font-family: "Raleway", sans-serif;
+}
 .footer {
   background-color: #eff6f5;
   position: absolute;
@@ -10,19 +13,17 @@
   display: flex;
   font-size: 16px;
   text-align: left;
-  padding: 4em 8vw 2em 6vw;
+  padding: 4em;
 }
 
 .footer__p1 {
   font-size: 1em;
-  font-family: "Raleway", sans-serif;
   color: #000000;
 }
 
 .footer__p2 {
   width: min(37em, calc(100% - 2vw));
   font-size: 1em;
-  font-family: "Raleway", sans-serif;
   color: #000000;
 }
 
@@ -30,13 +31,22 @@
   display: flex;
   text-align: left;
   font-size: 1em;
-  font-family: "Raleway", sans-serif;
   line-height: 28px;
-  padding: 3em 6vw 2em 1vw;
+  padding: 1em;
 }
 
 ul {
   list-style-type: none;
+  padding: 0;
+}
+
+.footer__button {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: #1890ff;
+  padding: 0;
 }
 
 @media screen and (max-width: 600px) {
@@ -48,6 +58,6 @@ ul {
 
   .footer__lists {
     font-size: 1em;
-    padding: 1em 6vw 1em 0vw;
+    padding: 1em;
   }
 }
