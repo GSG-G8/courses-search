@@ -1,9 +1,9 @@
-.container {
+.header {
+  display: flex;
   width: 100%;
   margin: auto;
   top: 0px;
   left: 0px;
-
   height: 60px;
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 5px 10px #00000014;
@@ -15,65 +15,41 @@
   margin: auto;
   justify-content: space-between;
   width: 80%;
-  /* padding: 30px 120px; */
   align-items: center;
 }
 
-.header__logo {
-  /* width: 100%; */
-}
 .header-left {
   display: flex;
-  /* margin-top: 2px; */
-
-  /* margin-top: 10px;
-  width: 50%; */
 }
 .header__list ul {
   list-style-type: none;
   display: flex;
-  margin-top: 2px;
-
-  /* justify-content: flex-start; */
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .header__list li {
   margin-right: 20px;
   color: black;
-  /* letter-spacing: 2px; */
 }
 .header-right {
   display: flex;
-  /* width: 50%; */
-  border: 2px solid #287b72;
+  /* border: 2px solid #287b72; */
   color: #ffede3;
-
-  /* justify-content: flex-end; */
 }
-
-/*
-
-.header-right button {
-  border-radius: 50%;
-  margin-right: 5px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-} */
 
 .home__list {
   color: black;
 }
-.active {
-  color: #61aba2;
-}
 
-.header_Right__button {
+.header_right__button {
   color: #61aba2;
   border: none;
   outline: none;
   border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
-
+.active,
 .ant-btn-icon-only,
 .ant-btn-default {
   color: #61aba2;
@@ -91,10 +67,4 @@
   border: none;
   outline: none;
   cursor: pointer;
-}
-
-@media only screen and (max-width: 480px) {
-  .header__list ul {
-    display: none;
-  }
 }

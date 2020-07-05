@@ -35,21 +35,21 @@ const Header = ({ history }) => {
       </Menu.Item>
 
       {isAuth && (
-        <Menu.Item key="2" onClick={() => history.push('/FavoritePage')}>
-          <FaBookmark />
-          Favorite
-        </Menu.Item>
-      )}
-      {isAuth && (
-        <Menu.Item key="3" onClick={signOut}>
-          <IoMdLogOut />
-          logout
-        </Menu.Item>
+        <>
+          <Menu.Item key="2" onClick={() => history.push('/FavoritePage')}>
+            <FaBookmark />
+            Favorite
+          </Menu.Item>
+          <Menu.Item key="3" onClick={signOut}>
+            <IoMdLogOut />
+            logout
+          </Menu.Item>
+        </>
       )}
     </Menu>
   );
   return (
-    <div className="container">
+    <div className="header">
       <div className="header-container">
         <div className="header-left">
           <Link to="/">
@@ -80,17 +80,18 @@ const Header = ({ history }) => {
           </div>
         </div>
         <div className="header-right">
-          {/* <button className="header_Right__button" type="button">
-          <FaBookmark />
-        </button> */}
-
           {isAuth ? (
             <>
               <Dropdown.Button
                 className="header-right__dropdown-menu"
                 overlay={menu}
-                icon={<FaUserAlt />}
-                // icon={userInfo.imageUrl}
+                icon={
+                  <img
+                    alt="userImage"
+                    style={{ width: '100%' }}
+                    src={userInfo.imageUrl}
+                  />
+                }
               >
                 <AuthContext>
                   {() => `Hello, ${userInfo.givenName}!`}
@@ -99,7 +100,7 @@ const Header = ({ history }) => {
             </>
           ) : (
             <button
-              className="header_Right__button"
+              className="header_right__button"
               type="button"
               onClick={showLoginModal}
             >
