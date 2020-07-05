@@ -40,7 +40,7 @@ const DetailsPage = ({ match }) => {
   const [newComment, setNewComment] = useState('');
   const [isPosting, setIsPosting] = useState(false);
 
-  const { isAuth, userInfo, showLoginModal, signOut } = useContext(AuthContext);
+  const { isAuth, userInfo, showLoginModal } = useContext(AuthContext);
 
   const allStates = {
     courseId,
@@ -96,18 +96,6 @@ const DetailsPage = ({ match }) => {
 
   return (
     <>
-      {isAuth ? (
-        <div>
-          <span>{userInfo.name}</span>
-          <Button type="primary" onClick={signOut}>
-            logout
-          </Button>{' '}
-        </div>
-      ) : (
-        <Button type="primary" onClick={showLoginModal}>
-          login
-        </Button>
-      )}
       <Row className="course-details-row">
         <Col span={24}>
           <Title level={2}>{title}</Title>
@@ -183,14 +171,10 @@ const DetailsPage = ({ match }) => {
             </Col>
           </Row>
 
-          {comments.map(({ name, content, comment_id: commentId, picture }) => (
+          {comments.map(({ name, content, comment_id: commentId }) => (
             <Row gutter={16} key={commentId}>
               <Col span={3}>
-                <img
-                  className="user-image"
-                  src={picture || defaultUserPhoto}
-                  alt="user"
-                />
+                <img className="user-image" src={defaultUserPhoto} alt="user" />
               </Col>
               <Col span={21}>
                 <strong>{`by (${name})`}</strong>
@@ -201,11 +185,7 @@ const DetailsPage = ({ match }) => {
 
           <Row gutter={16}>
             <Col span={3}>
-              <img
-                className="user-image"
-                src={userInfo.imageUrl || defaultUserPhoto}
-                alt="user"
-              />
+              <img className="user-image" src={defaultUserPhoto} alt="user" />
             </Col>
             <Col span={21}>
               <TextArea
