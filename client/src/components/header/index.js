@@ -7,9 +7,8 @@ import Logo from '../../assets/Logo.svg';
 import { AuthContext } from '../../container/authContext';
 
 const Header = ({ history }) => {
-  const { userInfo, isAuth, showLoginModal } = useContext(AuthContext);
-
-  // const logout = () => Axios.get('/api/v1/logout');
+  const { userInfo, isAuth, showLoginModal, signOut } = useContext(AuthContext);
+  // console.log(userInfo);
 
   const info = () => {
     Modal.info({
@@ -38,14 +37,11 @@ const Header = ({ history }) => {
       {isAuth && (
         <Menu.Item key="2" onClick={() => history.push('/FavoritePage')}>
           <FaBookmark />
-          FavoritePage
+          Favorite
         </Menu.Item>
       )}
       {isAuth && (
-        <Menu.Item
-          key="3"
-          // onClick={logout}
-        >
+        <Menu.Item key="3" onClick={signOut}>
           <IoMdLogOut />
           logout
         </Menu.Item>
@@ -53,66 +49,64 @@ const Header = ({ history }) => {
     </Menu>
   );
   return (
-    <div className="header-container">
-      <div className="header-left">
-        <Link to="/">
-          <img className="header__logo" src={Logo} alt=" logo" />
-        </Link>
-        <div className="header__list">
-          <ul>
-            <li>
-              <NavLink
-                className="home__list"
-                exact
-                to="/"
-                activeClassName="active"
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <button
-                className="header__list__button"
-                type="button"
-                onClick={info}
-              >
-                About
-              </button>
-            </li>
-          </ul>
+    <div className="container">
+      <div className="header-container">
+        <div className="header-left">
+          <Link to="/">
+            <img className="header__logo" src={Logo} alt=" logo" />
+          </Link>
+          <div className="header__list">
+            <ul>
+              <li>
+                <NavLink
+                  className="home__list"
+                  exact
+                  to="/"
+                  activeClassName="active"
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <button
+                  className="header__list__button"
+                  type="button"
+                  onClick={info}
+                >
+                  About
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="header-right">
-        {/* <button className="header_Right__button" type="button">
+        <div className="header-right">
+          {/* <button className="header_Right__button" type="button">
           <FaBookmark />
         </button> */}
 
-        {isAuth ? (
-          <>
-            <Dropdown.Button
-              className="header-right__dropdown-menu"
-              overlay={menu}
-              icon={<FaUserAlt />}
-            >
-              <AuthContext>{() => `Hello, ${userInfo.name}!`}</AuthContext>
-            </Dropdown.Button>
-            {/* Hi {userInfo.name}
+          {isAuth ? (
+            <>
+              <Dropdown.Button
+                className="header-right__dropdown-menu"
+                overlay={menu}
+                icon={<FaUserAlt />}
+                // icon={userInfo.imageUrl}
+              >
+                <AuthContext>
+                  {() => `Hello, ${userInfo.givenName}!`}
+                </AuthContext>
+              </Dropdown.Button>
+            </>
+          ) : (
             <button
+              className="header_Right__button"
               type="button"
-              // onClick={logout}
+              onClick={showLoginModal}
             >
-              Logout
-            </button> */}
-          </>
-        ) : (
-          <button
-            className="header_Right__button"
-            type="button"
-            onClick={showLoginModal}
-          >
-            <FaUserAlt />
-          </button>
-        )}
+              <FaUserAlt />
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
