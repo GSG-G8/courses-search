@@ -7,7 +7,7 @@ import Logo from '../../assets/Logo.svg';
 import { AuthContext } from '../../container/authContext';
 
 const Header = ({ history }) => {
-  const { userInfo, isAuth, showLoginModal, signOut } = useContext(AuthContext);
+  const { userInfo, isAuth, signOut, signIn } = useContext(AuthContext);
   // console.log(userInfo);
 
   const info = () => {
@@ -102,7 +102,7 @@ const Header = ({ history }) => {
             <button
               className="header_right__button"
               type="button"
-              onClick={showLoginModal}
+              onClick={signIn}
             >
               <FaUserAlt />
             </button>
