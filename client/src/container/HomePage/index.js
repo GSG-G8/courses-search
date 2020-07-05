@@ -11,7 +11,7 @@ import {
   Pagination,
   Dropdown,
 } from 'antd';
-// import { AlignLeftOutlined } from '@ant-design/icons';
+import { DownOutlined } from '@ant-design/icons';
 import propTypes from 'prop-types';
 import axios from 'axios';
 import categories from '../../assets/categories';
@@ -139,7 +139,7 @@ const HomePage = ({ history }) => {
                   )}
                   placement="bottomLeft"
                 >
-                  <Button>{main}</Button>
+                  <Button icon={<DownOutlined />}>{main}</Button>
                 </Dropdown>
               ))}
             </div>

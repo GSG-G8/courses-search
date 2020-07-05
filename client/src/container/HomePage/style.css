@@ -27,6 +27,17 @@
   display: flex;
   margin-left: 120px;
   margin-top: -70px;
+  align-items: center;
+}
+
+.ant-input {
+  height: 50px;
+  border-radius: 55px;
+}
+
+.ant-input-search-button {
+  height: 50px;
+  border-radius: 50px;
 }
 
 .ant-select {
@@ -44,7 +55,13 @@
   margin-top: 100px;
 }
 .ant-dropdown-trigger {
-  width: 185px;
+  width: 200px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: Raleway;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   margin-right: 10px;
   height: 47px;
   border-radius: 80px;
