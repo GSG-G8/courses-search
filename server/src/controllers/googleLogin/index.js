@@ -15,8 +15,8 @@ module.exports = async (req, res, next) => {
     const payload = ticket.getPayload();
     const { rows } = await addUserData(payload);
 
-    const { id, name, email } = rows[0];
-    const token = sign({ id, name, email }, process.env.SECRET_KEY);
+    const { id, name, email, picture } = rows[0];
+    const token = sign({ id, name, email, picture }, process.env.SECRET_KEY);
     res.cookie('token', token).json({ name, email });
   } catch (err) {
     next(err);

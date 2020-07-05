@@ -40,7 +40,7 @@ const DetailsPage = ({ match }) => {
   const [newComment, setNewComment] = useState('');
   const [isPosting, setIsPosting] = useState(false);
 
-  const { isAuth, userInfo, showLoginModal } = useContext(AuthContext);
+  const { isAuth, userInfo } = useContext(AuthContext);
 
   const allStates = {
     courseId,
@@ -52,7 +52,7 @@ const DetailsPage = ({ match }) => {
     content: newComment,
     setIsPosting,
     comments,
-    name: userInfo.name,
+    userInfo,
     setNewComment,
   };
 
@@ -157,7 +157,8 @@ const DetailsPage = ({ match }) => {
                 type="primary"
                 onClick={() => {
                   if (isAuth) addToFavorite(allStates);
-                  else showLoginModal(true);
+                  else
+                    notification.warn({ message: 'you need to login first !' });
                 }}
                 disabled={isLoading}
               >
@@ -200,7 +201,8 @@ const DetailsPage = ({ match }) => {
                 style={{ margin: '16px 0' }}
                 onClick={() => {
                   if (isAuth) addComment(allStates);
-                  else showLoginModal(true);
+                  else
+                    notification.warn({ message: 'you need to login first !' });
                 }}
                 disabled={isPosting}
               >
