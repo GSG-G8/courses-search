@@ -9,14 +9,15 @@ import {
   Empty,
   Result,
   Pagination,
+  Dropdown,
 } from 'antd';
-import { AlignLeftOutlined } from '@ant-design/icons';
+// import { AlignLeftOutlined } from '@ant-design/icons';
 import propTypes from 'prop-types';
 import axios from 'axios';
 import categories from '../../assets/categories';
-import './style.css';
+import { mainImg } from '../../assets/images';
 
-const { SubMenu } = Menu;
+import './style.css';
 
 const HomePage = ({ history }) => {
   const [loading, setLoading] = useState(true);
@@ -76,51 +77,60 @@ const HomePage = ({ history }) => {
         <Spin />
       ) : (
         <>
-          <div className="search-container">
-            <TreeSelect
-              style={{ width: '20%', marginRight: '10px' }}
-              value={cat}
-              defaultValue={0}
-              dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-              treeData={categories}
-              onChange={treeSelectOnChange}
-              placeholder="Please select"
-            />
+          <div className="main-container">
+            <div className="search-container">
+              <div>
+                <p className="main-p">
+                  Find the best courses, tutorials, and learning paths.
+                </p>
+              </div>
+              <div className="main-searchinput">
+                <TreeSelect
+                  style={{ width: '20%', marginRight: '10px' }}
+                  value={cat}
+                  defaultValue={0}
+                  dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                  treeData={categories}
+                  onChange={treeSelectOnChange}
+                  placeholder="Please select"
+                />
 
-            <Input.Search
-              style={{ width: '20%' }}
-              placeholder="input search text"
-              onSearch={inputOnSearch}
-              onChange={inputOnChange}
-              enterButton
-            />
+                <Input.Search
+                  style={{ width: '20%' }}
+                  placeholder="input search text"
+                  onSearch={inputOnSearch}
+                  onChange={inputOnChange}
+                  enterButton
+                />
+              </div>
+            </div>
+            <div>
+              <img className="main-img" src={mainImg} alt="img" />
+            </div>
           </div>
           <div className="container">
             <div className="menu">
-              <Menu mode="inline" style={{ width: 256 }}>
-                {categories.slice(1).map(({ title: main, children }) => (
-                  <SubMenu
-                    key={main}
-                    title={
-                      <span>
-                        <span>{main}</span>
-                      </span>
-                    }
-                  >
-                    {children.map(({ title, value }) => (
-                      <Menu.Item
-                        icon={<AlignLeftOutlined />}
-                        key={value}
-                        onClick={({ key }) => {
-                          setCat(key);
-                        }}
-                      >
-                        {title}
-                      </Menu.Item>
-                    ))}
-                  </SubMenu>
-                ))}
-              </Menu>
+              {categories.slice(1).map(({ title: main, children }) => (
+                <Dropdown
+                  overlay={() => (
+                    <Menu>
+                      {children.map(({ title, value }) => (
+                        <Menu.Item
+                          key={value}
+                          onClick={({ key }) => {
+                            setCat(key);
+                          }}
+                        >
+                          {title}
+                        </Menu.Item>
+                      ))}
+                    </Menu>
+                  )}
+                  placement="bottomLeft"
+                >
+                  <Button>{main}</Button>
+                </Dropdown>
+              ))}
             </div>
 
             <div className="topRate__container">
