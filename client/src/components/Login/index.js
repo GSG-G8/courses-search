@@ -5,10 +5,10 @@ import propTypes from 'prop-types';
 const axios = require('axios');
 
 const successResponse = async (res, onSuccess, onFailure) => {
-  const { tokenId } = res;
+  const { tokenId, profileObj } = res;
   try {
-    const results = await axios.post('/api/v1/login/google', { tokenId });
-    onSuccess(results);
+    await axios.post('/api/v1/login/google', { tokenId });
+    onSuccess(profileObj);
   } catch ({ response }) {
     onFailure(response);
   }
