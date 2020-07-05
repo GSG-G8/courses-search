@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
 .favorite-page {
-  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .favorite-page .favorite-page-header {
-  height: 65px;
+  height: 30px;
 }
 
 .favorite-page .ant-layout-sider {
@@ -27,4 +29,73 @@
   position: absolute;
   top: 50%;
   left: 50%;
+}
+
+.favorite-course {
+  width: 77%;
+  margin-left: 50px;
+  margin-top: 15px;
+  flex-wrap: nowrap;
+}
+
+.favorite-course img {
+  width: 300px;
+  border-radius: 6px;
+  min-height: 190px;
+}
+
+.favorite-course-details {
+  position: relative;
+  text-align: left;
+  padding-top: 0.25em;
+  padding-left: 2%;
+  width: 100%;
+}
+
+.favorite-course-details .favorite-bookmark {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: black;
+}
+
+.favorite-course-details {
+  font-family: 'Raleway';
+  color: black;
+}
+
+.favorite-course-details .favorite-title {
+  font-weight: bold;
+  font-size: 19px;
+  margin-bottom: 3px;
+}
+
+.favorite-course-details .favorite-author {
+  font-weight: 600;
+  line-height: 29px;
+}
+
+.favorite-course-details .favorite-description {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.line-div {
+  height: 1px;
+  border-top: 1px solid #000;
+  margin: 15px 9% 0 8%;
+  opacity: 0.1;
+}
+
+.favorite-courses-container .line-div:last-child {
+  display: none;
+}
+
+.favorite-menu {
+  width: 200px;
+  min-height: 100vh;
+  box-shadow: 0px 0px 17px #afafaf80;
+  padding-top: 30px;
+  border-radius: 0px 5px 0px;
 }

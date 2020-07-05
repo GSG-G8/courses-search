@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Input, notification } from 'antd';
+import { Row, Col, Input, notification, Layout } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
+import { BsBookmarkFill } from 'react-icons/bs';
 import axios from 'axios';
 import './style.css';
+
+const { Sider, Content } = Layout;
 
 const FavoritePage = () => {
   const [favoriteFolders, setFavoriteFolders] = useState([]);
@@ -166,15 +169,10 @@ const FavoritePage = () => {
   return (
     <div className="favorite-page">
       <Row className="favorite-page-header">
-        <Col style={{ backgroundColor: '#7dbcea' }} span={24}>
-          hello form Header
-        </Col>
+        <Col span={24}>Header</Col>
       </Row>
-      <Row>
-        <Col
-          style={{ backgroundColor: '#3ba0e9', minHeight: '100vh' }}
-          span={6}
-        >
+      <Layout>
+        <Sider style={{ backgroundColor: 'white' }} className="favorite-menu">
           <button
             type="button"
             onClick={() => showOrHide(showAddFolder, setShowAddFolder)}
@@ -194,69 +192,95 @@ const FavoritePage = () => {
               {folder.title}
             </button>
           ))}
-        </Col>
-        <Col style={{ backgroundColor: 'rgba(16, 142, 233, 1)' }} span={18}>
-          <>
-            {currentFolderId ? currentFolderName : null}
-            {currentFolderId ? (
-              <>
+          <div className="favorite-details" span={24}>
+            <>
+              {currentFolderId ? currentFolderName : null}
+              {currentFolderId ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      showOrHide(displayAddToFavorite, setDisplayAddToFavorite)
+                    }
+                  >
+                    Add to this folder
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      showOrHide(showEditFolder, setShowEditFolder)
+                    }
+                  >
+                    Edit Folder
+                  </button>
+                  <button type="button" onClick={deleteFolder}>
+                    Delete this folder
+                  </button>
+                </>
+              ) : null}
+            </>
+            {displayAddToFavorite ? (
+              <div className="add-to-folder">
                 <button
                   type="button"
                   onClick={() =>
                     showOrHide(displayAddToFavorite, setDisplayAddToFavorite)
                   }
                 >
-                  Add to this folder
+                  <CloseOutlined />
                 </button>
-                <button
-                  type="button"
-                  onClick={() => showOrHide(showEditFolder, setShowEditFolder)}
-                >
-                  Edit Folder
-                </button>
-                <button type="button" onClick={deleteFolder}>
-                  Delete this folder
-                </button>
-              </>
+                Display Add Panel
+                {allFavoriteData.map((course) => (
+                  <>
+                    <div>{course.title}</div>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        addCourse(course.course_id, currentFolderId)
+                      }
+                    >
+                      Add Course
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        removeCourse(course.course_id, currentFolderId)
+                      }
+                    >
+                      Remove Course
+                    </button>
+                  </>
+                ))}
+              </div>
             ) : null}
+          </div>
+        </Sider>
+        <Content style={{ backgroundColor: 'white' }}>
+          <div className="favorite-courses-container">
             {displayFavoriteData.map((course) => (
-              <div>{course.title}</div>
+              <>
+                <Row className="favorite-course">
+                  <Col>
+                    <img src={course.image} alt={course.title} />
+                  </Col>
+                  <div className="favorite-course-details">
+                    <span className="favorite-bookmark">
+                      <BsBookmarkFill />
+                    </span>
+                    <Col className="favorite-title">{course.title}</Col>
+                    <Col className="favorite-author">{course.author_name}</Col>
+                    <Col className="favorite-author">{course.source}</Col>
+                    <Col className="favorite-description">
+                      {course.description}
+                    </Col>
+                  </div>
+                </Row>
+                <div className="line-div" />
+              </>
             ))}
-          </>
-          {displayAddToFavorite ? (
-            <div className="add-to-folder">
-              <button
-                type="button"
-                onClick={() =>
-                  showOrHide(displayAddToFavorite, setDisplayAddToFavorite)
-                }
-              >
-                <CloseOutlined />
-              </button>
-              Display Add Panel
-              {allFavoriteData.map((course) => (
-                <>
-                  <div>{course.title}</div>
-                  <button
-                    type="button"
-                    onClick={() => addCourse(course.course_id, currentFolderId)}
-                  >
-                    Add Course
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      removeCourse(course.course_id, currentFolderId)
-                    }
-                  >
-                    Remove Course
-                  </button>
-                </>
-              ))}
-            </div>
-          ) : null}
-        </Col>
-      </Row>
+          </div>
+        </Content>
+      </Layout>
       {showAddFolder && (
         <div className="favorite-add-folder">
           <button
@@ -285,6 +309,7 @@ const FavoritePage = () => {
           </button>
         </div>
       )}
+      <div className="favorite-page-menu-btn" />
     </div>
   );
 };
