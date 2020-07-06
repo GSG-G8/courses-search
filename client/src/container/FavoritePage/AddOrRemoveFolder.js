@@ -4,8 +4,8 @@ import { Row, Col, Button } from 'antd';
 const AddOrRemoveFolder = ({ data, folderId, type, addOrRemoveFun }) => {
   const condition = (course) =>
     type === 'Add'
-      ? course.folder_id !== folderId
-      : course.folder_id === folderId;
+      ? course.folder_id !== Number(folderId)
+      : course.folder_id === Number(folderId);
 
   return (
     <Row style={{ width: '100%' }}>
