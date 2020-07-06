@@ -85,7 +85,6 @@ const FavoritePage = () => {
     }
   };
 
-  // finish
   const addCourse = async (courseId, folderId) => {
     try {
       await axios.post('/api/v1/favorite/add-to-folder', {
@@ -113,7 +112,6 @@ const FavoritePage = () => {
     }
   };
 
-  // finish
   const removeCourse = async (courseId, folderId) => {
     await axios.delete(`/api/v1/favorite/folder/${folderId}/${courseId}`);
 
@@ -138,7 +136,6 @@ const FavoritePage = () => {
     });
   };
 
-  // finish
   const deleteFolder = async () => {
     try {
       await axios.delete(`/api/v1/favorite/folder/${currentFolderId}`);
@@ -165,7 +162,6 @@ const FavoritePage = () => {
     }
   };
 
-  // finish
   const addNewFolder = async () => {
     try {
       if (inputValue !== '') {
@@ -188,7 +184,6 @@ const FavoritePage = () => {
     }
   };
 
-  // finish
   const editFolder = async () => {
     try {
       if (inputValue !== '') {
@@ -231,7 +226,6 @@ const FavoritePage = () => {
     }
   };
 
-  // finish
   const displayDataInFolder = (folderId) => {
     const folderIdInt = Number(folderId);
     if (folderIdInt) {
@@ -317,8 +311,6 @@ const FavoritePage = () => {
     });
   };
 
-  // tree
-
   const onSelect = (keys) => {
     const folderId = keys.join().split('-')[1];
     setCurrentFolderId(folderId);
@@ -327,9 +319,6 @@ const FavoritePage = () => {
 
   return (
     <div className="favorite-page">
-      <Row className="favorite-page-header">
-        <Col span={24}>Header</Col>
-      </Row>
       <Row>
         <Col
           span={4}
