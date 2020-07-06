@@ -1,62 +1,54 @@
+* {
+  box-sizing: border-box;
+}
 .header-container {
   display: flex;
   justify-content: space-between;
-  padding: 30px 160px;
   align-items: center;
-  top: 0px;
-  left: 0px;
+  padding: 20px 50px;
   width: 100%;
   height: 60px;
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 5px 10px #00000014;
   border-radius: 0px 0px 8px 8px;
-  opacity: 1;
+  overflow: hidden;
 }
 
-.header__logo {
-  width: 100%;
-}
 .header-left {
   display: flex;
 }
 .header__list ul {
   list-style-type: none;
   display: flex;
-  justify-content: flex-start;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .header__list li {
   margin-right: 20px;
   color: black;
 }
+.header__list li :hover {
+  color: #287b72;
+}
 .header-right {
   display: flex;
-  /* justify-content: space-between; */
+
+  color: #ffede3;
 }
 
-/*
-
-.header-right button {
-  border-radius: 50%;
-  margin-right: 5px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-} */
-
-.home__list {
+.header__list--home {
   color: black;
 }
-.active {
-  color: #61aba2;
-}
 
-.header_Right__button {
+.header-right__button {
   color: #61aba2;
   border: none;
   outline: none;
   border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
-
+.header__list--active,
 .ant-btn-icon-only,
 .ant-btn-default {
   color: #61aba2;
@@ -64,7 +56,7 @@
 .ant-btn-default:hover {
   color: antiquewhite;
 }
-.header__list__button:hover,
+
 .header-right button:hover {
   background-color: #61aba2;
   color: antiquewhite;
@@ -74,4 +66,15 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+@media screen and (max-width: 420px) {
+  .header-container {
+    /* flex-direction: column;
+    height: 200px; */
+    padding: 20px;
+  }
+  .header__list ul {
+    display: none;
+  }
 }

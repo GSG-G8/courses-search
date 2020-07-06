@@ -5,47 +5,39 @@ import { Modal, Menu, Dropdown } from 'antd';
 import { FaBookmark, FaUserAlt, AiFillHome, IoMdLogOut } from 'react-icons/all';
 import Logo from '../../assets/Logo.svg';
 import { AuthContext } from '../../container/authContext';
+import { FAVORITEPAGE, LANDING } from '../../constants/router';
 
 const Header = ({ history }) => {
-  const { userInfo, isAuth, showLoginModal } = useContext(AuthContext);
-
-  // const logout = () => Axios.get('/api/v1/logout');
+  const { userInfo, isAuth, signOut, signIn, loaded } = useContext(AuthContext);
 
   const info = () => {
     Modal.info({
       title: 'Course Search',
       content: (
-        <div>
-          <p>
-            {' '}
-            The place where you will find the best courses on the internet. With
-            our app we want to help the people through searching among different
-            platform about their favorite courses, by one click you will find
-            all the top courses.
-          </p>
-        </div>
+        <p>
+          The place where you will find the best courses on the internet. With
+          our app we want to help the people through searching among different
+          platform about their favorite courses, by one click you will find all
+          the top courses.
+        </p>
       ),
-      onOk() {},
     });
   };
   const menu = (
     <Menu>
-      <Menu.Item key="1" onClick={() => history.push('/')}>
+      <Menu.Item key="1" onClick={() => history.push(LANDING)}>
         <AiFillHome />
         Home
       </Menu.Item>
 
       {isAuth && (
-        <Menu.Item key="2" onClick={() => history.push('/FavoritePage')}>
+        <Menu.Item key="2" onClick={() => history.push(FAVORITEPAGE)}>
           <FaBookmark />
-          FavoritePage
+          Favorite
         </Menu.Item>
       )}
       {isAuth && (
-        <Menu.Item
-          key="3"
-          // onClick={logout}
-        >
+        <Menu.Item key="3" onClick={signOut}>
           <IoMdLogOut />
           logout
         </Menu.Item>
@@ -62,10 +54,10 @@ const Header = ({ history }) => {
           <ul>
             <li>
               <NavLink
-                className="home__list"
+                className="header__list--home"
                 exact
                 to="/"
-                activeClassName="active"
+                activeClassName="header__list--active"
               >
                 Home
               </NavLink>
@@ -83,32 +75,16 @@ const Header = ({ history }) => {
         </div>
       </div>
       <div className="header-right">
-        {/* <button className="header_Right__button" type="button">
-          <FaBookmark />
-        </button> */}
-
         {isAuth ? (
-          <>
-            <Dropdown.Button
-              className="header-right__dropdown-menu"
-              overlay={menu}
-              icon={<FaUserAlt />}
-            >
-              <AuthContext>{() => `Hello, ${userInfo.name}!`}</AuthContext>
-            </Dropdown.Button>
-            {/* Hi {userInfo.name}
-            <button
-              type="button"
-              // onClick={logout}
-            >
-              Logout
-            </button> */}
-          </>
+          <Dropdown.Button overlay={menu} icon={<FaUserAlt />}>
+            {`Hello, ${userInfo.givenName}!`}
+          </Dropdown.Button>
         ) : (
           <button
-            className="header_Right__button"
+            className="header-right__button"
             type="button"
-            onClick={showLoginModal}
+            onClick={signIn}
+            disabled={!loaded}
           >
             <FaUserAlt />
           </button>

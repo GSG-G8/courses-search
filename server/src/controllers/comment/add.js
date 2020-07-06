@@ -8,8 +8,8 @@ module.exports = async (req, res, next) => {
 
   try {
     await commentSchema.validate({ courseId, content });
-    const { rowCount } = await addComment(userId, courseId, content);
-    res.json({ rowCount });
+    const { rows, rowCount } = await addComment(userId, courseId, content);
+    res.json({ id: rows[0].id, rowCount });
   } catch (error) {
     if (error.name === 'ValidationError') {
       res.status(400).json({ message: 'invalid inputs' });

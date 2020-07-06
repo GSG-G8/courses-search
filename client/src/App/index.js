@@ -7,7 +7,7 @@ import FavoritePage from '../container/FavoritePage';
 import DetailsPage from '../container/DetailsPage';
 import { Login } from '../components';
 import { AuthProvider } from '../container/authContext';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 function App() {
   return (

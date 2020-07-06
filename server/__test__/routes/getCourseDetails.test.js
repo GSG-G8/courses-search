@@ -31,16 +31,19 @@ describe('get course details', () => {
           comment_id: 1,
           name: 'Mohammed',
           content: 'this is my first comment',
+          picture: null,
         },
         {
           comment_id: 4,
           name: 'omar',
           content: 'comment from 2 user',
+          picture: null,
         },
         {
           comment_id: 5,
           name: 'omar',
           content: 'comment from 2 user again',
+          picture: null,
         },
       ],
     });
