@@ -10,7 +10,9 @@ module.exports = async (req, res, next) => {
   try {
     await addCourseToFolder.validate({ courseId, folderId });
     const { rows } = await checkUserFolder(id);
-    const isUserHaveFolder = rows.some((folder) => folder.id === folderId);
+    const isUserHaveFolder = rows.some(
+      (folder) => folder.id === Number(folderId)
+    );
     if (isUserHaveFolder) {
       await addCourseToFolderQuery(id, courseId, folderId);
       res.json({ message: 'course assigned to folder successfully' });

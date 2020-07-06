@@ -2,21 +2,15 @@
 
 .favorite-page {
   box-sizing: border-box;
+  font-family: 'Raleway';
 }
 
 .favorite-page .favorite-page-header {
-  height: 30px;
+  height: 60px;
+  background-color: aqua;
 }
 
-.favorite-page .ant-layout-sider {
-  background: #3ba0e9;
-}
-
-.favorite-page .ant-layout-content {
-  background-color: rgba(16, 142, 233, 1);
-}
-
-.add-to-folder {
+/* .add-to-folder {
   position: absolute;
   width: 500px;
   height: 300px;
@@ -29,7 +23,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-}
+} */
 
 .favorite-course {
   width: 77%;
@@ -82,10 +76,11 @@
 }
 
 .line-div {
+  width: 77%;
   height: 1px;
   border-top: 1px solid #000;
-  margin: 15px 9% 0 8%;
   opacity: 0.1;
+  margin: 15px 0 0 50px;
 }
 
 .favorite-courses-container .line-div:last-child {
@@ -93,9 +88,73 @@
 }
 
 .favorite-menu {
-  width: 200px;
   min-height: 100vh;
   box-shadow: 0px 0px 17px #afafaf80;
-  padding-top: 30px;
-  border-radius: 0px 5px 0px;
+  padding-top: 15px;
+  z-index: 1;
+}
+
+.favorite-page button {
+  margin-bottom: 10px;
+  background-color: #61aba2;
+  border-radius: 5px;
+  border: 0;
+  font-size: 17px;
+}
+
+.favorite-page button:hover {
+  background-color: #61aba2;
+  color: #0b4942;
+}
+
+.favorite-page button:active {
+  background-color: #61aba2;
+}
+
+.favorite-page button:focus {
+  background-color: #61aba2;
+}
+
+.favorite-menu
+  .ant-tree
+  .ant-tree-list
+  > div
+  .ant-tree-list-holder-inner
+  .ant-tree-treenode {
+  text-align: left;
+  background-color: white;
+}
+
+.favorite-menu
+  .ant-tree.ant-tree-directory
+  .ant-tree-treenode
+  .ant-tree-node-content-wrapper.ant-tree-node-selected {
+  background-color: #61aba2;
+}
+
+.favorite-menu
+  .ant-tree.ant-tree-directory
+  .ant-tree-treenode-selected
+  .ant-tree-switcher {
+  background-color: #61aba2;
+}
+
+.favorite-menu
+  .ant-tree.ant-tree-directory
+  .ant-tree-treenode-selected
+  .ant-tree-switcher {
+  background-color: #61aba2;
+}
+
+.favorite-content {
+  /* border: 1px solid #000; */
+  padding-top: 15px;
+}
+
+.folder-details-name {
+  text-align: left;
+}
+
+.favorite-folder-details {
+  padding: 0 50px;
 }
