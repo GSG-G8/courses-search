@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Row, Col, Input, notification, Modal, Button, Tree } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
@@ -112,28 +113,56 @@ const FavoritePage = () => {
     }
   };
 
-  const removeCourse = async (courseId, folderId) => {
-    await axios.delete(`/api/v1/favorite/folder/${folderId}/${courseId}`);
+  const removeCourseFromFolder = async (courseId, folderId) => {
+    try {
+      await axios.delete(`/api/v1/favorite/folder/${folderId}/${courseId}`);
 
-    const currentCourses = allFavoriteData;
+      const currentCourses = allFavoriteData;
 
-    const displayCurrentCourses = displayFavoriteData.filter(
-      (course) => course.id !== courseId
-    );
+      const displayCurrentCourses = displayFavoriteData.filter(
+        (course) => course.id !== courseId
+      );
 
-    currentCourses.forEach((course) => {
-      if (course.id === Number(courseId)) {
-        course.folder_id = null;
-      }
-    });
+      currentCourses.forEach((course) => {
+        if (course.id === Number(courseId)) {
+          course.folder_id = null;
+        }
+      });
 
-    setAllFavoriteData(currentCourses);
-    setDisplayFavoriteData(displayCurrentCourses);
+      setAllFavoriteData(currentCourses);
+      setDisplayFavoriteData(displayCurrentCourses);
 
-    notification.success({
-      message: 'Success',
-      description: 'Course Removed From Folder Successfully',
-    });
+      notification.success({
+        message: 'Success',
+        description: 'Course Removed From Folder Successfully',
+      });
+    } catch (err) {
+      errorNotification(err);
+    }
+  };
+
+  const removeFromFavorite = async (courseId) => {
+    try {
+      await axios.delete(`/api/v1/favorite/${courseId}`);
+
+      const currentCourses = allFavoriteData.filter(
+        (course) => course.id !== courseId
+      );
+
+      const displayCurrentCourses = displayFavoriteData.filter(
+        (course) => course.id !== courseId
+      );
+
+      setAllFavoriteData(currentCourses);
+      setDisplayFavoriteData(displayCurrentCourses);
+
+      notification.success({
+        message: 'Success',
+        description: 'Course Removed From Favorite Successfully',
+      });
+    } catch (err) {
+      errorNotification(err);
+    }
   };
 
   const deleteFolder = async () => {
@@ -322,6 +351,7 @@ const FavoritePage = () => {
       <Row>
         <Col
           span={4}
+          offset={1}
           style={{ backgroundColor: 'white' }}
           className="favorite-menu"
         >
@@ -339,16 +369,16 @@ const FavoritePage = () => {
           />
         </Col>
         <Col
-          span={20}
+          span={19}
           style={{ backgroundColor: 'white' }}
           className="favorite-content"
         >
           {currentFolderId ? (
             <Row className="favorite-folder-details" span={24}>
-              <Col span={15} className="folder-details-name">
+              <Col span={5} className="folder-details-name">
                 <h2>{currentFolderName}</h2>
               </Col>
-              <Col span={9} className="folder-details-action">
+              <Col span={19} className="folder-details-action">
                 <Button type="primary" onClick={addToFolderModal}>
                   Add To This Folder
                 </Button>
@@ -363,20 +393,25 @@ const FavoritePage = () => {
             {displayFavoriteData.map((course) => (
               <>
                 <Row className="favorite-course">
-                  <Col>
+                  <Col span={6}>
                     <img src={course.image} alt={course.title} />
                   </Col>
-                  <div className="favorite-course-details">
+                  <Col span={18} className="favorite-course-details">
                     <span className="favorite-bookmark">
-                      <BsBookmarkFill />
+                      <Button onClick={() => removeFromFavorite(course.id)}>
+                        <BsBookmarkFill />
+                      </Button>
                     </span>
                     <Col className="favorite-title">{course.title}</Col>
                     <Col className="favorite-author">{course.author_name}</Col>
                     <Col className="favorite-author">{course.source}</Col>
                     <Col className="favorite-description">
-                      {course.description}
+                      {`${course.description.substring(0, 480)} ... `}
+                      {course.description.length > 500 && (
+                        <Link to={`/course/${course.id}`}>See More</Link>
+                      )}
                     </Col>
-                  </div>
+                  </Col>
                 </Row>
                 <div className="line-div" />
               </>
@@ -412,7 +447,7 @@ const FavoritePage = () => {
             data={allFavoriteData}
             folderId={currentFolderId}
             type="Remove"
-            addOrRemoveFun={removeCourse}
+            addOrRemoveFun={removeCourseFromFolder}
           />
         </>
       </Modal>
@@ -426,8 +461,6 @@ const FavoritePage = () => {
       >
         <Input onChange={onChangeInput} placeholder="update folder name" />
       </Modal>
-
-      <div className="favorite-page-menu-btn" />
     </div>
   );
 };

@@ -3,37 +3,19 @@
 .favorite-page {
   box-sizing: border-box;
   font-family: 'Raleway';
+  margin-top: 7px;
 }
-
-.favorite-page .favorite-page-header {
-  height: 60px;
-  background-color: aqua;
-}
-
-/* .add-to-folder {
-  position: absolute;
-  width: 500px;
-  height: 300px;
-  top: 100px;
-  left: 250px;
-  background-color: aqua;
-}
-
-.favorite-add-folder {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-} */
 
 .favorite-course {
-  width: 77%;
+  width: 85%;
   margin-left: 50px;
   margin-top: 15px;
   flex-wrap: nowrap;
 }
 
 .favorite-course img {
-  width: 300px;
+  width: 100%;
+  border: 1px solid #000;
   border-radius: 6px;
   min-height: 190px;
 }
@@ -83,15 +65,21 @@
   margin: 15px 0 0 50px;
 }
 
+.favorite-courses-container :last-child {
+  margin-bottom: 50px;
+}
+
 .favorite-courses-container .line-div:last-child {
   display: none;
 }
 
 .favorite-menu {
-  min-height: 100vh;
+  height: 600px;
   box-shadow: 0px 0px 17px #afafaf80;
   padding-top: 15px;
+  margin-top: 30px;
   z-index: 1;
+  border-radius: 0 8px 0 0;
 }
 
 .favorite-page button {
@@ -147,7 +135,6 @@
 }
 
 .favorite-content {
-  /* border: 1px solid #000; */
   padding-top: 15px;
 }
 
@@ -157,4 +144,35 @@
 
 .favorite-folder-details {
   padding: 0 50px;
+}
+
+.folder-details-action {
+  text-align: right;
+}
+
+.folder-details-action button {
+  margin-left: 10px;
+  height: 40px;
+}
+
+.folder-details-action button:last-child {
+  background-color: white;
+  border: 1px solid #61aba2;
+}
+
+.folder-details-action button:last-child:hover {
+  color: #e8505b;
+}
+
+.favorite-bookmark button {
+  background-color: white;
+  height: 20px;
+  width: 40px;
+  z-index: 5;
+}
+
+.favorite-bookmark button:hover,
+.favorite-bookmark button:focus,
+.favorite-bookmark button:active {
+  background-color: white;
 }
