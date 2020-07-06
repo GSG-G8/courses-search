@@ -123,7 +123,7 @@ const DetailsPage = ({ match }) => {
               <Text strong> {`(${+reviews})`}</Text>
             </Col>
             <Col span={24}>
-              <Tag color="blue">{subCategory[categoryId]}</Tag>
+              <Tag color="default">{subCategory[categoryId]}</Tag>
             </Col>
             <Col span={24}>
               <Paragraph
