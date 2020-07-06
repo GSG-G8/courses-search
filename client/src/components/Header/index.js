@@ -81,7 +81,7 @@ const Header = ({ history }) => {
           </Dropdown.Button>
         ) : (
           <button
-            className="header_right__button"
+            className="header-right__button"
             type="button"
             onClick={signIn}
             disabled={!loaded}
