@@ -314,9 +314,6 @@ const FavoritePage = () => {
       onOk() {
         deleteFolder();
       },
-      onCancel() {
-        console.log('Cancel');
-      },
     });
   };
 
