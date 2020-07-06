@@ -1,3 +1,8 @@
+/* Main page Style */
+body {
+  font-family: Raleway;
+}
+
 .main-container {
   display: flex;
 }
@@ -30,31 +35,30 @@
   align-items: center;
 }
 
-.ant-input {
+.main-searchinput .ant-input {
   height: 50px;
   border-radius: 55px;
 }
 
-.ant-input-search-button {
+.main-searchinput .ant-input-search-button {
   height: 50px;
   border-radius: 50px;
 }
 
-.ant-select {
+.main-searchinput .ant-select {
   width: 25% !important;
 }
 
-.ant-input-search {
+.main-searchinput .ant-input-search {
   width: 40% !important;
 }
 
 .menu {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   margin-top: 100px;
 }
-.ant-dropdown-trigger {
+.menu .ant-dropdown-trigger {
   width: 200px;
   font-size: 1rem;
   font-weight: bold;
@@ -68,16 +72,118 @@
   outline: none !important;
 }
 
-.ant-select-selector {
-  height: 50px !important;
-  box-shadow: 0px 5px 10px #00000014 !important;
-  border-radius: 50px !important;
+.main-searchinput .ant-select-show-arrow .ant-select-selector {
+  height: 50px;
+  box-shadow: 0px 5px 10px #00000014;
+  border-radius: 50px;
 }
 
-.ant-select-selection-item {
+.main-searchinput .ant-select-selection-item {
   margin-top: 8px !important;
 }
 
+/* Media query of main page */
+@media screen and (max-width: 1024px) {
+  .main-img {
+    height: 525px;
+  }
+  .main-p {
+    font-size: 40px;
+    padding: 1em 1em 2em 2em;
+    width: 90%;
+  }
+
+  .menu {
+    margin-top: 52px;
+  }
+
+  .main-searchinput .ant-select-selector {
+    width: 128px !important;
+    margin-left: -35px !important;
+  }
+
+  .main-searchinput .ant-input {
+    width: 172px;
+    margin-left: 1px;
+  }
+
+  .menu .ant-dropdown-trigger {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-img {
+    height: 523px;
+    width: 25.5rem;
+  }
+
+  .main-p {
+    font-size: 35px;
+    padding: 1em 1em 3em 2em;
+  }
+
+  .main-searchinput .ant-select-selector {
+    width: 124px !important;
+    margin-left: -72px !important;
+  }
+
+  .main-img {
+    height: 475px;
+    width: 26.5rem;
+    margin-left: 3.5em;
+  }
+
+  .main-searchinput .ant-input {
+    margin-left: -18px;
+  }
+
+  .main-searchinput .ant-select-arrow {
+    margin-right: 12px;
+  }
+
+  .menu {
+    margin-left: 6rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .main-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .main-img {
+    height: 31rem;
+    width: 32.5rem;
+    margin-left: 4.5em;
+  }
+
+  .main-p {
+    font-size: 30px;
+    padding: 1em 1em 3em 2em;
+    margin-left: 6rem;
+    text-align: center;
+  }
+
+  .main-searchinput {
+    margin-left: 223px;
+  }
+
+  .main-searchinput .ant-select-arrow {
+    margin-right: 20px;
+  }
+
+  .menu {
+    margin: auto;
+    flex-wrap: wrap;
+  }
+
+  .menu .ant-dropdown-trigger {
+    width: 170px;
+  }
+}
+
+/* Style of top rate container */
 .topRate__container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
@@ -104,4 +210,7 @@
   width: 70%;
   margin-top: 30px;
   margin-left: 340px;
+}
+.container-img-i {
+  width: 100%;
 }
