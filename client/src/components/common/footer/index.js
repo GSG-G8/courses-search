@@ -24,7 +24,7 @@ const info = () => {
 };
 
 const Footer = () => (
-  <footer className="footer container">
+  <footer className="footer footer__container">
     <section className="app-info">
       <Logo />
       <p className="footer__p1">

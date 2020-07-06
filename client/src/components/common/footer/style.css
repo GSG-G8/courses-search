@@ -9,7 +9,7 @@ body {
   width: 100%;
 }
 
-.container {
+.footer__container {
   display: flex;
   font-size: 16px;
   text-align: left;
@@ -50,7 +50,7 @@ ul {
 }
 
 @media screen and (max-width: 600px) {
-  .container {
+  .footer__container {
     display: flex;
     flex-direction: column;
     font-size: 12px;
