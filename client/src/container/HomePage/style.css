@@ -4,12 +4,13 @@ body {
 }
 
 .main-p {
-  font-size: 55px;
+  font-size: 40px;
   color: #242424;
   text-align: left;
   letter-spacing: 0.96px;
   font-family: Raleway;
   font-weight: bold;
+  width: 450px;
   padding: 2em 2em 1em 1em;
 }
 
@@ -19,38 +20,17 @@ body {
 }
 
 .main-searchinput .ant-input {
+  box-shadow: 0px 7px 10px #00000014;
   height: 50px;
-  border-radius: 55px;
 }
 
 .main-searchinput .ant-input-search-button {
   height: 50px;
-  border-radius: 50px;
 }
-
-/*.menu {
-  display: flex;
-  justify-content: center;
-  margin-top: 100px;
-}
-.menu .ant-dropdown-trigger {
-  width: 200px;
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: Raleway;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-right: 10px;
-  height: 47px;
-  border-radius: 80px;
-  outline: none !important;
-}*/
 
 .main-searchinput .ant-select-show-arrow .ant-select-selector {
   height: 50px;
-  box-shadow: 0px 5px 10px #00000014;
-  border-radius: 50px;
+  box-shadow: 0px 7px 10px #00000014;
 }
 
 .main-searchinput .ant-select-selection-item {
@@ -61,18 +41,28 @@ body {
 
 @media screen and (max-width: 1024px) {
   .main-p {
-    font-size: 35px;
-    padding: 1em 1em 0em 2em;
+    font-size: 33px;
+    padding: 1em 1em 0em 0em;
     width: 90%;
   }
+
   .main-searchinput {
-    padding-left: 4em;
+    padding-left: 0em;
+  }
+
+  .main-searchinput .ant-input-group-wrapper .ant-input-group .ant-input {
+    width: 16em;
   }
 }
 @media screen and (max-width: 768px) {
   .main-p {
-    font-size: 26px;
+    font-size: 25px;
     padding: 1em 0em 0em 0em;
+  }
+
+  .main-searchinput .ant-input-group-wrapper .ant-input-group .ant-input {
+    width: 12em;
+    margin-left: 0.1em;
   }
 
   .main-searchinput {
@@ -117,7 +107,7 @@ body {
 
 /* Style of top rate container */
 .topRate__container {
-  padding: 10em;
+  padding: 5%;
 }
 /*
 .topRate__container {
