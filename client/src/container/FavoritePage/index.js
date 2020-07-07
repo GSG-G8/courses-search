@@ -1,13 +1,20 @@
 /* eslint-disable no-param-reassign */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Input, notification, Modal, Button, Tree } from 'antd';
+import { Row, Col, Input, Modal, Button, Tree } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import { BsBookmarkFill } from 'react-icons/bs';
-import axios from 'axios';
 import './style.css';
 import AddOrRemoveFolder from './AddOrRemoveFolder';
+
+import {
+  getUserFolder,
+  removeFromFavorite,
+  deleteFolder,
+  addNewFolder,
+  editFolder,
+} from './functions';
 
 const { confirm } = Modal;
 const { DirectoryTree } = Tree;
@@ -29,232 +36,6 @@ const FavoritePage = () => {
       key: '0-0',
     },
   ]);
-
-  const errorNotification = ({ response }) => {
-    const errMessage = response
-      ? response.data.message
-      : 'sorry, something went wrong !';
-    notification.error({
-      message: 'Error',
-      description: errMessage || 'sorry, something went wrong !',
-    });
-  };
-
-  // get all favorite courses for the user
-  const getAllFavoriteCourses = async () => {
-    try {
-      const { data } = await axios.get('/api/v1/favorite');
-      setAllFavoriteData([...data]);
-      setDisplayFavoriteData([...data]);
-    } catch (err) {
-      errorNotification(err);
-    }
-  };
-
-  // set favorite folders data in DirectoryTree as required shape
-  const displayTreeData = (data) => {
-    const arr = [];
-    data.forEach(({ id, title }) =>
-      arr.push({
-        title,
-        key: `0-${id}`,
-      })
-    );
-    setTreeData([
-      {
-        title: 'All',
-        key: '0-0',
-      },
-      ...arr,
-    ]);
-  };
-
-  // get all favorite folder for the user
-  const getUserFolder = async () => {
-    try {
-      const { data } = await axios.get('/api/v1/favorite/folder');
-      setFavoriteFolders([...data]);
-      displayTreeData(data);
-      getAllFavoriteCourses();
-    } catch (err) {
-      errorNotification(err);
-    }
-  };
-
-  // add course to specific folder
-  const addCourseToFolder = async (courseId, folderId) => {
-    try {
-      await axios.post('/api/v1/favorite/add-to-folder', {
-        courseId,
-        folderId,
-      });
-
-      const currentCourses = allFavoriteData;
-
-      currentCourses.forEach((course) => {
-        if (course.id === Number(courseId)) {
-          course.folder_id = Number(folderId);
-          setDisplayFavoriteData([...displayFavoriteData, course]);
-        }
-      });
-
-      setAllFavoriteData(currentCourses);
-
-      notification.success({
-        message: 'Success',
-        description: 'Course Added To Folder Successfully',
-      });
-    } catch (err) {
-      errorNotification(err);
-    }
-  };
-
-  // remove course from specific folder
-  const removeCourseFromFolder = async (courseId, folderId) => {
-    try {
-      await axios.delete(`/api/v1/favorite/folder/${folderId}/${courseId}`);
-
-      const currentCourses = allFavoriteData;
-
-      const displayCurrentCourses = displayFavoriteData.filter(
-        (course) => course.id !== courseId
-      );
-
-      currentCourses.forEach((course) => {
-        if (course.id === Number(courseId)) {
-          course.folder_id = null;
-        }
-      });
-
-      setAllFavoriteData(currentCourses);
-      setDisplayFavoriteData(displayCurrentCourses);
-
-      notification.success({
-        message: 'Success',
-        description: 'Course Removed From Folder Successfully',
-      });
-    } catch (err) {
-      errorNotification(err);
-    }
-  };
-
-  // remove course from user favorite
-  const removeFromFavorite = async (courseId) => {
-    try {
-      await axios.delete(`/api/v1/favorite/${courseId}`);
-
-      const currentCourses = allFavoriteData.filter(
-        (course) => course.id !== courseId
-      );
-
-      const displayCurrentCourses = displayFavoriteData.filter(
-        (course) => course.id !== courseId
-      );
-
-      setAllFavoriteData(currentCourses);
-      setDisplayFavoriteData(displayCurrentCourses);
-
-      notification.success({
-        message: 'Success',
-        description: 'Course Removed From Favorite Successfully',
-      });
-    } catch (err) {
-      errorNotification(err);
-    }
-  };
-
-  // delete specific favorite folder for the user
-  const deleteFolder = async () => {
-    try {
-      await axios.delete(`/api/v1/favorite/folder/${currentFolderId}`);
-
-      const updateFolders = favoriteFolders.filter(
-        (folder) => folder.id !== Number(currentFolderId)
-      );
-
-      const updateAllFavoriteFolders = allFavoriteData.filter(
-        (folder) => folder.folder_id !== Number(currentFolderId)
-      );
-
-      setCurrentFolderId(0);
-      setFavoriteFolders([...updateFolders]);
-      displayTreeData(updateFolders);
-      setAllFavoriteData([...updateAllFavoriteFolders]);
-
-      notification.success({
-        message: 'Success',
-        description: 'Folder Deleted Successfully',
-      });
-    } catch (err) {
-      errorNotification(err);
-    }
-  };
-
-  // add new favorite folder for the user
-  const addNewFolder = async () => {
-    try {
-      if (inputValue !== '') {
-        const {
-          data: { rows },
-        } = await axios.post('/api/v1/favorite/folder', {
-          title: inputValue,
-        });
-        const { id } = rows[0];
-        setTreeData([...treeData, { title: inputValue, key: `0-${id}` }]);
-        setFavoriteFolders([...favoriteFolders, { id, title: inputValue }]);
-      } else {
-        notification.error({
-          message: 'Error',
-          description: 'invalid input',
-        });
-      }
-    } catch (err) {
-      errorNotification(err);
-    }
-  };
-
-  // change folder name
-  const editFolder = async () => {
-    try {
-      if (inputValue !== '') {
-        await axios.put('/api/v1/favorite/folder', {
-          title: inputValue,
-          folderId: currentFolderId,
-        });
-
-        const editedFolders = favoriteFolders;
-        const editedTree = treeData;
-
-        editedFolders.forEach((folder) => {
-          if (folder.id === Number(currentFolderId)) {
-            folder.title = inputValue;
-          }
-        });
-
-        editedTree.forEach((folder) => {
-          const folderId = folder.key.split('-')[1];
-          if (folderId === currentFolderId) {
-            folder.title = inputValue;
-          }
-        });
-
-        setCurrentFolderName(inputValue);
-        setFavoriteFolders([...editedFolders]);
-        setTreeData([...editedTree]);
-        notification.success({
-          message: 'Success',
-          description: 'Folder Name Updated Successfully',
-        });
-      } else {
-        notification.error({
-          message: 'Error',
-          description: 'invalid input',
-        });
-      }
-    } catch (err) {
-      errorNotification(err);
-    }
-  };
 
   // display favorite courses for specific folder
   const displayDataInFolder = (folderId) => {
@@ -279,7 +60,12 @@ const FavoritePage = () => {
   };
 
   useEffect(() => {
-    getUserFolder();
+    getUserFolder(
+      setFavoriteFolders,
+      setTreeData,
+      setAllFavoriteData,
+      setDisplayFavoriteData
+    );
   }, []);
 
   useEffect(() => {
@@ -295,9 +81,15 @@ const FavoritePage = () => {
     setAddFolderVisible(true);
   };
 
-  const addFolderhandleOk = async () => {
+  const addFolderhandleOk = () => {
     setConfirmLoading(true);
-    addNewFolder();
+    addNewFolder(
+      inputValue,
+      setTreeData,
+      setFavoriteFolders,
+      favoriteFolders,
+      treeData
+    );
     setAddFolderVisible(false);
     setConfirmLoading(false);
   };
@@ -307,9 +99,17 @@ const FavoritePage = () => {
     setEditFolderVisible(true);
   };
 
-  const editFolderhandleOk = async () => {
+  const editFolderhandleOk = () => {
     setConfirmLoading(true);
-    editFolder();
+    editFolder(
+      inputValue,
+      currentFolderId,
+      favoriteFolders,
+      treeData,
+      setCurrentFolderName,
+      setFavoriteFolders,
+      setTreeData
+    );
     setEditFolderVisible(false);
     setConfirmLoading(false);
   };
@@ -323,6 +123,7 @@ const FavoritePage = () => {
     setAddToFolderVisible(false);
   };
 
+  // handle cancel in modal
   const handleCancel = () => {
     setAddFolderVisible(false);
     setAddToFolderVisible(false);
@@ -330,14 +131,22 @@ const FavoritePage = () => {
   };
 
   // confirm delete folder
-  const confirmDeleteFolder = async () => {
+  const confirmDeleteFolder = () => {
     confirm({
       title: 'Do you Want to delete this folder?',
       icon: <ExclamationCircleOutlined />,
       content:
         'this will delete this folder and all favorite courses in this folder',
       onOk() {
-        deleteFolder();
+        deleteFolder(
+          currentFolderId,
+          favoriteFolders,
+          setCurrentFolderId,
+          setFavoriteFolders,
+          setAllFavoriteData,
+          allFavoriteData,
+          setTreeData
+        );
       },
     });
   };
@@ -362,10 +171,10 @@ const FavoritePage = () => {
           className="favorite-menu"
         >
           <Row>
-            <Col className="favorite-menu-title" xs={12} lg={24}>
+            <Col className="favorite-menu-title" xs={24} sm={12} lg={24}>
               <h3>My Category Folders</h3>
             </Col>
-            <Col className="favorite-menu-btn" xs={12} lg={24}>
+            <Col className="favorite-menu-btn" xs={24} sm={12} lg={24}>
               <Button type="primary" onClick={AddFolderModal}>
                 Add New Folder
               </Button>
@@ -389,12 +198,12 @@ const FavoritePage = () => {
         >
           {currentFolderId ? (
             <Row className="favorite-folder-details" span={24}>
-              <Col span={5} className="folder-details-name">
+              <Col xs={24} md={5} className="folder-details-name">
                 <h2>{currentFolderName}</h2>
               </Col>
-              <Col span={19} className="folder-details-action">
+              <Col xs={24} md={19} className="folder-details-action">
                 <Button type="primary" onClick={addToFolderModal}>
-                  Add To This Folder
+                  Add To Folder
                 </Button>
                 <Button type="primary" onClick={editFolderModal}>
                   Edit Folder
@@ -407,12 +216,22 @@ const FavoritePage = () => {
             {displayFavoriteData.map((course) => (
               <>
                 <Row className="favorite-course">
-                  <Col span={6}>
+                  <Col xs={0} md={6}>
                     <img src={course.image} alt={course.title} />
                   </Col>
-                  <Col span={18} className="favorite-course-details">
+                  <Col xs={24} md={18} className="favorite-course-details">
                     <span className="favorite-bookmark">
-                      <Button onClick={() => removeFromFavorite(course.id)}>
+                      <Button
+                        onClick={() =>
+                          removeFromFavorite(
+                            course.id,
+                            allFavoriteData,
+                            displayFavoriteData,
+                            setAllFavoriteData,
+                            setDisplayFavoriteData
+                          )
+                        }
+                      >
                         <BsBookmarkFill />
                       </Button>
                     </span>
@@ -420,8 +239,8 @@ const FavoritePage = () => {
                     <Col className="favorite-author">{course.author_name}</Col>
                     <Col className="favorite-author">{course.source}</Col>
                     <Col className="favorite-description">
-                      {`${course.description.substring(0, 480)}`}
-                      {course.description.length > 500 && (
+                      {`${course.description.substring(0, 350)}`}
+                      {course.description.length > 350 && (
                         <Link to={`/course/${course.id}`}>... See More</Link>
                       )}
                     </Col>
@@ -455,13 +274,19 @@ const FavoritePage = () => {
             data={allFavoriteData}
             folderId={currentFolderId}
             type="Add"
-            addOrRemoveFun={addCourseToFolder}
+            allFavoriteData={allFavoriteData}
+            setDisplayFavoriteData={setDisplayFavoriteData}
+            displayFavoriteData={displayFavoriteData}
+            setAllFavoriteData={setAllFavoriteData}
           />
           <AddOrRemoveFolder
             data={allFavoriteData}
             folderId={currentFolderId}
             type="Remove"
-            addOrRemoveFun={removeCourseFromFolder}
+            allFavoriteData={allFavoriteData}
+            setDisplayFavoriteData={setDisplayFavoriteData}
+            displayFavoriteData={displayFavoriteData}
+            setAllFavoriteData={setAllFavoriteData}
           />
         </>
       </Modal>

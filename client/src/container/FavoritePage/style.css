@@ -15,7 +15,6 @@
 
 .favorite-course img {
   width: 100%;
-  border: 1px solid #000;
   border-radius: 6px;
   min-height: 190px;
 }
@@ -84,23 +83,9 @@
 
 .favorite-page button {
   margin-bottom: 10px;
-  background-color: #61aba2;
   border-radius: 5px;
   border: 0;
   font-size: 17px;
-}
-
-.favorite-page button:hover {
-  background-color: #61aba2;
-  color: #0b4942;
-}
-
-.favorite-page button:active {
-  background-color: #61aba2;
-}
-
-.favorite-page button:focus {
-  background-color: #61aba2;
 }
 
 .favorite-menu
@@ -111,27 +96,6 @@
   .ant-tree-treenode {
   text-align: left;
   background-color: white;
-}
-
-.favorite-menu
-  .ant-tree.ant-tree-directory
-  .ant-tree-treenode
-  .ant-tree-node-content-wrapper.ant-tree-node-selected {
-  background-color: #61aba2;
-}
-
-.favorite-menu
-  .ant-tree.ant-tree-directory
-  .ant-tree-treenode-selected
-  .ant-tree-switcher {
-  background-color: #61aba2;
-}
-
-.favorite-menu
-  .ant-tree.ant-tree-directory
-  .ant-tree-treenode-selected
-  .ant-tree-switcher {
-  background-color: #61aba2;
 }
 
 .favorite-content {
@@ -188,5 +152,20 @@
   .favorite-menu-title {
     text-align: left;
     padding-left: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .folder-details-name,
+  .folder-details-action {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .favorite-menu-title,
+  .favorite-menu-btn {
+    text-align: center;
+    padding: 0;
   }
 }
