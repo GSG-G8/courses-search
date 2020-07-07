@@ -8,6 +8,7 @@ import DetailsPage from '../container/DetailsPage';
 import { Login } from '../components';
 import { AuthProvider } from '../container/authContext';
 import Header from '../components/Header';
+import ProtectedRoute from './protectedRoute';
 
 function App() {
   return (
@@ -17,7 +18,11 @@ function App() {
           <Header />
           <Switch>
             <Route exact path={ROUTES.LANDING} component={HomePage} />
-            <Route exact path={ROUTES.FAVORITEPAGE} component={FavoritePage} />
+            <ProtectedRoute
+              exact
+              path={ROUTES.FAVORITEPAGE}
+              component={FavoritePage}
+            />
             <Route exact path={ROUTES.DETAILSPAGE} component={DetailsPage} />
             <Route exact path={ROUTES.LOGIN} component={Login} />
           </Switch>
