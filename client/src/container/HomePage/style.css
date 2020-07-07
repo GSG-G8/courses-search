@@ -1,14 +1,125 @@
-.search-container {
+/* Main page Style */
+body {
+  font-family: Raleway;
+}
+
+.main-p {
+  font-size: 55px;
+  color: #242424;
+  text-align: left;
+  letter-spacing: 0.96px;
+  font-family: Raleway;
+  font-weight: bold;
+  padding: 2em 2em 1em 1em;
+}
+
+.main-searchinput {
+  display: flex;
+  padding-left: 3em;
+}
+
+.main-searchinput .ant-input {
+  height: 50px;
+  border-radius: 55px;
+}
+
+.main-searchinput .ant-input-search-button {
+  height: 50px;
+  border-radius: 50px;
+}
+
+/*.menu {
   display: flex;
   justify-content: center;
-  margin: 20px auto;
-}
-.container {
-  display: flex;
-}
-.menu {
   margin-top: 100px;
 }
+.menu .ant-dropdown-trigger {
+  width: 200px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: Raleway;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 10px;
+  height: 47px;
+  border-radius: 80px;
+  outline: none !important;
+}*/
+
+.main-searchinput .ant-select-show-arrow .ant-select-selector {
+  height: 50px;
+  box-shadow: 0px 5px 10px #00000014;
+  border-radius: 50px;
+}
+
+.main-searchinput .ant-select-selection-item {
+  margin-top: 8px;
+}
+
+/* Media query of main page */
+
+@media screen and (max-width: 1024px) {
+  .main-p {
+    font-size: 35px;
+    padding: 1em 1em 0em 2em;
+    width: 90%;
+  }
+  .main-searchinput {
+    padding-left: 4em;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main-p {
+    font-size: 26px;
+    padding: 1em 0em 0em 0em;
+  }
+
+  .main-searchinput {
+    padding-left: 0;
+  }
+
+  .main-searchinput .ant-select-show-arrow .ant-input-group-wrapper {
+    width: 63%;
+    padding-left: 1em;
+  }
+
+  .main-searchinput .ant-select-show-arrow {
+    width: 124px;
+  }
+
+  .main-searchinput .ant-input {
+    margin-left: -18px;
+  }
+
+  .main-searchinput .ant-select-arrow {
+    margin-right: 12px;
+  }
+  .main-searchinput .ant-select .ant-select-show-arrow {
+    width: 50%;
+  }
+
+  .topRate__container {
+    padding: 6em;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .main-searchinput .ant-input-group-wrapper .ant-input-group {
+    padding-left: 1em;
+    width: 13rem;
+  }
+
+  .topRate__container {
+    padding: 4em;
+  }
+}
+
+/* Style of top rate container */
+.topRate__container {
+  padding: 10em;
+}
+/*
 .topRate__container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
@@ -36,3 +147,7 @@
   margin-top: 30px;
   margin-left: 340px;
 }
+.container-img-i {
+  width: 100%;
+}
+*/

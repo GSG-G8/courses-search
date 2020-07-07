@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Button,
   Spin,
-  Menu,
   Rate,
   TreeSelect,
   Input,
   Empty,
   Result,
   Pagination,
+  Row,
+  Col,
 } from 'antd';
-import { AlignLeftOutlined } from '@ant-design/icons';
 import propTypes from 'prop-types';
 import axios from 'axios';
 import categories from '../../assets/categories';
-import './style.css';
+import { mainImg } from '../../assets/images';
 
-const { SubMenu } = Menu;
+import './style.css';
 
 const HomePage = ({ history }) => {
   const [loading, setLoading] = useState(true);
@@ -26,6 +26,7 @@ const HomePage = ({ history }) => {
   const [error, setError] = useState('');
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+  const searchRef = useRef(null);
 
   const fetchCoursesByNameAndCatId = async (catId, courseName) => {
     try {
@@ -58,10 +59,20 @@ const HomePage = ({ history }) => {
   const inputOnSearch = (value) => {
     setSearchCourseName(value);
     setPage(1);
+    if (searchRef.current) {
+      searchRef.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
   };
   const inputOnChange = (e) => {
     setSearchCourseName(e.target.value);
     setPage(1);
+    if (searchRef.current) {
+      searchRef.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
   };
 
   useEffect(() => {
@@ -76,83 +87,98 @@ const HomePage = ({ history }) => {
         <Spin />
       ) : (
         <>
-          <div className="search-container">
-            <TreeSelect
-              style={{ width: '20%', marginRight: '10px' }}
-              value={cat}
-              defaultValue={0}
-              dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-              treeData={categories}
-              onChange={treeSelectOnChange}
-              placeholder="Please select"
-            />
+          <Row>
+            <Col xs={{ span: 24, order: 2 }} md={{ span: 12, order: 1 }}>
+              <div className="search-container">
+                <Row>
+                  <Col span={22} offset={2}>
+                    <p className="main-p">
+                      Find the best courses, tutorials, and learning paths.
+                    </p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={22} offset={2}>
+                    <Input.Group>
+                      <div className="main-searchinput">
+                        <TreeSelect
+                          style={{ width: '35%', marginRight: '10px' }}
+                          value={cat}
+                          defaultValue={0}
+                          dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                          treeData={categories}
+                          onChange={treeSelectOnChange}
+                          placeholder="Please select"
+                        />
 
-            <Input.Search
-              style={{ width: '20%' }}
-              placeholder="input search text"
-              onSearch={inputOnSearch}
-              onChange={inputOnChange}
-              enterButton
-            />
-          </div>
-          <div className="container">
-            <div className="menu">
-              <Menu mode="inline" style={{ width: 256 }}>
-                {categories.slice(1).map(({ title: main, children }) => (
-                  <SubMenu
-                    key={main}
-                    title={
-                      <span>
-                        <span>{main}</span>
-                      </span>
-                    }
-                  >
-                    {children.map(({ title, value }) => (
-                      <Menu.Item
-                        icon={<AlignLeftOutlined />}
-                        key={value}
-                        onClick={({ key }) => {
-                          setCat(key);
-                        }}
-                      >
-                        {title}
-                      </Menu.Item>
-                    ))}
-                  </SubMenu>
-                ))}
-              </Menu>
-            </div>
+                        <Input.Search
+                          style={{ width: '40%' }}
+                          placeholder="input search text"
+                          onSearch={inputOnSearch}
+                          onChange={inputOnChange}
+                          enterButton
+                        />
+                      </div>
+                    </Input.Group>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
 
+            <Col xs={{ span: 24, order: 1 }} md={{ span: 12, order: 2 }}>
+              <img
+                className="main-img"
+                style={{ width: '100%' }}
+                src={mainImg}
+                alt="img"
+              />
+            </Col>
+          </Row>
+          <div className="container" ref={searchRef}>
             <div className="topRate__container">
               {courses.length > 0 ? (
-                courses.map((course) => (
-                  <div className="topRate__course-card" key={course.id}>
-                    <h2>{course.title}</h2>
-                    <img
-                      className="topRate__course-card__image"
-                      alt="courseImg"
-                      src={course.image}
-                      // style={{ borderTopRightRadius: '50%' }}
-                    />
-                    {course.rate && (
-                      <span>
-                        <Rate
-                          value={Math.round(course.rate * 2) / 2}
-                          Rate
-                          allowHalf
-                        />
-                      </span>
-                    )}
-                    <h3>{course.source}</h3>
-                    <Button
-                      onClick={() => handleClick(course.id)}
-                      type="primary"
-                    >
+                <Row gutter={40}>
+                  {courses.map((course) => (
+                    <Col xs={24} sm={12} md={8} lg={6}>
                       {' '}
-                      More
-                    </Button>
-                  </div>
-                ))
+                      <div className="topRate__course-card" key={course.id}>
+                        <h2>{course.title}</h2>
+                        <div
+                          className="topRate__course-card__image"
+                          style={{
+                            width: '100%',
+                            height: '100px',
+                            backgroundImage: `url("${course.image}")`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                          }}
+                          // alt="courseImg"
+                          // src={course.image}
+                          // style={{ borderTopRightRadius: '50%' }}
+                        />
+
+                        {course.rate && (
+                          <span>
+                            <Rate
+                              value={Math.round(course.rate * 2) / 2}
+                              Rate
+                              allowHalf
+                            />
+                          </span>
+                        )}
+                        <h3>{course.source}</h3>
+                        <Button
+                          onClick={() => handleClick(course.id)}
+                          type="primary"
+                        >
+                          {' '}
+                          More
+                        </Button>
+                      </div>
+                    </Col>
+                  ))}
+                </Row>
               ) : (
                 <Empty />
               )}
