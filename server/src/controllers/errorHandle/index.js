@@ -3,5 +3,6 @@ exports.clientError = (req, res) => {
 };
 
 exports.serverError = (err, req, res, next) => {
+  console.error(err);
   res.status(500).json({ message: 'Something went wrong, try again later' });
 };
