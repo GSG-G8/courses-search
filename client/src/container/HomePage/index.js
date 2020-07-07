@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Button,
   Spin,
   Rate,
   TreeSelect,
@@ -142,39 +141,45 @@ const HomePage = ({ history }) => {
                     <Col xs={24} sm={12} md={8} lg={6}>
                       {' '}
                       <div className="topRate__course-card" key={course.id}>
-                        <h2>{course.title}</h2>
-                        <div
-                          className="topRate__course-card__image"
-                          style={{
-                            width: '100%',
-                            height: '100px',
-                            backgroundImage: `url("${course.image}")`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
-                          }}
-                          // alt="courseImg"
-                          // src={course.image}
-                          // style={{ borderTopRightRadius: '50%' }}
-                        />
+                        <div className="topRate__course-card__image__container">
+                          <div
+                            className="topRate__course-card__image"
+                            style={{
+                              width: '100%',
+                              paddingTop: '70%',
+                              backgroundImage: `url("${course.image}")`,
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center',
+                              backgroundRepeat: 'no-repeat',
+                              // borderTopRightRadius: '50%',
+                            }}
+                            role="button"
+                            aria-label="view details"
+                            onClick={() => handleClick(course.id)}
+                            onKeyDown={() => handleClick(course.id)}
+                            tabIndex={0}
+                            // alt="courseImg"
+                            // src={course.image}
+                            // style={{ borderTopRightRadius: '50%' }}
+                          />
+                        </div>
+                        <div className="topRate__course-card__contant">
+                          <h2>{course.title}</h2>
+                          <h3>{course.source}</h3>
 
-                        {course.rate && (
-                          <span>
-                            <Rate
-                              value={Math.round(course.rate * 2) / 2}
-                              Rate
-                              allowHalf
-                            />
-                          </span>
-                        )}
-                        <h3>{course.source}</h3>
-                        <Button
-                          onClick={() => handleClick(course.id)}
-                          type="primary"
-                        >
-                          {' '}
-                          More
-                        </Button>
+                          {course.rate && (
+                            // <StarOutlined style={{ fill: 'red' }} />
+                            <span className="topRate__course-card__contant__span">
+                              <Rate
+                                allowClear={false}
+                                value={Math.round(course.rate * 2) / 2}
+                                Rate
+                                disabled
+                                allowHalf
+                              />
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </Col>
                   ))}
