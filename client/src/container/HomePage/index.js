@@ -11,7 +11,6 @@ import {
   Pagination,
 } from 'antd';
 import { AlignLeftOutlined } from '@ant-design/icons';
-
 import propTypes from 'prop-types';
 import axios from 'axios';
 import categories from '../../assets/categories';
