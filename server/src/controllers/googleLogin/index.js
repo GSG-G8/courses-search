@@ -2,9 +2,9 @@ const { OAuth2Client } = require('google-auth-library');
 const { sign } = require('jsonwebtoken');
 const { addUserData } = require('../../database/queries');
 
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-
 module.exports = async (req, res, next) => {
+  const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+  console.log(process.env.GOOGLE_CLIENT_ID);
   try {
     const { tokenId } = req.body;
     const ticket = await client.verifyIdToken({
