@@ -19,13 +19,10 @@ const FavoritePage = () => {
   const [currentFolderId, setCurrentFolderId] = useState(0);
   const [currentFolderName, setCurrentFolderName] = useState(0);
   const [inputValue, setInputValue] = useState('');
-
   const [addFolderVisible, setAddFolderVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-
   const [addToFolderVisible, setAddToFolderVisible] = useState(false);
   const [editFolderVisible, setEditFolderVisible] = useState(false);
-
   const [treeData, setTreeData] = useState([
     {
       title: 'All',
@@ -43,21 +40,18 @@ const FavoritePage = () => {
     });
   };
 
-  const getFavoriteForFolder = async () => {
+  // get all favorite courses for the user
+  const getAllFavoriteCourses = async () => {
     try {
       const { data } = await axios.get('/api/v1/favorite');
       setAllFavoriteData([...data]);
-      return data;
+      setDisplayFavoriteData([...data]);
     } catch (err) {
-      return errorNotification(err);
+      errorNotification(err);
     }
   };
 
-  const getAllFavoriteCourses = async () => {
-    const data = await getFavoriteForFolder();
-    setDisplayFavoriteData([...data]);
-  };
-
+  // set favorite folders data in DirectoryTree as required shape
   const displayTreeData = (data) => {
     const arr = [];
     data.forEach(({ id, title }) =>
@@ -75,6 +69,7 @@ const FavoritePage = () => {
     ]);
   };
 
+  // get all favorite folder for the user
   const getUserFolder = async () => {
     try {
       const { data } = await axios.get('/api/v1/favorite/folder');
@@ -86,7 +81,8 @@ const FavoritePage = () => {
     }
   };
 
-  const addCourse = async (courseId, folderId) => {
+  // add course to specific folder
+  const addCourseToFolder = async (courseId, folderId) => {
     try {
       await axios.post('/api/v1/favorite/add-to-folder', {
         courseId,
@@ -113,6 +109,7 @@ const FavoritePage = () => {
     }
   };
 
+  // remove course from specific folder
   const removeCourseFromFolder = async (courseId, folderId) => {
     try {
       await axios.delete(`/api/v1/favorite/folder/${folderId}/${courseId}`);
@@ -141,6 +138,7 @@ const FavoritePage = () => {
     }
   };
 
+  // remove course from user favorite
   const removeFromFavorite = async (courseId) => {
     try {
       await axios.delete(`/api/v1/favorite/${courseId}`);
@@ -165,6 +163,7 @@ const FavoritePage = () => {
     }
   };
 
+  // delete specific favorite folder for the user
   const deleteFolder = async () => {
     try {
       await axios.delete(`/api/v1/favorite/folder/${currentFolderId}`);
@@ -191,6 +190,7 @@ const FavoritePage = () => {
     }
   };
 
+  // add new favorite folder for the user
   const addNewFolder = async () => {
     try {
       if (inputValue !== '') {
@@ -213,6 +213,7 @@ const FavoritePage = () => {
     }
   };
 
+  // change folder name
   const editFolder = async () => {
     try {
       if (inputValue !== '') {
@@ -255,6 +256,7 @@ const FavoritePage = () => {
     }
   };
 
+  // display favorite courses for specific folder
   const displayDataInFolder = (folderId) => {
     const folderIdInt = Number(folderId);
     if (folderIdInt) {
@@ -288,16 +290,21 @@ const FavoritePage = () => {
     setInputValue(event.target.value);
   };
 
-  // add new folder modal
-  const showModal = () => {
+  // add folder modal & handle
+  const AddFolderModal = () => {
     setAddFolderVisible(true);
   };
 
-  const addNewFolderhandleOk = async () => {
+  const addFolderhandleOk = async () => {
     setConfirmLoading(true);
     addNewFolder();
     setAddFolderVisible(false);
     setConfirmLoading(false);
+  };
+
+  // edit folder modal & handle
+  const editFolderModal = () => {
+    setEditFolderVisible(true);
   };
 
   const editFolderhandleOk = async () => {
@@ -305,6 +312,11 @@ const FavoritePage = () => {
     editFolder();
     setEditFolderVisible(false);
     setConfirmLoading(false);
+  };
+
+  // add to folder modal & handle
+  const addToFolderModal = () => {
+    setAddToFolderVisible(true);
   };
 
   const addToFolderhandleOk = () => {
@@ -317,18 +329,8 @@ const FavoritePage = () => {
     setEditFolderVisible(false);
   };
 
-  // add to folder modal
-  const addToFolderModal = () => {
-    setAddToFolderVisible(true);
-  };
-
-  // edit folder modal
-  const editToFolderModal = () => {
-    setEditFolderVisible(true);
-  };
-
-  // confirm delete
-  const showConfirm = async () => {
+  // confirm delete folder
+  const confirmDeleteFolder = async () => {
     confirm({
       title: 'Do you Want to delete this folder?',
       icon: <ExclamationCircleOutlined />,
@@ -340,7 +342,8 @@ const FavoritePage = () => {
     });
   };
 
-  const onSelect = (keys) => {
+  // for DirectoryTree
+  const onSelectFolder = (keys) => {
     const folderId = keys.join().split('-')[1];
     setCurrentFolderId(folderId);
     displayDataInFolder(folderId);
@@ -352,24 +355,35 @@ const FavoritePage = () => {
         <Col
           span={4}
           offset={1}
+          xl={4}
+          lg={5}
+          xs={22}
           style={{ backgroundColor: 'white' }}
           className="favorite-menu"
         >
-          <h3>My Category Folders</h3>
-          <Button type="primary" onClick={showModal}>
-            Add New Folder
-          </Button>
-
+          <Row>
+            <Col className="favorite-menu-title" xs={12} lg={24}>
+              <h3>My Category Folders</h3>
+            </Col>
+            <Col className="favorite-menu-btn" xs={12} lg={24}>
+              <Button type="primary" onClick={AddFolderModal}>
+                Add New Folder
+              </Button>
+            </Col>
+          </Row>
           <DirectoryTree
             multiple
             defaultExpandAll
             defaultSelectedKeys={['0-0']}
-            onSelect={onSelect}
+            onSelect={onSelectFolder}
             treeData={treeData}
           />
         </Col>
         <Col
           span={19}
+          xl={19}
+          lg={18}
+          xs={24}
           style={{ backgroundColor: 'white' }}
           className="favorite-content"
         >
@@ -382,10 +396,10 @@ const FavoritePage = () => {
                 <Button type="primary" onClick={addToFolderModal}>
                   Add To This Folder
                 </Button>
-                <Button type="primary" onClick={editToFolderModal}>
+                <Button type="primary" onClick={editFolderModal}>
                   Edit Folder
                 </Button>
-                <Button onClick={showConfirm}>Delete Folder</Button>
+                <Button onClick={confirmDeleteFolder}>Delete Folder</Button>
               </Col>
             </Row>
           ) : null}
@@ -406,9 +420,9 @@ const FavoritePage = () => {
                     <Col className="favorite-author">{course.author_name}</Col>
                     <Col className="favorite-author">{course.source}</Col>
                     <Col className="favorite-description">
-                      {`${course.description.substring(0, 480)} ... `}
+                      {`${course.description.substring(0, 480)}`}
                       {course.description.length > 500 && (
-                        <Link to={`/course/${course.id}`}>See More</Link>
+                        <Link to={`/course/${course.id}`}>... See More</Link>
                       )}
                     </Col>
                   </Col>
@@ -422,7 +436,7 @@ const FavoritePage = () => {
       <Modal
         title="Add New Folder"
         visible={addFolderVisible}
-        onOk={addNewFolderhandleOk}
+        onOk={addFolderhandleOk}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
@@ -441,7 +455,7 @@ const FavoritePage = () => {
             data={allFavoriteData}
             folderId={currentFolderId}
             type="Add"
-            addOrRemoveFun={addCourse}
+            addOrRemoveFun={addCourseToFolder}
           />
           <AddOrRemoveFolder
             data={allFavoriteData}
