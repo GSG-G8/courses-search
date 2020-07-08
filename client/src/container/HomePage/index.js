@@ -139,21 +139,21 @@ const HomePage = ({ history }) => {
                 <Row gutter={(48, 48)}>
                   {courses.map((course) => (
                     <Col xs={24} sm={12} md={8} lg={6}>
-                      {' '}
                       <div className="topRate__course-card" key={course.id}>
                         <h2>{course.title}</h2>
                         <div
-                          className="topRate__course-card__image"
                           style={{
-                            width: '100%',
-                            height: '100px',
-                            backgroundImage: `url("${course.image}")`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
+                            width: 'min(25em, calc(100% - 8vw))',
+                            height: '16em',
                           }}
-                        />
-
+                        >
+                          <img
+                            className="topRate__course-card__image"
+                            alt="courseImg"
+                            src={course.image}
+                            style={{ width: '100%', height: '100%' }}
+                          />
+                        </div>
                         {course.rate && (
                           <span>
                             <Rate
