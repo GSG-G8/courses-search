@@ -1,9 +1,10 @@
+ 
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Button,
   Spin,
   Rate,
-  TreeSelect,
+  Cascader,
   Input,
   Empty,
   Result,
@@ -13,7 +14,8 @@ import {
 } from 'antd';
 import propTypes from 'prop-types';
 import axios from 'axios';
-import categories from '../../assets/categories';
+import { FiMenu } from 'react-icons/all';
+import categories from '../../assets/courseCategories';
 import { mainImg } from '../../assets/images';
 
 import './style.css';
@@ -53,7 +55,8 @@ const HomePage = ({ history }) => {
     history.push(`/course/${id}`);
   };
   const treeSelectOnChange = (value) => {
-    setCat(value);
+    const catId = value.pop();
+    setCat(catId);
     setPage(1);
   };
   const inputOnSearch = (value) => {
@@ -89,40 +92,37 @@ const HomePage = ({ history }) => {
         <>
           <Row>
             <Col xs={{ span: 24, order: 2 }} md={{ span: 12, order: 1 }}>
-              <div className="search-container">
-                <Row>
-                  <Col span={22} offset={2}>
-                    <p className="main-p">
-                      Find the best courses, tutorials, and learning paths.
-                    </p>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col span={22} offset={2}>
-                    <Input.Group>
-                      <div className="main-searchinput">
-                        <TreeSelect
-                          style={{ width: '35%', marginRight: '10px' }}
-                          value={cat}
-                          defaultValue={0}
-                          dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                          treeData={categories}
-                          onChange={treeSelectOnChange}
-                          placeholder="Please select"
-                        />
-
-                        <Input.Search
-                          style={{ width: '40%' }}
-                          placeholder="input search text"
-                          onSearch={inputOnSearch}
-                          onChange={inputOnChange}
-                          enterButton
-                        />
-                      </div>
-                    </Input.Group>
-                  </Col>
-                </Row>
-              </div>
+              <Row>
+                <Col span={20} offset={2}>
+                  <p className="main-p">
+                    Find the best courses, tutorials, and learning paths.
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <Col offset={2} flex="38px">
+                  <Cascader
+                    value=""
+                    size="large"
+                    defaultValue={0}
+                    options={categories}
+                    onChange={treeSelectOnChange}
+                    placeholder=""
+                    suffixIcon={<FiMenu />}
+                  />
+                </Col>
+                <Col flex="auto">
+                  <Input.Search
+                    size="large"
+                    style={{ width: '100%' }}
+                    placeholder="input search text"
+                    onSearch={inputOnSearch}
+                    onChange={inputOnChange}
+                    enterButton
+                  />
+                </Col>
+                <Col span={2} />
+              </Row>
             </Col>
 
             <Col xs={{ span: 24, order: 1 }} md={{ span: 12, order: 2 }}>
@@ -153,9 +153,6 @@ const HomePage = ({ history }) => {
                             backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat',
                           }}
-                          // alt="courseImg"
-                          // src={course.image}
-                          // style={{ borderTopRightRadius: '50%' }}
                         />
 
                         {course.rate && (
