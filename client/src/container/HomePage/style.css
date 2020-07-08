@@ -4,17 +4,16 @@ body {
 }
 
 .main-img {
-  width: 100vh;
-  margin-top: 30px;
+  width: 100%;
 }
 .main-p {
-  font-size: 55px;
   color: #242424;
   text-align: left;
   letter-spacing: 0.96px;
   font-family: Raleway;
   font-weight: bold;
-  padding: 2em 2em 1em 1em;
+  width: 100%;
+  padding-top: 10%;
 }
 
 .main-searchinput {
@@ -23,38 +22,17 @@ body {
 }
 
 .main-searchinput .ant-input {
+  box-shadow: 0px 7px 10px #00000014;
   height: 50px;
-  border-radius: 55px;
 }
 
 .main-searchinput .ant-input-search-button {
   height: 50px;
-  border-radius: 50px;
 }
-
-/*.menu {
-  display: flex;
-  justify-content: center;
-  margin-top: 100px;
-}
-.menu .ant-dropdown-trigger {
-  width: 200px;
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: Raleway;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-right: 10px;
-  height: 47px;
-  border-radius: 80px;
-  outline: none !important;
-}*/
 
 .main-searchinput .ant-select-show-arrow .ant-select-selector {
   height: 50px;
-  box-shadow: 0px 5px 10px #00000014;
-  border-radius: 50px;
+  box-shadow: 0px 7px 10px #00000014;
 }
 
 .main-searchinput .ant-select-selection-item {
@@ -111,20 +89,29 @@ body {
 
 /* Media query of main page */
 
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 768px) {
   .main-p {
-    font-size: 35px;
-    padding: 1em 1em 0em 2em;
-    width: 90%;
+    font-size: 3.5vw;
   }
+}
+
+@media screen and (max-width: 1024px) {
   .main-searchinput {
-    padding-left: 4em;
+    padding-left: 0em;
+  }
+
+  .main-searchinput .ant-input-group-wrapper .ant-input-group .ant-input {
+    width: 16em;
   }
 }
 @media screen and (max-width: 768px) {
   .main-p {
-    font-size: 26px;
-    padding: 1em 0em 0em 0em;
+    font-size: 5vw;
+  }
+
+  .main-searchinput .ant-input-group-wrapper .ant-input-group .ant-input {
+    width: 12em;
+    margin-left: 0.1em;
   }
 
   .main-searchinput {
@@ -161,37 +148,5 @@ body {
 
 /* Style of top rate container */
 .topRate__container {
-  padding: 10%;
+  padding: 5%;
 }
-/*
-.topRate__container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-  justify-content: center;
-  align-items: center;
-  column-gap: 20px;
-  row-gap: 20px;
-  margin: 50px auto;
-  width: 80%;
-}
-.topRate__course-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.topRate__course-card__image {
-  width: 200px;
-}
-.topRate__course-card button {
-  width: 100px;
-}
-.pagination {
-  width: 70%;
-  margin-top: 30px;
-  margin-left: 340px;
-}
-.container-img-i {
-  width: 100%;
-}
-*/
