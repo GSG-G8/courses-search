@@ -78,3 +78,30 @@ export const addComment = async ({
     notification.error({ message });
   }
 };
+
+export const deleteComment = async ({
+  commentId,
+  comments,
+  setComments,
+  notification,
+}) => {
+  try {
+    const { data } = await axios.delete(`/api/v1/comment/${commentId}`);
+    if (data.rowCount > 0) {
+      setComments(comments.filter((com) => com.comment_id !== commentId));
+      notification.success({
+        message: 'the comment has been deleted !',
+      });
+    } else {
+      notification.error({
+        message: 'something went wrong !',
+      });
+    }
+  } catch ({ response }) {
+    const message = response
+      ? response.data.message
+      : 'failed to delete comment !';
+
+    notification.error({ message });
+  }
+};
