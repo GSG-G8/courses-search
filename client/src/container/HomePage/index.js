@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Button,
   Spin,
   Rate,
   Cascader,
@@ -34,7 +33,7 @@ const HomePage = ({ history }) => {
       const { data } = await axios.post(`/api/v1/catId/courseName`, {
         catId,
         courseName,
-        offset: (page - 1) * 10,
+        offset: (page - 1) * 12,
       });
       setLoading(false);
       setError('');
@@ -78,13 +77,17 @@ const HomePage = ({ history }) => {
   };
 
   useEffect(() => {
-    fetchCoursesByNameAndCatId(cat, searchCourseName);
+    if (!error) fetchCoursesByNameAndCatId(cat, searchCourseName);
   }, [page, cat, searchCourseName]);
 
   return (
     <div>
       {error ? (
-        <Result status="error" title="Internal server Error." />
+        <Result
+          status="500"
+          title="500"
+          subTitle="Sorry, something went wrong."
+        />
       ) : loading ? (
         <Spin />
       ) : (
@@ -125,52 +128,53 @@ const HomePage = ({ history }) => {
             </Col>
 
             <Col xs={{ span: 24, order: 1 }} md={{ span: 12, order: 2 }}>
-              <img
-                className="main-img"
-                style={{ width: '100%' }}
-                src={mainImg}
-                alt="img"
-              />
+              <img className="main-img" src={mainImg} alt="img" />
             </Col>
           </Row>
           <div className="container" ref={searchRef}>
             <div className="topRate__container">
               {courses.length > 0 ? (
-                <Row gutter={(48, 48)}>
+                <Row gutter={40}>
                   {courses.map((course) => (
                     <Col xs={24} sm={12} md={8} lg={6}>
                       {' '}
                       <div className="topRate__course-card" key={course.id}>
-                        <h2>{course.title}</h2>
-                        <div
-                          className="topRate__course-card__image"
-                          style={{
-                            width: '100%',
-                            height: '100px',
-                            backgroundImage: `url("${course.image}")`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
-                          }}
-                        />
+                        <div className="topRate__course-card__image__container">
+                          <div
+                            className="topRate__course-card__image"
+                            style={{
+                              width: '100%',
+                              paddingTop: '70%',
+                              backgroundImage: `url("${course.image}")`,
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center',
+                              backgroundRepeat: 'no-repeat',
+                              // borderTopRightRadius: '50%',
+                            }}
+                            role="button"
+                            aria-label="view details"
+                            onClick={() => handleClick(course.id)}
+                            onKeyDown={() => handleClick(course.id)}
+                            tabIndex={0}
+                          />
+                        </div>
+                        <div className="topRate__course-card__contant">
+                          <h2>{course.title}</h2>
+                          <h3>{course.source}</h3>
 
-                        {course.rate && (
-                          <span>
-                            <Rate
-                              value={Math.round(course.rate * 2) / 2}
-                              Rate
-                              allowHalf
-                            />
-                          </span>
-                        )}
-                        <h3>{course.source}</h3>
-                        <Button
-                          onClick={() => handleClick(course.id)}
-                          type="primary"
-                        >
-                          {' '}
-                          More
-                        </Button>
+                          {course.rate && (
+                            // <StarOutlined style={{ fill: 'red' }} />
+                            <span className="topRate__course-card__contant__span">
+                              <Rate
+                                allowClear={false}
+                                value={Math.round(course.rate * 2) / 2}
+                                Rate
+                                disabled
+                                allowHalf
+                              />
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </Col>
                   ))}
@@ -179,9 +183,9 @@ const HomePage = ({ history }) => {
                 <Empty />
               )}
               <Pagination
-                className="pagination"
-                onChange={(k) => setPage(k)}
-                defaultCurrent={1}
+                current={page}
+                onChange={setPage}
+                pageSize={12}
                 total={total}
                 showSizeChanger={false}
               />

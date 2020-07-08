@@ -39,13 +39,13 @@ module.exports = async (req, res, next) => {
   const allData = categoryData.map((course) => ({
     category_id: categoryId[course.title],
     title: course.title,
-    image: course.img,
+    image: 'http://www.seeacademy.org/images/online.jpg',
     author_name: 'Future-Learn.com',
     url: `futurelearn.com${course.link}`,
     rate: course.rate.slice(0, 3) || 0,
     reviews: course.rate.slice(4) || 0,
     description: course.description,
-    source: 'Future LEarn',
+    source: 'Future Learn',
   }));
   await insertCourses(allData);
   res.json({ count: categoryData.length });

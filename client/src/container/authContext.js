@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { notification } from 'antd';
 import { useGoogleLogin, useGoogleLogout } from 'react-google-login';
 import axios from 'axios';
@@ -8,6 +8,28 @@ const AuthContext = React.createContext();
 function AuthProvider({ children }) {
   const [isAuth, setIsAuth] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+  const [loaded, setLoaded] = useState(false);
+
+  const getAuth = async () => {
+    try {
+      const { data } = await axios.get(`/api/v1/auth`);
+      const [givenName, familyName] = data.name.split(' ');
+      setUserInfo({
+        ...data,
+        givenName,
+        familyName,
+        imageUrl: data.picture,
+      });
+      setIsAuth(true);
+      setLoaded(true);
+    } catch (error) {
+      setLoaded(true);
+    }
+  };
+
+  useEffect(() => {
+    getAuth();
+  }, []);
 
   const onSuccess = async ({ tokenId, profileObj }) => {
     try {
@@ -32,12 +54,11 @@ function AuthProvider({ children }) {
     }
   };
 
-  const { signIn, loaded } = useGoogleLogin({
+  const { signIn } = useGoogleLogin({
     clientId: process.env.REACT_APP_CLIENT_ID,
     onSuccess,
     onFailure,
     cookiePolicy: 'single_host_origin',
-    isSignedIn: true,
   });
 
   const { signOut } = useGoogleLogout({

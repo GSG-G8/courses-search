@@ -3,6 +3,9 @@ body {
   font-family: Raleway;
 }
 
+.main-img {
+  width: 100%;
+}
 .main-p {
   color: #242424;
   text-align: left;
@@ -34,6 +37,54 @@ body {
 
 .main-searchinput .ant-select-selection-item {
   margin-top: 8px;
+}
+/* class="ant-col ant-col-xs-24 ant-col-sm-12 ant-col-md-8 " */
+.topRate__container .ant-col-lg-6 {
+  padding-bottom: 3em;
+}
+/* .topRate__course-card {
+  box-shadow: 1px 1px 28px 5px #00000014;
+  /* background: 0% 0% no-repeat padding-box; 
+  height: 300px;
+  /* border: 5px solid #61aba2; 
+  /* border-radius: 20px; 
+} */
+
+.topRate__course-card__image:hover {
+  transform: scale(1.1);
+  box-shadow: 1px 1px 28px 5px #a9a9a9;
+}
+.topRate__course-card__image {
+  cursor: pointer;
+  border-radius: 15px;
+  outline: none;
+  box-shadow: 1px 1px 28px 5px #00000014;
+}
+.topRate__course-card__contant {
+  padding-top: 17px;
+}
+.topRate__course-card h2 {
+  width: 150px;
+  /* letter-spacing: 2px; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font: Bold 20px Raleway;
+}
+.topRate__course-card__contant {
+  text-align: left;
+}
+.topRate__course-card__contant__span .ant-rate {
+  font-size: 15px;
+}
+
+.topRate__course-card__contant__span .anticon-star {
+  width: 15px;
+}
+
+.ant-pagination {
+  margin-top: 17px;
 }
 
 /* Media query of main page */
@@ -86,20 +137,12 @@ body {
   .main-searchinput .ant-select .ant-select-show-arrow {
     width: 50%;
   }
-
-  .topRate__container {
-    padding: 6em;
-  }
 }
 
 @media screen and (max-width: 420px) {
   .main-searchinput .ant-input-group-wrapper .ant-input-group {
     padding-left: 1em;
     width: 13rem;
-  }
-
-  .topRate__container {
-    padding: 4em;
   }
 }
 
