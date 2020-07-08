@@ -137,7 +137,7 @@ const HomePage = ({ history }) => {
           <div className="container" ref={searchRef}>
             <div className="topRate__container">
               {courses.length > 0 ? (
-                <Row gutter={40}>
+                <Row gutter={(48, 48)}>
                   {courses.map((course) => (
                     <Col xs={24} sm={12} md={8} lg={6}>
                       {' '}
