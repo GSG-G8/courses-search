@@ -56,12 +56,24 @@ const Header = ({ history }) => {
               <NavLink
                 className="header__list--home"
                 exact
-                to="/"
+                to={LANDING}
                 activeClassName="header__list--active"
               >
                 Home
               </NavLink>
             </li>
+            {isAuth && (
+              <li>
+                <NavLink
+                  className="header__list--home"
+                  exact
+                  to={FAVORITEPAGE}
+                  activeClassName="header__list--active"
+                >
+                  Favorite
+                </NavLink>
+              </li>
+            )}
             <li>
               <button
                 className="header__list__button"
