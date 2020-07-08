@@ -1,30 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
 .favorite-page {
-  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Raleway';
+  margin-top: 7px;
 }
 
-.favorite-page .favorite-page-header {
-  height: 65px;
+.favorite-course {
+  width: 85%;
+  margin-left: 50px;
+  margin-top: 15px;
+  flex-wrap: nowrap;
 }
 
-.favorite-page .ant-layout-sider {
-  background: #3ba0e9;
+.favorite-course img {
+  width: 100%;
+  border-radius: 6px;
+  min-height: 190px;
 }
 
-.favorite-page .ant-layout-content {
-  background-color: rgba(16, 142, 233, 1);
+.favorite-course-details {
+  position: relative;
+  text-align: left;
+  padding-top: 0.25em;
+  padding-left: 2%;
+  width: 100%;
 }
 
-.add-to-folder {
+.favorite-course-details .favorite-bookmark {
   position: absolute;
-  width: 500px;
-  height: 300px;
-  top: 100px;
-  left: 250px;
-  background-color: aqua;
+  top: 10px;
+  right: 15px;
+  color: black;
 }
 
-.favorite-add-folder {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.favorite-course-details {
+  font-family: 'Raleway';
+  color: black;
+}
+
+.favorite-course-details .favorite-title {
+  font-weight: bold;
+  font-size: 19px;
+  margin-bottom: 3px;
+}
+
+.favorite-course-details .favorite-author {
+  font-weight: 600;
+  line-height: 29px;
+}
+
+.favorite-course-details .favorite-description {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.line-div {
+  width: 77%;
+  height: 1px;
+  border-top: 1px solid #000;
+  opacity: 0.1;
+  margin: 15px 0 0 50px;
+}
+
+.favorite-courses-container .favorite-course:last-child {
+  margin-bottom: 50px;
+}
+
+.favorite-courses-container .line-div:last-child {
+  display: none;
+}
+
+.favorite-menu {
+  height: 600px;
+  box-shadow: 0px 0px 17px #afafaf80;
+  padding-top: 15px;
+  margin-top: 30px;
+  z-index: 1;
+  border-radius: 0 8px 0 0;
+}
+
+.favorite-page button {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 0;
+  font-size: 17px;
+}
+
+.favorite-menu
+  .ant-tree
+  .ant-tree-list
+  > div
+  .ant-tree-list-holder-inner
+  .ant-tree-treenode {
+  text-align: left;
+  background-color: white;
+}
+
+.favorite-content {
+  padding-top: 15px;
+}
+
+.folder-details-name {
+  text-align: left;
+}
+
+.favorite-folder-details {
+  padding: 0 50px;
+}
+
+.folder-details-action {
+  text-align: right;
+}
+
+.folder-details-action button {
+  margin-left: 10px;
+  height: 40px;
+}
+
+.folder-details-action button:last-child {
+  background-color: white;
+  border: 1px solid #61aba2;
+}
+
+.folder-details-action button:last-child:hover {
+  color: #e8505b;
+}
+
+.favorite-bookmark button {
+  background-color: white;
+  height: 20px;
+  width: 40px;
+  z-index: 5;
+}
+
+.favorite-bookmark button:hover,
+.favorite-bookmark button:focus,
+.favorite-bookmark button:active {
+  background-color: white;
+}
+
+@media screen and (max-width: 991px) {
+  .favorite-menu {
+    height: auto;
+  }
+  .favorite-menu-btn {
+    text-align: right;
+    padding-right: 30px;
+  }
+  .favorite-menu-title {
+    text-align: left;
+    padding-left: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .folder-details-name,
+  .folder-details-action {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .favorite-menu-title,
+  .favorite-menu-btn {
+    text-align: center;
+    padding: 0;
+  }
 }

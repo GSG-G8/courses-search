@@ -9,7 +9,9 @@ module.exports = async (req, res, next) => {
   const { title, folderId } = req.body;
   try {
     const { rows } = await checkUserFolder(id);
-    const isUserHaveFolder = rows.some((folder) => folder.id === folderId);
+    const isUserHaveFolder = rows.some(
+      (folder) => folder.id === Number(folderId)
+    );
     if (isUserHaveFolder) {
       await folderTitleSchema.validate({ title });
       await editFavoriteFolderQuery(title, folderId);

@@ -21,6 +21,11 @@ describe('route POST /favorite/folder', () => {
       .expect(200);
     expect(body).toStrictEqual({
       message: 'new folder has added successfully',
+      rows: [
+        {
+          id: 3,
+        },
+      ],
     });
   });
 
