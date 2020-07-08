@@ -3,6 +3,10 @@ body {
   font-family: Raleway;
 }
 
+.main-img {
+  width: 100vh;
+  margin-top: 30px;
+}
 .main-p {
   font-size: 55px;
   color: #242424;
@@ -67,10 +71,7 @@ body {
   /* border: 5px solid #61aba2; 
   /* border-radius: 20px; 
 } */
-.topRate__course-card:hover {
-  /* transform: scale(1.1);
-  box-shadow: 1px 1px 28px 5px #a9a9a9; */
-}
+
 .topRate__course-card__image:hover {
   transform: scale(1.1);
   box-shadow: 1px 1px 28px 5px #a9a9a9;
@@ -78,13 +79,11 @@ body {
 .topRate__course-card__image {
   cursor: pointer;
   border-radius: 15px;
-  /* border: 3px solid #426964; */
   outline: none;
-
   box-shadow: 1px 1px 28px 5px #00000014;
 }
 .topRate__course-card__contant {
-  margin: 9px;
+  padding-top: 17px;
 }
 .topRate__course-card h2 {
   width: 150px;
@@ -104,6 +103,10 @@ body {
 
 .topRate__course-card__contant__span .anticon-star {
   width: 15px;
+}
+
+.ant-pagination {
+  margin-top: 17px;
 }
 
 /* Media query of main page */
