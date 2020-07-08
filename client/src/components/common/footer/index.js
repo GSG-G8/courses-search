@@ -11,7 +11,6 @@ const info = () => {
     content: (
       <div>
         <p>
-          {' '}
           The place where you will find the best courses on the internet. With
           our app we want to help the people through searching among different
           platform about their favorite courses, by one click you will find all
@@ -33,7 +32,7 @@ const Footer = () => (
       <p className="footer__p2">
         With our app we want to help the people through searching among
         different platform about their favorite courses, by one click you will
-        find all the top courses.{' '}
+        find all the top courses.
       </p>
     </section>
     <div className="footer__lists">
@@ -70,7 +69,7 @@ const Footer = () => (
       </div>
 
       <div>
-        <ul>
+        <ul className="footer__lists__second">
           <li>
             <Link to="/">Home</Link>
           </li>

@@ -184,9 +184,8 @@ const HomePage = ({ history }) => {
                 <Empty />
               )}
               <Pagination
-                className="pagination"
-                current={1}
-                onChange={(k) => setPage(k)}
+                current={page}
+                onChange={setPage}
                 pageSize={12}
                 total={total}
                 showSizeChanger={false}

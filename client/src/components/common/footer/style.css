@@ -34,10 +34,20 @@ body {
   line-height: 28px;
   padding: 1em;
 }
+.footer__lists li {
+  cursor: pointer;
+}
+.footer__lists a:hover,
+.footer__button:hover {
+  color: #000000;
+}
 
-ul {
+.footer__lists ul {
   list-style-type: none;
   padding: 0;
+}
+.footer__lists__second {
+  margin-left: 2em;
 }
 
 .footer__button {
@@ -45,7 +55,7 @@ ul {
   outline: none;
   border: none;
   cursor: pointer;
-  color: #1890ff;
+  color: #61aba2;
   padding: 0;
 }
 
