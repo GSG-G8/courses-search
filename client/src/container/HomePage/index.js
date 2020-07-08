@@ -32,7 +32,7 @@ const HomePage = ({ history }) => {
       const { data } = await axios.post(`/api/v1/catId/courseName`, {
         catId,
         courseName,
-        offset: (page - 1) * 10,
+        offset: (page - 1) * 12,
       });
       setLoading(false);
       setError('');
@@ -125,12 +125,7 @@ const HomePage = ({ history }) => {
             </Col>
 
             <Col xs={{ span: 24, order: 1 }} md={{ span: 12, order: 2 }}>
-              <img
-                className="main-img"
-                style={{ width: '100%' }}
-                src={mainImg}
-                alt="img"
-              />
+              <img className="main-img" src={mainImg} alt="img" />
             </Col>
           </Row>
           <div className="container" ref={searchRef}>
@@ -158,9 +153,6 @@ const HomePage = ({ history }) => {
                             onClick={() => handleClick(course.id)}
                             onKeyDown={() => handleClick(course.id)}
                             tabIndex={0}
-                            // alt="courseImg"
-                            // src={course.image}
-                            // style={{ borderTopRightRadius: '50%' }}
                           />
                         </div>
                         <div className="topRate__course-card__contant">
@@ -189,8 +181,9 @@ const HomePage = ({ history }) => {
               )}
               <Pagination
                 className="pagination"
+                current={1}
                 onChange={(k) => setPage(k)}
-                defaultCurrent={1}
+                pageSize={12}
                 total={total}
                 showSizeChanger={false}
               />
