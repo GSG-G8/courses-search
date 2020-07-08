@@ -75,13 +75,17 @@ const HomePage = ({ history }) => {
   };
 
   useEffect(() => {
-    fetchCoursesByNameAndCatId(cat, searchCourseName);
+    if (!error) fetchCoursesByNameAndCatId(cat, searchCourseName);
   }, [page, cat, searchCourseName]);
 
   return (
     <div>
       {error ? (
-        <Result status="error" title="Internal server Error." />
+        <Result
+          status="500"
+          title="500"
+          subTitle="Sorry, something went wrong."
+        />
       ) : loading ? (
         <Spin />
       ) : (
