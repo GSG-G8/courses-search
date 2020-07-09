@@ -54,11 +54,18 @@ body {
   transform: scale(1.1);
   box-shadow: 1px 1px 28px 5px #a9a9a9;
 }
+
 .topRate__course-card__image {
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 15px 15px 0 0;
   outline: none;
   box-shadow: 1px 1px 28px 5px #00000014;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding-top: 70%;
 }
 .topRate__course-card__contant {
   padding-top: 17px;

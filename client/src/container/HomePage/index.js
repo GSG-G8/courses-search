@@ -39,6 +39,14 @@ const HomePage = ({ history }) => {
   const [total, setTotal] = useState(0);
   const searchRef = useRef(null);
 
+  useEffect(() => {
+    if (searchRef.current) {
+      searchRef.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }, [page]);
+
   const fetchCoursesByNameAndCatId = async (catId, courseName) => {
     try {
       const { data } = await axios.post(`/api/v1/catId/courseName`, {
@@ -161,8 +169,6 @@ const HomePage = ({ history }) => {
                           <div
                             className="topRate__course-card__image"
                             style={{
-                              width: '100%',
-                              paddingTop: '70%',
                               backgroundImage: `url("${course.image}")`,
                               backgroundSize: 'cover',
                               backgroundPosition: 'center',

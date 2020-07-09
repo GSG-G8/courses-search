@@ -10,10 +10,19 @@ body {
 }
 
 .footer__container {
-  display: flex;
+  display: block;
   font-size: 16px;
   text-align: left;
   padding: 4em;
+}
+
+.footer__mainSection {
+  display: flex;
+}
+
+.footer__subContainer {
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer__p1 {
