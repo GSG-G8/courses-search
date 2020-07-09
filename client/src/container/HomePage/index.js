@@ -143,13 +143,7 @@ const HomePage = ({ history }) => {
                           <div
                             className="topRate__course-card__image"
                             style={{
-                              width: '100%',
-                              paddingTop: '70%',
                               backgroundImage: `url("${course.image}")`,
-                              backgroundSize: 'cover',
-                              backgroundPosition: 'center',
-                              backgroundRepeat: 'no-repeat',
-                              // borderTopRightRadius: '50%',
                             }}
                             role="button"
                             aria-label="view details"
