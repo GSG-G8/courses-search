@@ -18,11 +18,22 @@ import { mainImg } from '../../assets/images';
 
 import './style.css';
 
+const queryParams = new URLSearchParams(window.location.search);
+const queryCat = queryParams.get('catId') || 0;
+
+const subCategory = { 0: 'all categories' };
+categories.forEach(({ children }) => {
+  if (children)
+    children.forEach(({ label, value }) => {
+      subCategory[value] = label;
+    });
+});
+
 const HomePage = ({ history }) => {
   const [loading, setLoading] = useState(true);
   const [courses, setCourses] = useState([]);
   const [searchCourseName, setSearchCourseName] = useState('');
-  const [cat, setCat] = useState(0);
+  const [cat, setCat] = useState(queryCat);
   const [error, setError] = useState('');
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -86,6 +97,7 @@ const HomePage = ({ history }) => {
 
   useEffect(() => {
     if (!error) fetchCoursesByNameAndCatId(cat, searchCourseName);
+    history.replace(cat ? `/?catId=${cat}` : '');
   }, [page, cat, searchCourseName]);
 
   return (
@@ -143,6 +155,12 @@ const HomePage = ({ history }) => {
             <div className="topRate__container">
               {courses.length > 0 ? (
                 <Row gutter={40}>
+                  {cat > 0 && (
+                    <Col span={24}>
+                      <div className="sub-categoey">{subCategory[cat]}</div>
+                    </Col>
+                  )}
+
                   {courses.map((course) => (
                     <Col xs={24} sm={12} md={8} lg={6}>
                       {' '}
@@ -152,6 +170,9 @@ const HomePage = ({ history }) => {
                             className="topRate__course-card__image"
                             style={{
                               backgroundImage: `url("${course.image}")`,
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center',
+                              backgroundRepeat: 'no-repeat',
                             }}
                             role="button"
                             aria-label="view details"

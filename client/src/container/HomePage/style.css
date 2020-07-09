@@ -71,8 +71,7 @@ body {
   padding-top: 17px;
 }
 .topRate__course-card h2 {
-  width: 150px;
-  /* letter-spacing: 2px; */
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -156,4 +155,15 @@ body {
 /* Style of top rate container */
 .topRate__container {
   padding: 5%;
+}
+
+.sub-categoey {
+  width: 100%;
+  font: bold 32px Raleway;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #61aba2;
+  margin-bottom: 40px;
+  padding: 10px 0;
+  border-radius: 6px;
 }
