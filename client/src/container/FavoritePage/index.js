@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Input, Modal, Button, Tree } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
-import { BsBookmarkFill } from 'react-icons/bs';
+import { FaTrashAlt } from 'react-icons/fa';
 import './style.css';
 import AddOrRemoveFolder from './AddOrRemoveFolder';
 
@@ -232,7 +232,7 @@ const FavoritePage = () => {
                           )
                         }
                       >
-                        <BsBookmarkFill />
+                        <FaTrashAlt />
                       </Button>
                     </span>
                     <Col className="favorite-title">{course.title}</Col>
