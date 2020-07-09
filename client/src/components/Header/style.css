@@ -27,6 +27,12 @@
   margin-right: 20px;
   color: black;
 }
+.ant-dropdown-menu-item {
+  width: 96px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .header__list li :hover {
   color: #287b72;
 }
