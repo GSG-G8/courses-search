@@ -28,6 +28,14 @@ const HomePage = ({ history }) => {
   const [total, setTotal] = useState(0);
   const searchRef = useRef(null);
 
+  useEffect(() => {
+    if (searchRef.current) {
+      searchRef.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }, [page]);
+
   const fetchCoursesByNameAndCatId = async (catId, courseName) => {
     try {
       const { data } = await axios.post(`/api/v1/catId/courseName`, {

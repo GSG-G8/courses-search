@@ -57,7 +57,7 @@ body {
 
 .topRate__course-card__image {
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 15px 15px 0 0;
   outline: none;
   box-shadow: 1px 1px 28px 5px #00000014;
 
