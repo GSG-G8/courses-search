@@ -47,7 +47,7 @@ const Header = ({ history }) => {
   return (
     <div className="header-container">
       <div className="header-left">
-        <Link to="/">
+        <Link to={LANDING}>
           <img className="header__logo" src={Logo} alt=" logo" />
         </Link>
         <div className="header__list">
