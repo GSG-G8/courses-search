@@ -149,7 +149,6 @@ const HomePage = ({ history }) => {
                               backgroundSize: 'cover',
                               backgroundPosition: 'center',
                               backgroundRepeat: 'no-repeat',
-                              // borderTopRightRadius: '50%',
                             }}
                             role="button"
                             aria-label="view details"
