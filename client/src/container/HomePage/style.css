@@ -150,3 +150,14 @@ body {
 .topRate__container {
   padding: 5%;
 }
+
+.sub-categoey {
+  width: 100%;
+  font: bold 32px Raleway;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #61aba2;
+  margin-bottom: 40px;
+  padding: 10px 0;
+  border-radius: 6px;
+}

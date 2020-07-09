@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
 
 .favorite-page {
   box-sizing: border-box;
-  font-family: 'Raleway';
+  font-family: "Raleway";
   margin-top: 7px;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .favorite-course-details {
-  font-family: 'Raleway';
+  font-family: "Raleway";
   color: black;
 }
 
@@ -130,8 +130,6 @@
 
 .favorite-bookmark button {
   background-color: white;
-  height: 20px;
-  width: 40px;
   z-index: 5;
 }
 
