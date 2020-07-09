@@ -193,42 +193,53 @@ const DetailsPage = ({ match }) => {
         </Col>
       </Row>
 
-      {comments.map(({ name, content, comment_id: commentId, picture }) => (
-        <Row gutter={16} key={commentId}>
-          <Col xs={4} md={3} lg={2}>
-            <img
-              className="user-image"
-              src={picture || defaultUserPhoto}
-              alt="user"
-            />
-          </Col>
-          <Col xs={20} md={21} lg={22}>
-            <strong>{`by (${name})`}</strong>
-            {userInfo.imageUrl === picture && (
-              <Popconfirm
-                title="Are you sure delete this comment ?"
-                onConfirm={() => {
-                  deleteComment({
-                    commentId,
-                    comments,
-                    setComments,
-                    notification,
-                  });
-                }}
-                okText="Delete"
-                okType="danger"
-              >
-                <Button danger type="link">
-                  <FaTrash />
-                  <span className="margin-left">delete</span>
-                </Button>
-              </Popconfirm>
-            )}
+      {comments.map(
+        ({
+          name,
+          content,
+          comment_id: commentId,
+          picture,
+          created_at: createdAt,
+        }) => (
+          <Row gutter={16} key={commentId}>
+            <Col xs={4} md={3} lg={2}>
+              <img
+                className="user-image"
+                src={picture || defaultUserPhoto}
+                alt="user"
+              />
+            </Col>
+            <Col xs={20} md={21} lg={22}>
+              <strong style={{ textTransform: 'capitalize' }}>{name}</strong>
+              <Text className="normal-font margin-left" type="secondary">
+                {new Date(createdAt).toDateString()}
+              </Text>
+              {userInfo.imageUrl === picture && (
+                <Popconfirm
+                  title="Are you sure delete this comment ?"
+                  onConfirm={() => {
+                    deleteComment({
+                      commentId,
+                      comments,
+                      setComments,
+                      notification,
+                    });
+                  }}
+                  okText="Delete"
+                  okType="danger"
+                >
+                  <Button danger type="link">
+                    <FaTrash />
+                    <span className="margin-left">delete</span>
+                  </Button>
+                </Popconfirm>
+              )}
 
-            <p>{content}</p>
-          </Col>
-        </Row>
-      ))}
+              <p>{content}</p>
+            </Col>
+          </Row>
+        )
+      )}
     </div>
   );
 };
