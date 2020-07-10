@@ -36,6 +36,7 @@ CREATE TABLE comment
 	id SERIAL PRIMARY KEY ,
 	content VARCHAR(255) NOT NULL,
 	user_id INTEGER NOT NULL REFERENCES users(id),
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 	course_id INTEGER NOT NULL REFERENCES course(id)
 );
 

@@ -13,7 +13,7 @@ describe('get course details', () => {
       .get('/api/v1/courses/1')
       .set('Accept', 'application/json')
       .expect(200);
-    expect(body).toStrictEqual({
+    expect(body).toMatchObject({
       courseDetails: {
         id: 1,
         category_id: 1,
